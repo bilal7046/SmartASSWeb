@@ -1,0 +1,184 @@
+﻿@model SmartASSWeb.ViewModels.MyCardsViewModel
+@{
+    ViewBag.Title = "My Business Cards";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads
+{
+    <link href="~/assets/css/fonts.css" rel="stylesheet" />
+    <link href="~/assets/css/businesscards.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/assets/extra-libs/prism/prism.css">
+    <link href="~/assets/css/app.css" rel="stylesheet" />
+
+    <link href="@Url.Content("~/assets/cards/css/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/themify-icons.css")" rel="stylesheet" />
+
+}
+
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-12 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">My Business Cards</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">My Business Cards</li>
+        </ol>
+        <div class="text-muted mt-0">Create multiple business card(s) by adding in your business and personal details. You can upload your logo as well as a picture of yourself.</div>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="row">
+        <div class="col-12">
+            @* <h4 class="d-inline">Business Card List</h4> *@
+
+            <!-- Row -->
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-md-8 text-left d-flex mt-3 mt-md-0">
+                        <a href="@Url.Action("Editor","MyCards")" id="btn-add-business-card" class="btn btn-info"><i class="mdi mdi-account-multiple-plus font-16 mr-1"></i> Add Business Card</a>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </div>
+            <!-- Row -->
+            <div class="row">
+                @foreach (var businessCard in Model.BusinessCards)
+                {
+                    <!-- column -->
+                    <div class="col-lg-11 col-md-11" style="margin-bottom: 25px; margin-right: 20px; margin-left: 20px;">
+                        <!-- Business Card Card -->
+                        <div class="row" style="margin-left: -30px;">
+                            <div class="col-md-3 col-lg-3">
+                                <div class="btn-group shadow" role="group" aria-label="Action button group">
+                                    <a href="@Url.Action("ViewCard", "BusinessCard", new {businessCardId = @businessCard.BusinessCardId})" target="_blank" type="button" class="btn btn-success btn-circle-lg" data-toggle="tooltip" title="View Business Card">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                    <a href="@Url.Action("Editor", "MyCards", new {id = @businessCard.BusinessCardId})" type="button" class="btn btn-warning btn-circle-lg" data-toggle="tooltip" title="Edit Card">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" onclick="DeleteCard('@businessCard.BusinessCardId')" type="button" class="btn btn-danger btn-circle-lg" data-toggle="tooltip" title="Delete Card">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                    <div class="btn-group" role="group">
+                                        <button id="btnGroupVerticalDrop1" type="button" class="btn btn-info btn-circle-lg dropdown-toggle" data-toggle="dropdown" data-toggle-dropdown="tooltip" aria-haspopup="true" aria-expanded="false" title="Share Card">
+                                            <i class="fas fa-share-alt"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
+                                            <a href="javascript:void(0)" id="btn-add-contact" class="dropdown-item" data-bci="businessCard.BusinessCardId"><i class="mdi mdi-account-multiple-plus font-16 mr-1"></i> Share with contact(s)</a>
+                                            <a class="dropdown-item" href="mailto:@businessCard.ProfileEmail" target="_blank">Share via Email</a>
+                                            <a class="dropdown-item" href="https://facebook.com" target="_blank">Share via Facebook</a>
+                                            <a class="dropdown-item" href="https://instagram.com" target="_blank">Share via Instagram</a>
+                                            <a class="dropdown-item" href="https://linkedin.com" target="_blank">Share via LinkedIn</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9 col-lg-9">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-5">
+                                @Html.Partial("_BusinessCardSwitch", businessCard)
+                            </div>
+                        </div>
+                        <!-- Card -->
+                    </div>
+                }
+                @if (Model.BusinessCards.Count() == 0)
+                {
+                    <!-- column -->
+                    <div class="col-lg-5 col-md-12" style="margin-right: 10px; margin-left: 20px;">
+                        <!-- Card -->
+                        <div class="card row d-flex justify-content-center">
+                            <div class="col-md-3">
+                                @* <img class="card-img-top img-fluid rounded" src="https://cdn0.capterra-static.com/logos/150/vendor-placeholder-logo.png" alt="Card image cap"> *@
+                            </div>
+                            <div class="card-body col-md-9">
+                                <h4 class="card-title">No business cards</h4>
+                                <p class="card-text">
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                    </div>
+                    <!-- column -->
+                }
+            </div>
+            @Html.Partial("ContactsShare", Model)
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/assets/extra-libs/prism/prism.js"></script>
+    @*<script src="~/assets/js/pages/contact/contact.js"></script>*@
+    <script>
+        function OnSuccess() {
+            toastr.success('Business Card sent');
+            $('#addContactModal').modal('hide');
+        }
+
+        function OnFailure() {
+            toastr.error('Error sharing business card');
+        }
+
+        function OnCheckClick(nameofchk, hiddenfieldname) {
+            toastr.success('Clicked: ' + nameofchk + ' - ' + hiddenfieldname);
+
+            var chk = document.getElementById(nameofchk);
+            $(hiddenfieldname).val(chk.checked);
+        }
+
+        function checkOpts(source) {
+            checkboxes = document.getElementsByClassName('contact-chkbox');
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = source.checked;
+            }
+        }
+
+        function DeleteCard(businessCardId) {
+            var url = '@Url.Action("Delete", "MyCards")?id=' + businessCardId;
+            Swal.fire({
+                title: "Delete Confirmation!",
+                text: "Are you sure you want to delete?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Delete",
+                closeOnConfirm: true
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        cache: false,
+                        async: true,
+                        success: function(data) {
+                            toastr.success('Card deleted successfully!');
+                            window.location.href = '@Url.Action("Index", "MyCards")';
+                        },
+                        error: function(data) {
+                            alert('Error occurred');
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

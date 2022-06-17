@@ -1,0 +1,189 @@
+﻿@using SmartASSWeb.Bll
+@model SmartASSWeb.Bll.Lead
+@{
+    ViewBag.Title = "My Leads";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ILookupDictionary dict = new LookupDictionary();
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css")" rel="stylesheet">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Lead</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Lead</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-body">
+                <h4 class="card-title">Lead</h4>
+                <h6 class="card-subtitle"> Capture new Lead </h6>
+            @using (Ajax.BeginForm("Save", "Leads",
+                new { @class = "form-horizontal mt-4", role = "form", id = "leadEditor" },
+                new AjaxOptions
+                {
+                    OnSuccess = "OnSuccess",
+                    OnFailure = "OnFailure",
+                    LoadingElementId = "progress"
+                }))
+            {
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            @Html.HiddenFor(m => m.LeadId)
+                            @Html.LabelFor(m => m.LeadStatus)
+                            @Html.DropDownListFor(m => m.LeadStatus, new SelectList(@dict.LeadStatuses, "Value", "Key"), "-- Select --", new {@class = "custom-select col-12"})
+                        </div>
+                        <div class="col-md-6">
+                            <label>Lead Owner</label>
+                            @Html.TextBoxFor(m => m.LeadOwner, new {@class = "form-control", @readonly = "readonly"})
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.Title)
+                            @Html.DropDownListFor(m => m.Title, new SelectList(@dict.Titles, "Value", "Key"), "-- Select --", new { @class = "custom-select col-12" })
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label>First Name</label>
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            <label>Last Name</label>
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="example-email">
+                                Email <span class="help">e.g. "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="07627f666a776b6247606a666e6b2964686a">test@abc.com</a>"</span>
+                            </label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type = "email" })
+                        </div>
+                        <div class="col-md-6">
+                            <label>Phone</label>
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @type = "tel" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label>Company</label>
+                            @Html.TextBoxFor(m => m.Company, new { @class = "form-control"})
+                        </div>
+                        <div class="col-md-6">
+                            <label>Mobile</label>
+                            @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", @type = "tel" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.Industry)
+                            @Html.DropDownListFor(m => m.Industry, new SelectList(@dict.Industries, "Value", "Key"), "-- Select --", new { @class = "custom-select col-12"})
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.LeadSource)
+                            @Html.DropDownListFor(m => m.LeadSource, new SelectList(@dict.LeadSources, "Value", "Key"), "-- Select --", new { @class = "custom-select col-12"})
+                        </div>
+                    </div>
+                    <hr/>
+                    <h4>Address Information</h4>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label>Address 1</label>
+                            @Html.TextBoxFor(m => m.Address1, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            <label>Province</label>
+                            @Html.TextBoxFor(m => m.Province, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label>Address 2</label>
+                            @Html.TextBoxFor(m => m.Address2, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            <label>Country</label>
+                            @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label>City</label>
+                            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-3">
+                            <label>Postal Code</label>
+                            @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6"></div>
+                    </div>
+                    <hr/>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label>Notes</label>
+                            @Html.TextAreaFor(m => m.Notes, new { @class = "form-control", rows = "5" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-success waves-effect waves-light mr-2">
+                                Submit
+                            </button>
+                            <button type="btn" class="btn btn-inverse waves-effect waves-light" onclick="location.href='@Url.Action("Index", "Leads")'">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="@Url.Content("~/assets/js/pages/forms/jasny-bootstrap.js")"></script>
+    <script type="text/javascript">
+        function OnSuccess() {
+            toastr.success('Lead saved successfully');
+            window.location.href = "@Url.Action("Index", "Leads")";
+        }
+        function OnFailure()
+        {
+            toastr.error('Lead successfully saved');
+        }
+    </script>
+}

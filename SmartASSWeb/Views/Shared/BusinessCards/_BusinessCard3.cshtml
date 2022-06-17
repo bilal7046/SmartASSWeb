@@ -1,0 +1,116 @@
+﻿@model SmartASSWeb.Bll.BusinessCard
+<div class="table-responsive rounded">
+    <table class="business-card" style="min-height: 400px; width: 60%;margin: 0 40px 0 40px">
+        <tr style="width: 40%">
+            <td style="height: 33%; background-color: @Model.ThemeColor">
+                <div class="row" style="margin: 10px 0px 5px 10px;">
+                    <div class="col-4 float-md-left">
+                        <ul class="socialMediaIcon " style="list-style: none; padding-inline-start: 0 !important">
+                            @if (!string.IsNullOrEmpty(@Model.SocialLinkedUrl))
+                            {
+                                <li class="linkedin "><a target="_blank" href="@Model.SocialLinkedUrl" rel="noopener noreferrer" data-tooltip="toggle" title="LinkedIn">LinkedIn</a></li>
+                            }
+                            @if (!string.IsNullOrEmpty(@Model.SocialFacebookUrl))
+                            {
+                                <li class="facebook "><a target="_blank" href="@Model.SocialFacebookUrl" rel="noopener noreferrer" data-tooltip="toggle" title="Facebook">Facebook</a></li>
+                            }
+                            @if (!string.IsNullOrEmpty(@Model.SocialTwitterUrl))
+                            {
+                                <li class="twitter "><a target="_blank" href="@Model.SocialTwitterUrl" rel="noopener noreferrer" data-tooltip="toggle" title="Twitter">Twitter</a></li>
+                            }
+                            @if (!string.IsNullOrEmpty(@Model.SocialInstagramUrl))
+                            {
+                                <li class="instagram "><a target="_blank" href="@Model.SocialInstagramUrl" rel="noopener noreferrer" data-tooltip="toggle" title="Instagram">Instagram</a></li>
+                            }
+                            @if (!string.IsNullOrEmpty(@Model.SocialYoutubeUrl))
+                            {
+                                <li class="youtube "><a target="_blank" href="@Model.SocialYoutubeUrl" rel="noopener noreferrer" data-tooltip="toggle" title="Youtube">You Tube</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-8 text-right">
+                        <h1 style="color: @Model.PersonFontColor;font-size: @Model.PersonFontSize;">@Model.ProfileFullName</h1>
+                        @if (string.IsNullOrEmpty(@Model.Title))
+                        {
+                            <h6><br /></h6>
+                        }
+                        else
+                        {
+                            <h6 style="color: @Model.PersonFontColor;font-size: @Model.TitleFontSize;">@Model.Title</h6>
+                        }
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr style="width: 30%">
+            <td style="height: 33%; background-color: #fff">
+                <div class="row" style="margin-left: 5px; margin-right: 0;">
+                    <div class="col-4 left" style="margin: 5px 0;">
+                        <img src="@Model.LogoUrl" alt="Some Logo" class="company-logo" />
+                    </div>
+                    <div class="col-4" style="margin: -30px 0;display:inline-block;vertical-align: middle;">
+                        <div class="profile-img">
+                            <img src="@Model.ProfileImage" alt="Profile Pic" class="rounded-circle img-center" width="180" style="max-height: 180px; max-width: 180px; height: 180px; width: 180px;" />
+                        </div>
+                    </div>
+                    <div class="col-4 text-right align-self-center">
+                        <div style="color: @Model.CompanyFontColor;font-size: @Model.CompanyFontSize;"><strong>@Model.Name</strong></div>
+                        <div style="color: @Model.CompanyFontColor;font-size: @Model.SloganFontSize;">@Model.Slogan</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr style="width: 40%">
+            <td style="height: 33%; background-color: @Model.ThemeColor">
+                <div class="row" style="margin: 10px 10px 5px 10px;">
+                    <div class="col-5 text-left left" style="">
+                        <h4 style="color: @Model.CompanyFontColor;"><strong>CONTACT</strong></h4>
+                        <p style="color: @Model.CompanyFontColor;">
+                            @if (!string.IsNullOrEmpty(@Model.Phone1))
+                            {
+                                <i class="fas fa-phone"></i> @Model.Phone1<br />
+                            }
+
+                            @if (!string.IsNullOrEmpty(@Model.Mobile))
+                            {
+                                <i class="fas fa-mobile"></i> @Model.Mobile<br />
+                            }
+                            @if (!string.IsNullOrEmpty(@Model.Email))
+                            {
+                                <i class="fas fa-envelope"></i> @Model.Email<br />
+                            }
+                            @if (!string.IsNullOrEmpty(@Model.Website))
+                            {
+                                <i class="fas fa-globe"></i> @Model.Website
+                            }
+                        </p>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-5 text-right right" style="">
+                        <h4 style="color: @Model.CompanyFontColor;"><i class="fas fa-map-marker-alt"></i><strong>ADDRESS</strong></h4>
+                        <p style="color: @Model.CompanyFontColor;">
+                            @if (!string.IsNullOrEmpty(@Model.Address1))
+                            {
+                                @Model.Address1<br />
+                            }
+                            @if (!string.IsNullOrEmpty(@Model.Address2))
+                            {
+                                @Model.Address2<br />
+                            }
+                            @if (!string.IsNullOrEmpty(@Model.City))
+                            {
+                                @Model.City @Model.Province<br />
+                            }
+                            @if (!string.IsNullOrEmpty(@Model.Country))
+                            {
+                                @Model.Country @Model.PostalCode
+                            }
+                        </p>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+

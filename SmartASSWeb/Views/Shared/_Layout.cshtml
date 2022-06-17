@@ -1,0 +1,793 @@
+﻿@using SmartASSWeb.Bll
+@using SmartASSWeb.Bll.Core
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartAss | Digital Business Card Analytics Software System</title>
+    @Scripts.Render("~/bundles/modernizr")
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="description" content="SmartASS | Digital Business Card Software System" />
+    <meta name="author" content="Donald Mafa - Wald Cloud Solutions" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon.png">
+    <!--This bundle was moved by the Telerik VS Extensions for compatibility reasons-->
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*<link href="https://kendo.cdn.telerik.com/2021.1.224/styles/kendo.bootstrap-v4.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://kendo.cdn.telerik.com/2021.1.224/js/jquery.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2021.1.224/js/jszip.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2021.1.224/js/kendo.all.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2021.1.224/js/kendo.aspnetmvc.min.js"></script>
+        <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>*@
+
+    <!--Google API Fonts-->
+    @*<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">*@
+
+    <!-- Custom CSS -->
+    @*<link href="@Url.Content("~/assets/cards/css/style.css")" rel="stylesheet" />*@
+    <link href="@Url.Content("~/assets/css/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/themify-icons.css")" rel="stylesheet" />
+
+    <!--Custom CSS - New Business Cards-->
+    @*<link href="@Url.Content("~/assets/cards-new/template-1/css/style.css")" rel="stylesheet" />
+        <link href="@Url.Content("~/assets/cards-new/template-2/css/style.css")" rel="stylesheet" />
+        <script src="~/assets/cards-new/template-2/js/function.js"></script>*@
+
+    <link href="~/assets/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+    <!-- International Telephone Input-->
+    <link href="@Url.Content("https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/css/intlTelInput.css")" rel="stylesheet" />
+    <link href="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons-wind.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css")" rel="stylesheet" />
+    <link href="~/assets/css/icons/font-awesome/css/all.min.css" rel="stylesheet" />
+    <script src="~/assets/css/icons/font-awesome/js/all.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    @* <link href="~/assets/css/icons/material-design/css/materialcustom.css" rel="stylesheet" /> *@
+    @* <link href="~/assets/css/icons/material-design/css/materialdesignicons.css" rel="stylesheet" /> *@
+    <link href="~/assets/libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/assets/extra-libs/toastr/dist/build/toastr.min.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Firebase-->
+    <script src="@Url.Content("https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js")"></script>
+    <script src="@Url.Content("https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js")"></script>
+    <script src="@Url.Content("https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js")"></script>
+    <script src="@Url.Content("https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js")"></script>
+    <script src="@Url.Content("https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js")"></script>
+    <script src="~/assets/js/firebase.js"></script>
+    <script src="~/assets/js/main.js"></script>
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+
+        .card-total {
+            float: right;
+        }
+    </style>
+    @RenderSection("Heads", required: false)
+</head>
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
+                        <i class="ti-menu ti-close"></i>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                        <!-- Logo icon -->
+                        <b class="logo-icon">
+                            <img src="@Url.Content("~/assets/images/SmartAss200space.png")" id="logo" alt="homepage" class="logo-lg dark-logo" />
+                            <img src="@Url.Content("~/assets/images/SmartAss200mini.png")" alt="homepage" class="logo-mini light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                       data-toggle="collapse" data-target="#navbarSupportedContent"
+                       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="ti-more"></i>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto float-left">
+                        <!-- This is  -->
+                        <li class="nav-item">
+                            <a class="nav-link sidebartoggler d-none d-md-block waves-effect waves-dark" href="javascript:void(0)" onclick="changeImg()"><i class="ti-menu"></i></a>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item d-none d-md-block search-box">
+                            <a class="nav-link d-none d-md-block waves-effect waves-dark" href="javascript:void(0)" data-toggle="tooltip" title="Search Network">
+                                <i class="ti-search"></i>
+                            </a>
+                            @* @using (Html.BeginForm("Find", "SearchResult", FormMethod.Post, new { @class = "app-search", role = "form" }))
+                                {
+                                    <input type="text" class="form-control" placeholder="Start Networking" id="searchBox" name="SearchText">
+                                    <a class="srh-btn"><i class="ti-close"></i></a>
+                                }*@
+                        </li>
+                        <li class="nav-item d-none d-md-block search-box1">
+                            @using (Html.BeginForm("Find", "SearchResult", FormMethod.Post, new { @class = "form-material app-search", role = "form" }))
+                            {
+                <input type="text" class="form-control" placeholder="Start Networking" id="searchBox1" name="SearchText"> @*                                 <a href="javascript:void(0);" onclick="document.getElementById('searchBox1').value = ''" class="srh-btn"><i class="ti-close"></i></a> *@}
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-right">
+                        <li class="nav-item" style="margin-top: 23px">
+                            @if ((User as CustomPrincipal)?.Package == "Individual")
+                            {
+                <span class="badge badge-light">Individual</span> }
+            else if ((User as CustomPrincipal)?.Package == "SmallBusiness")
+            {
+<span class="badge badge-warning">Small Business</span> }
+else if ((User as CustomPrincipal)?.Package == "Business")
+{
+<span class="badge badge-info">Business</span> }
+else if ((User as CustomPrincipal)?.Package == "Enterprise")
+{
+<span class="badge badge-secondary">Enterprise</span> }
+else if ((User as CustomPrincipal)?.Package == "AllAccess")
+{
+<span class="badge badge-dark">All Access</span>}
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="index.html" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope"></i>
+                                <div class="notify">
+                                    <span class="heartbit"></span>
+                                    <span class="point"></span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu mailbox dropdown-menu-right scale-up" aria-labelledby="2">
+                                <ul class="list-style-none">
+                                    <li>
+                                        <div class="border-bottom rounded-top py-3 px-4">
+                                            <h5 class="font-weight-medium mb-0">You have 0 new notifications</h5>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center message-body position-relative" style="height: 250px;">
+                                            @foreach (var notification in ViewBag.Notifications)
+                                            {<!-- Message -->
+                                                                <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+                                                                    <span class="user-img position-relative d-inline-block"> <img src="../assets/images/users/1.jpg" alt="user" class="rounded-circle w-100"> <span class="profile-status rounded-circle online"></span> </span>
+                                                                    <div class="w-75 d-inline-block v-middle pl-2">
+                                                                        <h5 class="message-title mb-0 mt-1">Pavan kumar</h5> <span class="font-12 text-nowrap d-block text-muted text-truncate">Just see the my admin!</span> <span class="font-12 text-nowrap d-block text-muted">9:30 AM</span>
+                                                                    </div>
+                                                                </a>}
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link border-top text-center text-dark pt-3" href="@Url.Action("Index", "Notifications")"> <b>See all notifications</b> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Profile -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="@Url.Action("Index", "UserProfile")" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="@((User as CustomPrincipal)?.PhotoUrl)" alt="user" width="30" height="30" class="profile-pic rounded-circle" />
+                            </a>
+                            <div class="dropdown-menu mailbox dropdown-menu-right scale-up">
+                                <ul class="dropdown-user list-style-none">
+                                    <li>
+                                        <div class="dw-user-box p-3 d-flex">
+                                            <div class="u-img"><img src="@((User as CustomPrincipal)?.PhotoUrl)" alt="user" class="rounded" width="80"></div>
+                                            <div class="u-text ml-2">
+                                                <h4 class="mb-0">@((User as CustomPrincipal)?.FullName)</h4>
+                                                <p class="text-muted mb-1 font-14">
+                                                    <a href="#" class="__cf_email__">@((User as CustomPrincipal)?.Email)</a>
+                                                    @if ((User as CustomPrincipal)?.Package == "Individual")
+                                                    {
+                                        <span class="badge badge-light">Individual</span> }
+                                    else if ((User as CustomPrincipal)?.Package == "SmallBusiness")
+                                    {
+                        <span class="badge badge-warning">Small Business</span> }
+                    else if ((User as CustomPrincipal)?.Package == "Business")
+                    {
+        <span class="badge badge-info">Business</span> }
+    else if ((User as CustomPrincipal)?.Package == "Enterprise")
+    {
+<span class="badge badge-secondary">Enterprise</span> }
+else if ((User as CustomPrincipal)?.Package == "AllAccess")
+{
+<span class="badge badge-dark">All Access</span>}
+                                                </p>
+                                                <a href="@Url.Action("Index", "UserProfile")" class="btn btn-rounded btn-danger btn-sm text-white d-inline-block">
+                                                    View
+                                                    Profile
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="dropdown-divider"></li>
+                                    <li class="user-list"><a class="px-3 py-2" href="@Url.Action("Index", "UserProfile")"><i class="ti-user"></i> View Profile</a></li>
+                                    <li class="user-list"><a class="px-3 py-2" href="@Url.Action("Index", "Notifications")"><i class="ti-email"></i> Notifications</a></li>
+                                    <li role="separator" class="dropdown-divider"></li>
+                                    <li class="user-list"><a class="px-3 py-2" href="@Url.Action("Index", "Settings")"><i class="ti-settings"></i> Settings</a></li>
+                                    <li role="separator" class="dropdown-divider"></li>
+                                    <li class="user-list"><a class="px-3 py-2" href="@Url.Action("Index", "PackageCenter")"><i class="bi bi-star-fill"></i> <strong>Upgrade</strong></a></li>
+                                    @* <li role="separator" class="dropdown-divider"></li> *@
+                                    <li class="user-list"><a class="px-3 py-2" href="javascript:void(0)" onclick="mainApp.logout()"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- Language -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- User profile -->
+                @*<div class="user-profile position-relative"> $1$style="background: url(../../assets/images/background/user-info.jpg) no-repeat;">#1#
+                        <!-- User profile image -->
+                        <div class="profile-img"> <img src="@(User as CustomPrincipal)?.PhotoUrl)" alt="user" class="w-100" /> </div>
+                        <!-- User profile text-->
+                        <div class="profile-text pt-1">
+                            <a href="index.html#" class="dropdown-toggle u-dropdown w-100 text-white d-block position-relative" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">@((User as CustomPrincipal)?.FullName)</a>
+                            <div class="dropdown-menu animated flipInY">
+                                <a href="@Url.Action("Index", "UserProfile")" class="dropdown-item">
+                                    <i class="ti-user"></i>
+                                    My Profile
+                                </a>
+                                <a href="@Url.Action("Index", "Notifications")" class="dropdown-item"><i class="ti-email"></i> Notifications</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="@Url.Action("Index", "Settings")" class="dropdown-item"><i class="ti-settings"></i> Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="javascript:void(0)" class="dropdown-item" onclick="mainApp.logout()"><i class="fa fa-power-off"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>*@
+                <!-- End User profile text-->
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li><hr /></li>
+                        @*<li class="nav-small-cap">
+                                <i class="mdi mdi-dots-horizontal"></i>
+                                <span class="hide-menu">SMARTASS PANEL</span>
+                            </li>*@
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index", "Home")" aria-expanded="false">
+                                <i class="mdi ti-home"></i>
+                                <span class="hide-menu"> Home </span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="mdi mdi-dots-horizontal"></i>
+                            <span class="hide-menu">Portfolio</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index", "UserProfile", new {area = string.Empty})" routerLinkActive="router-link-active" aria-expanded="false">
+                                <i class="mdi ti-user"></i><span class="hide-menu"> My Profile</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index", "MyCards", new {area = string.Empty})" aria-expanded="false">
+                                <i class="far fa-address-card fa-2x"></i><span class="hide-menu"> &nbsp;My Cards</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index", "ConnectedCards", new {area = string.Empty})" aria-expanded="false">
+                                <i class="far fa-address-book fa-2x"></i><span class="hide-menu"> &nbsp;Connected Cards</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index", "ManageContacts", new {area = string.Empty})" aria-expanded="false">
+                                <i class="mdi ti-book"></i><span class="hide-menu"> Contacts</span>
+                            </a>
+                        </li>
+                        <hr />
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                               href="@Url.Action("Index", "Notifications", new {area = string.Empty})" aria-expanded="false">
+                                <i class="mdi ti-comments"></i><span class="hide-menu"> Notifications</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                               href="@Url.Action("Index", "CalendarEvents", new {area = string.Empty})" aria-expanded="false">
+                                <i class="mdi ti-calendar"></i><span class="hide-menu"> Setup Meetings</span>
+                            </a>
+                        </li>
+                        @*<li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href="@Url.Action("Index", "Chat", new {area = string.Empty})" aria-expanded="false">
+                                    <i class="mdi ti-comments"></i><span class="hide-menu"> Chat</span>
+                                </a>
+                            </li>*@
+                        @*<li class="nav-small-cap">
+                                <i class="mdi mdi-dots-horizontal"></i>
+                                <span class="hide-menu">Audience</span>
+                            </li>*@
+
+                        @*bilal*@
+                        @{ 
+                                        var filePath = ((CustomPrincipal)User).GetPath();
+
+                                        using (StreamReader r = new StreamReader(filePath))
+                                        {
+                                            string json = r.ReadToEnd();
+                                            SmartASSWeb.Models.MenuModel items = Newtonsoft.Json.JsonConvert.DeserializeObject<SmartASSWeb.Models.MenuModel>(json);
+
+                                            int accessLevel = ((CustomPrincipal)User).GetAccesLevel();
+
+                                            foreach (var item in items.Menu)
+                                            {
+                <li class="nav-small-cap">
+                    <i class="mdi mdi-dots-horizontal"></i>
+                    <span class="hide-menu">@item.MainHeading</span>
+                </li> foreach (var child in item.Menus)
+                                    {
+
+                                        var hasAccess = child.Level <= accessLevel;
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="@child.IconClass"></i>
+                        <span class="hide-menu">@child.Name</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level">
+                        @{var style = hasAccess ? "" : "pointer-events:none;opacity:0.6"; }
+                                @if (child.Child.Count > 0)
+                                {
+
+
+                                    foreach (var childMenu in child.Child)
+                                    {
+<li class="sidebar-item waves-effect waves-dark" style="@style">
+
+    <a href="@Url.Action(childMenu.Action, childMenu.Controller, new {area = string.Empty})" class="sidebar-link">
+        <i class="mdi mdi-drawing"></i>
+        <span class="hide-menu">@childMenu.Name</span>
+    </a>
+</li>
+ }
+}
+else
+                            {
+<li class="sidebar-item waves-effect waves-dark" style="@style">
+    <a href="@Url.Action(child.Action, child.Controller, new {area = string.Empty})" class="sidebar-link">
+        <i class="mdi mdi-drawing"></i>
+        <span class="hide-menu">@child.Name</span>
+    </a>
+</li>}
+                    </ul>
+                </li>
+ }
+        }
+    } }
+                        @*bilal*@
+
+                        <!--<li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="mdi ti-bar-chart"></i>
+                                <span class="hide-menu"> Behavior</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("CardsRequested", "BusinessCardCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Card Requests</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("AcceptedCards", "BusinessCardCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Accepted Cards</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("PendingCards", "BusinessCardCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Pending cards</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("CardInvites", "BusinessCardCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Card Invites</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("CardShares", "BusinessCardCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Card Shares</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("SocialMediaLinks", "BusinessCardCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Card Interactions</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("EngagementRate", "BusinessCardCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Engagement Rate</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="mdi ti-world"></i>
+                                <span class="hide-menu"> Demographics</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("AgeGroupClicks", "BusinessCardCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Age Groups</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("GenderClicks", "BusinessCardCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Gender</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("JobLevelClicks", "BusinessCardCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Job Levels</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <hr />
+                        <li class="nav-small-cap">
+                            <i class="mdi mdi-dots-horizontal"></i>
+                            <span class="hide-menu">Acquisition</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="mdi ti-world"></i>
+                                <span class="hide-menu"> Overview</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("LeadStatusRatio", "LeadCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Conversion Funnel</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("LeadSourceRatio", "LeadCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Leads Sourced</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("MonthlyLeads", "LeadCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Monthly Leads</span>
+                                    </a>
+                                </li>-->
+                        @*<li class="sidebar-item waves-effect waves-dark">
+                                <a href="@Url.Action("MonthlyLeads", "LeadCharts", new {area = string.Empty})" class="sidebar-link">
+                                    <i class="mdi mdi-drawing"></i>
+                                    <span class="hide-menu">Leads by Location</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item waves-effect waves-dark">
+                                <a href="" class="sidebar-link">
+                                    <i class="mdi mdi-drawing"></i>
+                                    <span class="hide-menu">Leads by Gender</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item waves-effect waves-dark">
+                                <a href="" class="sidebar-link">
+                                    <i class="mdi mdi-drawing"></i>
+                                    <span class="hide-menu">Leads per Industry</span>
+                                </a>
+                            </li>*@
+                        <!--</ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                               href="@Url.Action("Index", "Leads", new {area = string.Empty})" aria-expanded="false">
+                                <i class="mdi ti-agenda"></i><span class="hide-menu"> Leads</span>
+                            </a>
+                        </li>
+                        <li><hr /></li>
+                        <li class="nav-small-cap">
+                            <i class="mdi mdi-dots-horizontal"></i>
+                            <span class="hide-menu">Goals</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                               href="@Url.Action("MyConversionGoals", "ConversionGoal", new {area = string.Empty})" aria-expanded="false">
+                                <i class="mdi ti-medall"></i><span class="hide-menu"> Conversion Goals</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" data-toggle="tooltip" title="Team Conversion Goals"
+                               href="@Url.Action("TeamConversionGoals", "ConversionGoal", new {area = string.Empty})" aria-expanded="false">
+                                <i class="mdi ti-medall"></i><span class="hide-menu"> Team Goals</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="mdi mdi-dots-horizontal"></i>
+                            <span class="hide-menu">Team Management</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                               href="@Url.Action("ManageTeam", "Leads", new {area = string.Empty})" aria-expanded="false">
+                                <i class="mdi ti-layout-list-thumb-alt"></i><span class="hide-menu"> Manage Team</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="mdi ti-world"></i>
+                                <span class="hide-menu"> Overview</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("TotalRevenue", "LeadManagerCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Sales Revenue</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("TeamMemberLeads", "LeadManagerCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Team Leads</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("LeadsPerIndustry", "LeadManagerCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Industry Leads</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item waves-effect waves-dark">
+                                    <a href="@Url.Action("SalesContest", "LeadManagerCharts", new {area = string.Empty})" class="sidebar-link">
+                                        <i class="mdi mdi-drawing"></i>
+                                        <span class="hide-menu">Sales Contest</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                               href="@Url.Action("TeamDashboard", "Leads", new {area = string.Empty})" aria-expanded="false">
+                                <i class="fas fa-user-friends"></i><span class="hide-menu">  Team Dashboard</span>
+                            </a>
+                        </li>-->
+
+                        <li class="nav-small-cap">
+                            <i class="mdi mdi-dots-horizontal"></i>
+                            <span class="hide-menu">Enterprise Management</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                               href="@Url.Action("ManageEnterprise", "Enterprise", new {area = string.Empty})" aria-expanded="false">
+                                <i class="far fa-building"></i><span class="hide-menu">&nbsp;&nbsp;Manage Enterprises</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                               href="@Url.Action("ManageEnterpriseUsers", "Enterprise", new {area = string.Empty})" aria-expanded="false">
+                                <i class="fas fa-users"></i><span class="hide-menu">&nbsp;&nbsp;Manage Users</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                               href="@Url.Action("SubmitEnterprise", "Enterprise", new {area = string.Empty})" aria-expanded="false">
+                                <i class="fas fa-folder-plus"></i><span class="hide-menu">&nbsp;&nbsp;Submit Enterprise</span>
+                            </a>
+                        </li>
+                        @*<li class="nav-small-cap">
+                                <i class="mdi mdi-dots-horizontal"></i>
+                                <span class="hide-menu">Affiliate Panel</span>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href="@Url.Action("Index", "Affiliates",new {area=string.Empty})" routerLinkActive="router-link-active" aria-expanded="false">
+                                    <i class="mdi mdi-calendar"></i><span class="hide-menu"> Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href="@Url.Action("Index", "Campaigns",new {area=string.Empty})" aria-expanded="false">
+                                    <i class="mdi mdi-calendar"></i><span class="hide-menu"> Manage Campaigns</span>
+                                </a>
+                            </li>
+                            <li class="nav-small-cap">
+                                <i class="mdi mdi-dots-horizontal"></i>
+                                <span class="hide-menu">Settings</span>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="@Url.Action("Index", "Tags")" class="sidebar-link">
+                                    <i class="mdi ti-tag"></i><span class="hide-menu">Tags </span>
+                                </a>
+                            </li>*@ @*<li><hr /></li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href="javascript:void(0)" aria-expanded="false" onclick="mainApp.logout()">
+                                    <i class="mdi ti-arrow-left"></i><span class="hide-menu">Log Out</span>
+                                </a>
+                            </li>*@
+                        </ul>
+                    </nav>
+                    <!-- End Sidebar navigation -->
+                </div>
+                <!-- End Sidebar scroll-->
+                <!-- Bottom points-->
+                <div class="sidebar-footer">
+                    <!-- item-->
+                    @* <a href="@Url.Action("Index", "Settings")" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a> *@
+                    <!-- item-->
+                    @* <a href="@Url.Action("Index", "Notifications")" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a> *@
+                    <a href="@Url.Action("Index", "PackageCenter")" class="justify-content-center w-50 btn btn-outline-secondary btn-xs d-flex align-items-center text-white">
+                        <i class="bi bi-star-fill"></i> Upgrade
+                    </a>
+                    <!-- item-->
+                    <a onclick="mainApp.logout()" href="javascript:void(0)" class="link" data-toggle="tooltip" title="Logout"><i class="ti-power-off"></i></a>
+                </div>
+                <!-- End Bottom points-->
+            </aside>
+            <!-- ============================================================== -->
+            <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Page wrapper  -->
+            <!-- ============================================================== -->
+            <div class="page-wrapper">
+                <!-- ============================================================== -->
+                <!-- Container fluid  -->
+                <!-- ============================================================== -->
+                @RenderBody()
+                <!-- ============================================================== -->
+                <!-- End Container fluid  -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- footer -->
+                <!-- ============================================================== -->
+                <footer class="footer">
+                    © 2020 Smart ASS - Digital Business Card
+                </footer>
+                <!-- ============================================================== -->
+                <!-- End footer -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Page wrapper  -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Wrapper -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- customizer Panel -->
+        <!-- ============================================================== -->
+        <div class="chat-windows"></div>
+        @if (!Request.Browser.IsMobileDevice)
+        {
+<div style="position:fixed;top:calc(50% - 250px);right:0;transition:width 300ms ease-out;width:0;" data-qa="side_panel"> <a class="typeform-share button" href="https://form.typeform.com/to/j9VocQmp" data-mode="side_panel" style="box-sizing:border-box;position:absolute;top:300px;width:200px;height:48px;padding:0 20px;margin:0;cursor:pointer;background:#3A7685;border-radius:4px 4px 0px 0px;box-shadow:0px 2px 12px rgba(0, 0, 0, 0.06), 0px 2px 4px rgba(0, 0, 0, 0.08);display:flex;align-items:center;justify-content:flex-start;transform:rotate(-90deg);transform-origin:bottom left;color:white;text-decoration:none;z-index:9999;" data-width="320" data-height="500" target="_blank"> <span class="icon" style="width:32px;position:relative;text-align:center;transform:rotate(90deg) scale(0.85);left:-8px;"> <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' style="margin-top:10px;"> <path d='M21 0H0V9L10.5743 24V16.5H21C22.6567 16.5 24 15.1567 24 13.5V3C24 1.34325 22.6567 0 21 0ZM7.5 9.75C6.672 9.75 6 9.07875 6 8.25C6 7.42125 6.672 6.75 7.5 6.75C8.328 6.75 9 7.42125 9 8.25C9 9.07875 8.328 9.75 7.5 9.75ZM12.75 9.75C11.922 9.75 11.25 9.07875 11.25 8.25C11.25 7.42125 11.922 6.75 12.75 6.75C13.578 6.75 14.25 7.42125 14.25 8.25C14.25 9.07875 13.578 9.75 12.75 9.75ZM18 9.75C17.172 9.75 16.5 9.07875 16.5 8.25C16.5 7.42125 17.172 6.75 18 6.75C18.828 6.75 19.5 7.42125 19.5 8.25C19.5 9.07875 18.828 9.75 18 9.75Z' fill='white' /> </svg> </span> <span style="text-decoration:none;font-size:18px;font-family:Helvetica,Arial,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;text-align:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;"> Feedback </span> </a> </div>
+                <script>(function () { var qs, js, q, s, d = document, gi = d.getElementById, ce = d.createElement, gt = d.getElementsByTagName, id = "typef_orm_share", b = "https://embed.typeform.com/"; if (!gi.call(d, id)) { js = ce.call(d, "script"); js.id = id; js.src = b + "embed.js"; q = gt.call(d, "script")[0]; q.parentNode.insertBefore(js, q) } })()</script>}
+        <!-- ============================================================== -->
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        <!-- Validation -->
+        <script src="@Url.Content("~/Scripts/jqBootstrapValidation.js")"></script>
+        <script>$(function () {
+                $("input,select,textarea").not("[type=submit]").jqBootstrapValidation({ sniffHtml: true, preventSubmit: true });
+            });</script>
+        @Scripts.Render("~/bundles/bootstrap")
+        <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+        @* <script src="@Url.Content("~/assets/libs/jquery/dist/jquery.min.js")"></script> *@
+        @* *@
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="@Url.Content("~/assets/libs/popper.js/dist/umd/popper.min.js")"></script>
+        <script src="@Url.Content("~/assets/libs/bootstrap/dist/js/bootstrap.min.js")"></script>
+        <!-- SweetAlert -->
+        <script src="@Url.Content("~/assets/libs/sweetalert2/dist/sweetalert2.all.min.js")"></script>
+        <script src="@Url.Content("~/assets/extra-libs/toastr/dist/build/toastr.min.js")"></script>
+        <!--Date Controls-->>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="~/assets/js/bootstrap-material-datetimepicker.js"></script>
+        <!-- Apps -->
+        <script src="@Url.Content("~/assets/js/app.min.js")"></script>
+        <script src="@Url.Content("~/assets/js/app.init.js")"></script>
+        <script src="@Url.Content("~/assets/js/app-style-switcher.js")"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="@Url.Content("~/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js")"></script>
+        <script src="@Url.Content("~/assets/extra-libs/sparkline/sparkline.js")"></script>
+        <!--Wave Effects -->
+        <script src="@Url.Content("~/assets/js/waves.js")"></script>
+        <!--Menu sidebar -->
+        <script src="@Url.Content("~/assets/js/sidebarmenu.js")"></script>
+        <!--Custom JavaScript -->
+        <script src="@Url.Content("~/assets/js/custom.min.js")"></script>
+        <!--This page JavaScript -->
+        <!-- Chart JS -->
+        <script src="@Url.Content("~/assets/js/pages/dashboards/dashboard1.js")"></script>
+        <!-- International Telephone Input-->
+        <script src="@Url.Content("https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/intlTelInput.js")"></script>
+        <script>$(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+                $('[data-toggle-dropdown="tooltip"]').tooltip();
+            });</script>
+        <script>function changeImg() {
+                var logo = document.getElementById("logo");
+                if (logo.getAttribute('src') === '/assets/images/SmartAss200space.png') {
+                    logo.src = "/assets/images/SmartAss200mini.png";
+                } else {
+                    logo.src = "/assets/images/SmartAss200space.png";
+                }
+            }</script>
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

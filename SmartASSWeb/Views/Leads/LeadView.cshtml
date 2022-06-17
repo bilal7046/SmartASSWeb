@@ -1,0 +1,318 @@
+﻿@model SmartASSWeb.ViewModels.LeadManagementViewModel
+@{
+    ViewBag.Title = "View Lead";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads{
+    <link href="@Url.Content("~/assets/libs/jquery-steps/jquery.steps.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/jquery-steps/steps.css")" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/extra-libs/prism/prism.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/libs/dragula/dist/dragula.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/app.css")" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="@Url.Content("~/assets/extra-libs/taskboard/css/lobilist.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/extra-libs/taskboard/css/jquery-ui.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/libs/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css")">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Lead</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Lead</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="col-12">
+        <h6 class="mb-3">Lead Summary</h6>
+        @* <div class="row draggable-cards" id="draggable-area"> *@
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-success">
+                        <div class="row">
+                            <div class="col-md-11"><h4 class="mb-0 text-white">@Model.Lead.Title @Model.Lead.FirstName @Model.Lead.LastName</h4></div>
+                            <div class="col-md-1 text-right">@Html.ActionLink("Edit", "Editor", "Leads", new { leadId = @Model.Lead.LeadId }, new { @class = "btn btn-sm btn-default" })</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div><strong>Company:</strong></div>
+                                <div><strong>Industry:</strong></div>
+                                <hr />
+                                <div><strong>Phone:</strong></div>
+                                <div><strong>Mobile:</strong></div>
+                                <div><strong>Email:</strong></div>
+                                <div><strong>Website:</strong></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div>@Model.Lead.Company</div>
+                                <div>@Model.Lead.Industry</div>
+                                <hr />
+                                <div>@Model.Lead.Phone</div>
+                                <div>@Model.Lead.Mobile</div>
+                                <div><a href="mail:@Model.Lead.Email">@Model.Lead.Email</a></div>
+                                <div><a href="@Model.Lead.Website">@Model.Lead.Website</a></div>
+                            </div>
+                            <div class="col-md-2">
+                                <div><strong>Lead Status:</strong></div>
+                                <div><strong>Lead Source:</strong></div>
+                                <div><strong>Description:</strong></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div>@Model.Lead.LeadStatus</div>
+                                <div>@Model.Lead.LeadSource</div>
+                                <div>@Model.Lead.Notes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h6 class="mb-3">Quoted Status</h6>
+        <div class="row" style="height: 120px;">
+            <div class="col-md-12">
+                <div class="wizard">
+                    <div class="wizard-inner">
+                        <div class="connecting-line"></div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="@Model.GetLeadStatusClass("Connected", @Model.Lead.LeadStatus)">
+                                <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Connected">
+                                    <span class="round-tab">
+                                        <i class="glyphicon glyphicon-link" style="color: #4385F6"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="@Model.GetLeadStatusClass("Qualified", @Model.Lead.LeadStatus)">
+                                <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Qualified">
+                                    <span class="round-tab">
+                                        <i class="glyphicon glyphicon-ok-circle" style="color: pink"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="@Model.GetLeadStatusClass("Quoted", @Model.Lead.LeadStatus)">
+                                <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Quoted">
+                                    <span class="round-tab">
+                                        <i class="glyphicon glyphicon-list-alt" style="color: orange"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="@Model.GetLeadStatusClass("Closed", @Model.Lead.LeadStatus)">
+                                <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Closed">
+                                    <span class="round-tab">
+                                        <i class="glyphicon glyphicon glyphicon-thumbs-up" style="color: green"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li role="presentation" class="@Model.GetLeadStatusClass("Lost", @Model.Lead.LeadStatus)">
+                                <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Lost">
+                                    <span class="round-tab">
+                                        <i class="glyphicon glyphicon-ban-circle" style="color: red"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            @* <li role="presentation" class="@Model.GetLeadStatusClass("OvercameObjections", @Model.Lead.LeadStatus)"> *@
+                            @*     <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Overcame Objections"> *@
+                            @*         <span class="round-tab"> *@
+                            @*             <i class="glyphicon glyphicon glyphicon-thumbs-up"></i> *@
+                            @*         </span> *@
+                            @*     </a> *@
+                            @* </li> *@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="mb-3">Lead Actions</h6>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Log Action Type:</label>
+                                    @Html.DropDownListFor(m => m.LogActionType, new SelectList(@Model.LogActionTypes, "Key", "Value"), "-- None --", new { @class = "form-control", @placeholder = "Select Action Type" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.ActionSubject, new { @class = "form-control", @placeholder = "Subject" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextAreaFor(m => m.ActionsNotes, 3, 1, new { @class = "form-control", @placeholder = "Notes" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.DueDateString, new { @class = "form-control", @placeholder = "Select date and time", @id = "date-format" })
+                                </div>
+                                <button class="btn btn-primary" onclick="AddLeadAction('@Model.Lead.LeadId')">Add</button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="leadActions" class="row">
+                            @Html.Partial("LeadLogActionView", @Model.Actions)
+                        </div>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col -->
+
+            <div class="col-md-6">
+                <h6 class="mb-3">Lead Actions</h6>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.NotesSubject, new { @class = "form-control", @placeholder = "Subject" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextAreaFor(m => m.NotesText, 3, 1, new { @class = "form-control", @placeholder = "Notes" })
+                                </div>
+                                <button class="btn btn-primary" onclick="AddLeadNote('@Model.Lead.LeadId')">Add</button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="leadNotes" class="row">
+                            @Html.Partial("LeadNotesView", @Model.Notes)
+                        </div>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col -->
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </div>
+    <!-- end row-->
+</div>
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/jquery-steps/build/jquery.steps.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/jquery-validation/dist/jquery.validate.min.js")"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="@Url.Content("~/assets/extra-libs/prism/prism.js")"></script>
+    <script src="@Url.Content("~/assets/libs/jquery.repeater/jquery.repeater.min.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/jquery.repeater/repeater-init.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/jquery.repeater/dff.js")"></script>
+    <script src="@Url.Content("~/assets/libs/dragula/dist/dragula.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/leads.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/taskboard/js/lobilist.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/taskboard/js/lobibox.min.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/taskboard/js/task-init.js")"></script>
+    <script src="@Url.Content("~/assets/libs/moment/moment.js")"></script>
+    <script src="@Url.Content("~/assets/libs/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker-custom.js")"></script>
+    <script>
+        $('#date-format').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
+    </script>
+    <script>
+        $(function() {
+            dragula([document.getElementById("draggable-area")]),
+                dragula([document.getElementById("card-colors")]).on("drag",
+                    function(e) {
+                        e.className = e.className.replace("card-moved", "");
+                    }).on("drop",
+                    function(e) {
+                        e.className += " card-moved";
+                    }).on("over",
+                    function(e, t) {
+                        t.className += " card-over";
+                    }).on("out",
+                    function(e, t) {
+                        t.className = t.className.replace("card-over", "");
+                    }), dragula([document.getElementById("copy-left"), document.getElementById("copy-right")],
+                    {
+                        copy: !0
+                    }), dragula([document.getElementById("left-handles"), document.getElementById("right-handles")],
+                    {
+                        moves: function(e, t, n) {
+                            return n.classList.contains("handle");
+                        }
+                    }), dragula([document.getElementById("left-titleHandles"), document.getElementById("right-titleHandles")],
+                    {
+                        moves: function(e, t, n) {
+                            return n.classList.contains("titleArea");
+                        }
+                    });
+        });
+
+        function AddLeadNote(leadId) {
+            var data = {
+                leadId: leadId,
+                subject: $('#NotesSubject').val(),
+                text: $('#NotesText').val()
+            };
+
+            var obj = JSON.stringify(data);
+
+            $.ajax({
+                url: '@Url.Action("AddLeadNote", "Leads")',
+                type: 'POST',
+                cache: false,
+                async: true,
+                data: obj,
+                contentType: "application/json; charset=utf-8",
+                success: function(data) {
+                    $('#leadNotes').html(data);
+                    toastr.success('Note Added!');
+                },
+                error: function(data) {
+                    alert('Error occurred ' + data);
+                }
+            });
+        }
+
+        function AddLeadAction(leadId) {
+            var data = {
+                leadId: leadId,
+                subject: $('#ActionSubject').val(),
+                dueDateString: $('#date-format').val(),
+                notes: $('#ActionsNotes').val(),
+                logAction: $('#LogActionType').val()
+            };
+
+            var obj = JSON.stringify(data);
+
+            $.ajax({
+                url: '@Url.Action("AddLeadAction", "Leads")',
+                type: 'POST',
+                cache: false,
+                async: true,
+                data: obj,
+                contentType: "application/json; charset=utf-8",
+                success: function(data) {
+                    $('#leadActions').html(data);
+                    toastr.success('Action Added!');
+                },
+                error: function(data) {
+                    alert('Error occurred ' + data);
+                }
+            });
+        }
+
+        function DeleteAction(leadId) {
+        }
+        function DeleteNote(leadId) {
+        }
+    </script>
+}

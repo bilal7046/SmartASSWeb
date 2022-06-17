@@ -1,0 +1,23 @@
+﻿@model SmartASSWeb.ViewModels.NotificationsViewModel
+<table class="table email-table no-wrap table-hover v-middle">
+    <tbody>
+    <!-- row -->
+    @foreach (var notification in Model.Notifications)
+    {
+        <tr class="@(@notification.IsRead ? "" : "unread")">
+            <!-- User -->
+            <td class="user-image px-1 py-3"><img src="@notification.RequestorPhotoUrl" alt="user" class="rounded-circle" width="30" height="30"></td>
+            <td class="user-name px-1 py-3">
+                <h6 class="mb-0 text-truncate no-wrap">@notification.RequestorName</h6>
+            </td>
+            <!-- Message -->
+            <td class="max-texts text-truncate px-1 py-3 no-wrap">
+                <a @*class="link"*@ href="javascript:void(0)" onclick="ViewNotification('@notification.Id')"><span class="badge py-1 @Model.GetBadge(@notification.NotificationType) mr-2">@notification.NotificationType</span> @notification.Message</a>
+            </td>
+            <!-- Time -->
+            <td class="time text-right"> @notification.DateCreated.ToDateTime().ToString("dd/MM/yyyy hh:mm tt") </td>
+            <td class="text-right"><a href="javascript: void(0)" onclick="RemoveNotification('@notification.Id')"><i class="text-danger ti-trash"></i></a></td>
+        </tr>
+    }
+    </tbody>
+</table>

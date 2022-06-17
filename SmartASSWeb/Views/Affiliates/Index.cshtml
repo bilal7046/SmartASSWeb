@@ -1,0 +1,201 @@
+﻿@model IEnumerable<SmartASSWeb.Bll.Lead>
+@{
+    ViewBag.Title = "My Leads";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/libs/chartist/dist/chartist.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/js/pages/chartist/chartist-init.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/css-chart/css-chart.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/c3/c3.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/css/style.min.css")" rel="stylesheet">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">My Dashboard</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">My Dashboard</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <!-- Row -->
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card bg-inverse text-white">
+                <div class="card-body">
+                    <div class="d-flex no-block align-items-center">
+                        <a href="JavaScript: void(0);"><i class="ETH text-white ti-stats-up" style="font-size:30px;"></i></a>
+                        <div class="ml-3 mt-2">
+                            <h4 class="font-weight-medium mb-0 text-white">Total transactions</h4>
+                            <h5 class="text-white">13</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card bg-cyan text-white">
+                <div class="card-body">
+                    <div class="d-flex no-block align-items-center">
+                        <a href="JavaScript: void(0);"><i class="DASH-alt text-white ti-money" style="font-size:30px;"></i></a>
+                        <div class="ml-3 mt-2">
+                            <h4 class="font-weight-medium mb-0 text-white">Current Earnings</h4>
+                            <h5 class="text-white">$900.00</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card bg-orange text-white">
+                <div class="card-body">
+                    <div class="d-flex no-block align-items-center">
+                        <a href="JavaScript: void(0);"><i class="BTC-alt text-white ti-wallet" style="font-size:30px;"></i></a>
+                        <div class="ml-3 mt-2">
+                            <h4 class="font-weight-medium mb-0 text-white">Total Earned To Date</h4>
+                            <h5 class="text-white">$2842.50</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex no-block align-items-center">
+                        <a href="JavaScript: void(0);"><i class="AMP-alt text-white ti-user" style="font-size:30px;"></i></a>
+                        <div class="ml-3 mt-2">
+                            <h4 class="font-weight-medium mb-0 text-white">Unique Visitors</h4>
+                            <h5 class="text-white">65</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->
+    <div class="row">
+        <!-- Column -->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="list-inline float-right">
+                                <li class="list-inline-item">
+                                    <h6 class="text-muted"><i class="fa fa-circle mr-1 text-success"></i>Product A</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <h6 class="text-muted"><i class="fa fa-circle mr-1 text-info"></i>Product B</h6>
+                                </li>
+                            </ul>
+                            <h4 class="card-title">Current Month Statistics</h4>
+                            <h5 class="card-subtitle">September 2020</h5>
+                        </div>
+                        <div class="col-12 mt-3 revenue">
+                            <div class="total-revenue4" style="height: 350px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+    </div>
+    <!-- Row -->
+    <div class="row">
+        <!-- Column -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="text-center">Unique Visit</h4>
+                    <div class="gaugejs-box">
+                        <canvas id="foo" class="gaugejs">gauge</canvas>
+                    </div>
+                </div>
+                <div class="box p-2 border-top text-center">
+                    <h4 class="font-weight-medium mb-0">12456</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="text-center">Total Visit</h4>
+                    <div class="gaugejs-box">
+                        <canvas id="foo2" class="gaugejs">gauge</canvas>
+                    </div>
+                </div>
+                <div class="box p-2 border-top text-center">
+                    <h4 class="font-weight-medium mb-0">12456</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="text-center">Bounce rate</h4>
+                    <div class="gaugejs-box">
+                        <canvas id="foo3" class="gaugejs">gauge</canvas>
+                    </div>
+                </div>
+                <div class="box p-2 border-top text-center">
+                    <h4 class="font-weight-medium mb-0">12456</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="text-center">Page Views</h4>
+                    <div class="gaugejs-box">
+                        <canvas id="foo4" class="gaugejs">gauge</canvas>
+                    </div>
+                </div>
+                <div class="box p-2 border-top text-center">
+                    <h4 class="font-weight-medium mb-0">12456</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Column -->
+    </div>
+    <!-- Row -->
+</div>
+@section scripts
+{
+        <script src="@Url.Content("~/assets/libs/chartist/dist/chartist.min.js")"></script>
+        <script src="@Url.Content("~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js")"></script>
+        <script src="@Url.Content("~/assets/libs/echarts/dist/echarts-en.min.js")"></script>
+        <script src="@Url.Content("~/assets/libs/flot/excanvas.min.js")"></script>
+        <script src="@Url.Content("~/assets/libs/flot/jquery.flot.js")"></script>
+        <script src="@Url.Content("~/assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+        <script src="@Url.Content("~/assets/libs/d3/dist/d3.min.js")"></script>
+        <script src="@Url.Content("~/assets/libs/c3/c3.min.js")"></script>
+        <script src="@Url.Content("~/assets/libs/gaugeJS/dist/gauge.min.js")"></script>
+        <script src="@Url.Content("~/assets/js/pages/widget/widget-charts.js")"></script>
+    }

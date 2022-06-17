@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
+<log>
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\SmartASSWeb.csproj" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\packages.config" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="_ViewStart.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\_ViewStart.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\_ExternalLoginsListPartial.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\_ExternalLoginsListPartial.cshtml" />
+  <event action="Analyze" type="Success" name="_ExternalLoginsListPartial.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\_ExternalLoginsListPartial.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ConfirmEmail.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ConfirmEmail.cshtml" />
+  <event action="Analyze" type="Success" name="ConfirmEmail.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ConfirmEmail.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ExternalLoginConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ExternalLoginConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="ExternalLoginConfirmation.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ExternalLoginConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ExternalLoginFailure.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ExternalLoginFailure.cshtml" />
+  <event action="Analyze" type="Success" name="ExternalLoginFailure.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ExternalLoginFailure.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ForgotPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ForgotPassword.cshtml" />
+  <event action="Analyze" type="Success" name="ForgotPassword.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ForgotPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ForgotPassword_.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ForgotPassword_.cshtml" />
+  <event action="Analyze" type="Success" name="ForgotPassword_.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ForgotPassword_.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ForgotPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ForgotPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="ForgotPasswordConfirmation.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ForgotPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Login.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Login.cshtml" />
+  <event action="Analyze" type="Success" name="Login.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Login.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Login_.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Login_.cshtml" />
+  <event action="Analyze" type="Success" name="Login_.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Login_.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Register.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Register.cshtml" />
+  <event action="Analyze" type="Success" name="Register.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Register.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Register_.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Register_.cshtml" />
+  <event action="Analyze" type="Success" name="Register_.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\Register_.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ResetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ResetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="ResetPassword.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ResetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ResetPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ResetPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="ResetPasswordConfirmation.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\ResetPasswordConfirmation.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\SendCode.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\SendCode.cshtml" />
+  <event action="Analyze" type="Success" name="SendCode.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\SendCode.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\VerifyCode.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\VerifyCode.cshtml" />
+  <event action="Analyze" type="Success" name="VerifyCode.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Account\VerifyCode.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Affiliates\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Affiliates\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Affiliates\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Affiliates\SignUp.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Affiliates\SignUp.cshtml" />
+  <event action="Analyze" type="Success" name="SignUp.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Affiliates\SignUp.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCard\ViewCard.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCard\ViewCard.cshtml" />
+  <event action="Analyze" type="Success" name="ViewCard.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCard\ViewCard.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\AcceptedCards.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\AcceptedCards.cshtml" />
+  <event action="Analyze" type="Success" name="AcceptedCards.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\AcceptedCards.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\AgeGroupClicks.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\AgeGroupClicks.cshtml" />
+  <event action="Analyze" type="Success" name="AgeGroupClicks.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\AgeGroupClicks.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\CardInvites.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\CardInvites.cshtml" />
+  <event action="Analyze" type="Success" name="CardInvites.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\CardInvites.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\CardShares.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\CardShares.cshtml" />
+  <event action="Analyze" type="Success" name="CardShares.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\CardShares.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\CardsRequested.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\CardsRequested.cshtml" />
+  <event action="Analyze" type="Success" name="CardsRequested.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\CardsRequested.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\EngagementRate.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\EngagementRate.cshtml" />
+  <event action="Analyze" type="Success" name="EngagementRate.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\EngagementRate.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\GenderClicks.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\GenderClicks.cshtml" />
+  <event action="Analyze" type="Success" name="GenderClicks.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\GenderClicks.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\JobLevelClicks.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\JobLevelClicks.cshtml" />
+  <event action="Analyze" type="Success" name="JobLevelClicks.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\JobLevelClicks.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\PendingCards.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\PendingCards.cshtml" />
+  <event action="Analyze" type="Success" name="PendingCards.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\PendingCards.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\SocialMediaLinks.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\SocialMediaLinks.cshtml" />
+  <event action="Analyze" type="Success" name="SocialMediaLinks.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\BusinessCardCharts\SocialMediaLinks.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\CalendarEvents\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\CalendarEvents\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\CalendarEvents\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Campaigns\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Campaigns\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Editor.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Campaigns\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Campaigns\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Campaigns\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Campaigns\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\Chat.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\Chat.cshtml" />
+  <event action="Analyze" type="Success" name="Chat.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\Chat.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\ChatPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\ChatPanel.cshtml" />
+  <event action="Analyze" type="Success" name="ChatPanel.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\ChatPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\ChatPanelHeader.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\ChatPanelHeader.cshtml" />
+  <event action="Analyze" type="Success" name="ChatPanelHeader.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\ChatPanelHeader.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Chat\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConnectedCards\ContactsShare.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConnectedCards\ContactsShare.cshtml" />
+  <event action="Analyze" type="Success" name="ContactsShare.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConnectedCards\ContactsShare.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConnectedCards\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConnectedCards\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConnectedCards\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\MyConversionGoals.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\MyConversionGoals.cshtml" />
+  <event action="Analyze" type="Success" name="MyConversionGoals.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\MyConversionGoals.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\MyConversionsGoalPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\MyConversionsGoalPanel.cshtml" />
+  <event action="Analyze" type="Success" name="MyConversionsGoalPanel.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\MyConversionsGoalPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\TeamConversionGoals.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\TeamConversionGoals.cshtml" />
+  <event action="Analyze" type="Success" name="TeamConversionGoals.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\TeamConversionGoals.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\TeamConversionsGoalPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\TeamConversionsGoalPanel.cshtml" />
+  <event action="Analyze" type="Success" name="TeamConversionsGoalPanel.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ConversionGoal\TeamConversionsGoalPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Home\About.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Home\About.cshtml" />
+  <event action="Analyze" type="Success" name="About.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Home\About.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Home\Contact.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Home\Contact.cshtml" />
+  <event action="Analyze" type="Success" name="Contact.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Home\Contact.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Home\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Home\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Home\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\DailyLeads.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\DailyLeads.cshtml" />
+  <event action="Analyze" type="Success" name="DailyLeads.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\DailyLeads.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\LeadSourceRatio.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\LeadSourceRatio.cshtml" />
+  <event action="Analyze" type="Success" name="LeadSourceRatio.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\LeadSourceRatio.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\LeadStatusRatio.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\LeadStatusRatio.cshtml" />
+  <event action="Analyze" type="Success" name="LeadStatusRatio.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\LeadStatusRatio.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\MonthlyLeads.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\MonthlyLeads.cshtml" />
+  <event action="Analyze" type="Success" name="MonthlyLeads.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadCharts\MonthlyLeads.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\LeadsPerIndustry.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\LeadsPerIndustry.cshtml" />
+  <event action="Analyze" type="Success" name="LeadsPerIndustry.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\LeadsPerIndustry.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\SalesContest.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\SalesContest.cshtml" />
+  <event action="Analyze" type="Success" name="SalesContest.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\SalesContest.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\TeamMemberLeads.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\TeamMemberLeads.cshtml" />
+  <event action="Analyze" type="Success" name="TeamMemberLeads.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\TeamMemberLeads.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\TotalRevenue.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\TotalRevenue.cshtml" />
+  <event action="Analyze" type="Success" name="TotalRevenue.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\LeadManagerCharts\TotalRevenue.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\Dashboard.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\Dashboard.cshtml" />
+  <event action="Analyze" type="Success" name="Dashboard.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\Dashboard.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Editor.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\LeadLogActionView.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\LeadLogActionView.cshtml" />
+  <event action="Analyze" type="Success" name="LeadLogActionView.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\LeadLogActionView.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\LeadNotesView.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\LeadNotesView.cshtml" />
+  <event action="Analyze" type="Success" name="LeadNotesView.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\LeadNotesView.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\LeadView.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\LeadView.cshtml" />
+  <event action="Analyze" type="Success" name="LeadView.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\LeadView.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManagerDashboard.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManagerDashboard.cshtml" />
+  <event action="Analyze" type="Success" name="ManagerDashboard.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManagerDashboard.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManagerDashboardPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManagerDashboardPanel.cshtml" />
+  <event action="Analyze" type="Success" name="ManagerDashboardPanel.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManagerDashboardPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManageTeam.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManageTeam.cshtml" />
+  <event action="Analyze" type="Success" name="ManageTeam.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManageTeam.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManageTeamGrid.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManageTeamGrid.cshtml" />
+  <event action="Analyze" type="Success" name="ManageTeamGrid.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManageTeamGrid.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManageTeamSearchPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManageTeamSearchPanel.cshtml" />
+  <event action="Analyze" type="Success" name="ManageTeamSearchPanel.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\ManageTeamSearchPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\TeamDashboard.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\TeamDashboard.cshtml" />
+  <event action="Analyze" type="Success" name="TeamDashboard.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\TeamDashboard.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\TeamMemberDetail.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\TeamMemberDetail.cshtml" />
+  <event action="Analyze" type="Success" name="TeamMemberDetail.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Leads\TeamMemberDetail.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\AddPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\AddPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="AddPhoneNumber.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\AddPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\ChangePassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\ChangePassword.cshtml" />
+  <event action="Analyze" type="Success" name="ChangePassword.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\ChangePassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\ManageLogins.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\ManageLogins.cshtml" />
+  <event action="Analyze" type="Success" name="ManageLogins.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\ManageLogins.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\SetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\SetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="SetPassword.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\SetPassword.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\VerifyPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\VerifyPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="VerifyPhoneNumber.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Manage\VerifyPhoneNumber.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ManageContacts\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ManageContacts\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Editor.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ManageContacts\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ManageContacts\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ManageContacts\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ManageContacts\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\ContactsShare.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\ContactsShare.cshtml" />
+  <event action="Analyze" type="Success" name="ContactsShare.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\ContactsShare.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Editor.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\Popup.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\Popup.cshtml" />
+  <event action="Analyze" type="Success" name="Popup.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\MyCards\Popup.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notes\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notes\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notes\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notifications\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notifications\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notifications\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notifications\NotificationPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notifications\NotificationPanel.cshtml" />
+  <event action="Analyze" type="Success" name="NotificationPanel.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notifications\NotificationPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notifications\ViewNotification.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notifications\ViewNotification.cshtml" />
+  <event action="Analyze" type="Success" name="ViewNotification.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Notifications\ViewNotification.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ProfileStats\Demographics.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ProfileStats\Demographics.cshtml" />
+  <event action="Analyze" type="Success" name="Demographics.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ProfileStats\Demographics.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ProfileStats\EngagementRate.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ProfileStats\EngagementRate.cshtml" />
+  <event action="Analyze" type="Success" name="EngagementRate.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ProfileStats\EngagementRate.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ProfileStats\UserRequests.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ProfileStats\UserRequests.cshtml" />
+  <event action="Analyze" type="Success" name="UserRequests.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\ProfileStats\UserRequests.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\SearchContacts\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\SearchContacts\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\SearchContacts\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\SearchContacts\SearchPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\SearchContacts\SearchPanel.cshtml" />
+  <event action="Analyze" type="Success" name="SearchPanel.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\SearchContacts\SearchPanel.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\SearchResult\Find.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\SearchResult\Find.cshtml" />
+  <event action="Analyze" type="Success" name="Find.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\SearchResult\Find.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Share\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Share\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Share\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="_Layout.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\_Layout.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\_LoginPartial.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\_LoginPartial.cshtml" />
+  <event action="Analyze" type="Success" name="_LoginPartial.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\_LoginPartial.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\_PublicLayout.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\_PublicLayout.cshtml" />
+  <event action="Analyze" type="Success" name="_PublicLayout.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\_PublicLayout.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_BusinessCard1.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_BusinessCard1.cshtml" />
+  <event action="Analyze" type="Success" name="_BusinessCard1.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_BusinessCard1.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_BusinessCard2.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_BusinessCard2.cshtml" />
+  <event action="Analyze" type="Success" name="_BusinessCard2.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_BusinessCard2.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_BusinessCard3.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_BusinessCard3.cshtml" />
+  <event action="Analyze" type="Success" name="_BusinessCard3.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_BusinessCard3.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_MobileCard1.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_MobileCard1.cshtml" />
+  <event action="Analyze" type="Success" name="_MobileCard1.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_MobileCard1.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_MobileCard2.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_MobileCard2.cshtml" />
+  <event action="Analyze" type="Success" name="_MobileCard2.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_MobileCard2.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_MobileCard3.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_MobileCard3.cshtml" />
+  <event action="Analyze" type="Success" name="_MobileCard3.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\BusinessCards\_MobileCard3.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\ChartDateRange.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\ChartDateRange.cshtml" />
+  <event action="Analyze" type="Success" name="ChartDateRange.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\ChartDateRange.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\ChartDateRangeOnly.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\ChartDateRangeOnly.cshtml" />
+  <event action="Analyze" type="Success" name="ChartDateRangeOnly.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\ChartDateRangeOnly.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\ChartDateRangeOnlyBusiness.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\ChartDateRangeOnlyBusiness.cshtml" />
+  <event action="Analyze" type="Success" name="ChartDateRangeOnlyBusiness.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\ChartDateRangeOnlyBusiness.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\Error.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\Error.cshtml" />
+  <event action="Analyze" type="Success" name="Error.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\Error.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\Lockout.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\Lockout.cshtml" />
+  <event action="Analyze" type="Success" name="Lockout.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Shared\Lockout.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Statistics\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Statistics\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Statistics\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Tags\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Tags\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Editor.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Tags\Editor.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Tags\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Tags\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Tags\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\BusinessCard1.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\BusinessCard1.cshtml" />
+  <event action="Analyze" type="Success" name="BusinessCard1.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\BusinessCard1.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\BusinessCard2.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\BusinessCard2.cshtml" />
+  <event action="Analyze" type="Success" name="BusinessCard2.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\BusinessCard2.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\MobileCard1.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\MobileCard1.cshtml" />
+  <event action="Analyze" type="Success" name="MobileCard1.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Templates\MobileCard1.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\Card.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\Card.cshtml" />
+  <event action="Analyze" type="Success" name="Card.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\Card.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Index.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\Index.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\Manage.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\Manage.cshtml" />
+  <event action="Analyze" type="Success" name="Manage.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\Manage.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\OldIndex.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\OldIndex.cshtml" />
+  <event action="Analyze" type="Success" name="OldIndex.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\OldIndex.cshtml" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\OldManage.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\OldManage.cshtml" />
+  <event action="Analyze" type="Success" name="OldManage.cshtml" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\UserProfile\OldManage.cshtml" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Web.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Views\Web.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Web.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Web.Debug.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Web.Release.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\Web.Release.config" />
+  <event action="Analyze" type="Success" name="SmartASSWeb" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb\SmartASSWeb.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\SmartASSWeb.Core.Service.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\app.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\packages.config" />
+  <event action="Analyze" type="Success" name="SmartASSWeb.Core.Service" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service\SmartASSWeb.Core.Service.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\SmartASSWeb.Core.Service.Tests.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="SmartASSWeb.Core.Service.Tests" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core.Service.Tests\SmartASSWeb.Core.Service.Tests.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\SmartASSWeb.Bll.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\app.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\packages.config" />
+  <event action="Analyze" type="Success" name="SmartASSWeb.Bll" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll\SmartASSWeb.Bll.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\SmartASSWeb.Bll.Tests.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\app.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\packages.config" />
+  <event action="Analyze" type="Success" name="SmartASSWeb.Bll.Tests" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Bll.Tests\SmartASSWeb.Bll.Tests.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\SmartASSWeb.Dal.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\App.config" />
+  <event action="Analyze" type="Success" name="202104150032355_initDb.resx" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\Migrations\202104150032355_initDb.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\packages.config" />
+  <event action="Analyze" type="Success" name="SmartASSWeb.Dal" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Dal\SmartASSWeb.Dal.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core\SmartASSWeb.Core.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core\packages.config" />
+  <event action="Analyze" type="Success" name="SmartASSWeb.Core" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.Core\SmartASSWeb.Core.csproj" />
+  <event action="Analyze" type="Success" name="SmartASSWeb" path="C:\Users\mafad\source\repos\SmartASSWeb\SmartASSWeb.sln" />
+</log>

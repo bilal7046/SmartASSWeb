@@ -1,0 +1,224 @@
+﻿@model SmartASSWeb.ViewModels.Charts.BusinessCards.BusinessCardStatsViewModel
+@{
+    ViewBag.Title = "Profile Statistics";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/libs/morris.js/morris.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/chartist/dist/chartist.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/js/pages/chartist/chartist-init.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/css-chart/css-chart.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/c3/c3.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/prism/prism.css")" rel="stylesheet" type="text/css" >
+    <link href="@Url.Content("~/assets/libs/dragula/dist/dragula.min.css")" rel="stylesheet" type="text/css" >
+    <link href="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.css")" rel="stylesheet" type="text/css" >
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Profile Statistics</h3>
+        <ol class="breadcrumb mb-0 p-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Profile Statistics</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+@using (Ajax.BeginForm("Filter", "ProfileStats",
+    new { @class = "form-horizontal mt-4", role = "form", id = "chartEditor" },
+    new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "preloader"
+    }))
+{
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Default DateRange Picker -->
+                    <h4 class="card-title">Chart Date Range</h4>
+                    <h6 class="card-subtitle">Select a date range to view data.</h6>
+                    <div class='input-group mb-3'>
+                        @Html.TextBoxFor(m=> m.DateRange, new { @class = "form-control daterange" })
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <span class="ti-calendar"></span>
+                            </span>
+                        </div>
+                        <button type="submit" class="btn btn-info">Load</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- column -->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Engagement Rate</h4>
+                    <h6>How many people called to action on business card</h6>
+                    <div id="engagement-chart"></div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+
+</div>
+}
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/raphael/raphael.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/morris.js/morris.min.js")"></script>
+    @* <script src="@Url.Content("~/assets/js/pages/morris/morris-data.js")"></script> *@
+    <script src="@Url.Content("~/assets/libs/chartist/dist/chartist.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/echarts/dist/echarts-en.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/excanvas.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/jquery.flot.js")"></script>
+    <script src="@Url.Content("~/assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/d3/dist/d3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/c3/c3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/gaugeJS/dist/gauge.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/pages/widget/widget-charts.js")"></script>
+    <script src="@Url.Content("~/assets/libs/dragula/dist/dragula.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/moment/moment.js")"></script>
+    <script src="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.js")"></script>
+    <script>
+        $(function() {
+            dragula([document.getElementById("draggable-area")]),
+                dragula([document.getElementById("card-colors")]).on("drag",
+                    function(e) {
+                        e.className = e.className.replace("card-moved", "");
+                    }).on("drop",
+                    function(e) {
+                        e.className += " card-moved";
+                    }).on("over",
+                    function(e, t) {
+                        t.className += " card-over";
+                    }).on("out",
+                    function(e, t) {
+                        t.className = t.className.replace("card-over", "");
+                    }), dragula([document.getElementById("copy-left"), document.getElementById("copy-right")],
+                    {
+                        copy: !0
+                    }), dragula([document.getElementById("left-handles"), document.getElementById("right-handles")],
+                    {
+                        moves: function(e, t, n) {
+                            return n.classList.contains("handle");
+                        }
+                    }), dragula([document.getElementById("left-titleHandles"), document.getElementById("right-titleHandles")],
+                    {
+                        moves: function(e, t, n) {
+                            return n.classList.contains("titleArea");
+                        }
+                    });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+        Morris.Area({
+            element: 'engagement-chart',
+            data: [
+                {
+                    period: '2020-09-08',
+                    iphone: 0,
+                    ipad: 0,
+                    itouch: 0
+                }, {
+                    period: '2020-09-09',
+                    iphone: 50,
+                    ipad: 15,
+                    itouch: 5
+                }, {
+                    period: '2020-09-10',
+                    iphone: 20,
+                    ipad: 50,
+                    itouch: 65
+                }, {
+                    period: '2020-09-11',
+                    iphone: 60,
+                    ipad: 12,
+                    itouch: 7
+                }, {
+                    period: '2020-09-12',
+                    iphone: 30,
+                    ipad: 20,
+                    itouch: 120
+                }, {
+                    period: '2020-09-13',
+                    iphone: 25,
+                    ipad: 80,
+                    itouch: 40
+                }, {
+                    period: '2020-09-14',
+                    iphone: 10,
+                    ipad: 10,
+                    itouch: 10
+                }
+            ],
+            lineColors: ['#fc4b6c', '#00acc1', '#1e88e5'],
+            xkey: 'period',
+            ykeys: ['iphone', 'ipad', 'itouch'],
+            labels: ['Rate', 'Call Actions', 'Social Links'],
+            pointSize: 0,
+            lineWidth: 0,
+            resize: true,
+            fillOpacity: 0.8,
+            behaveLikeLine: true,
+            gridLineColor: '#e0e0e0',
+            hideHover: 'auto'
+
+        });
+        /*******************************************/
+        // Date Ranges
+        /*******************************************/
+        $('.daterange').daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            showDropdowns: true,
+            dateLimit: {
+                days: 30
+            }
+        });
+
+        function OnSuccess() {
+            alert('Filtered');
+        }
+        function OnFailure() {
+            alert('Failure Filtering');
+        }
+    </script>
+
+}

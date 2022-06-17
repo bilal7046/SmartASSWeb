@@ -1,0 +1,223 @@
+﻿@model SmartASSWeb.ViewModels.ContactViewModel
+@{
+    ViewBag.Title = "My Contacts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-12 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">My Contacts</h3>
+        <ol class="breadcrumb mb-0 p-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">My Contacts</li>
+        </ol>
+        <div class="text-muted mt-0">People who have connected with you since inception.</div>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="widget-content searchable-container list">
+    <div class="card card-body">
+        <div class="row">
+            <div class="col-md-8 d-flex justify-content-md-start justify-content-center mt-3 mt-md-0">
+                <a href="/ManageContacts/Editor" class="btn btn-info"><i class="mdi mdi-account-multiple-plus font-16 mr-1"></i> Add Contact</a>
+            </div>
+            <div class="col-md-4">
+                @*<form>
+                <input type="text" class="form-control product-search" id="input-search" placeholder="Filter Contacts...">
+            </form>*@
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Share Contact Card</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="add-contact-box">
+                        <div class="add-contact-content">
+                            <form id="addContactModalTitle">
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <div class="contact-email">
+                                            <input type="email" id="c-email" class="form-control" placeholder="Email">
+                                            <span class="validation-text"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-share" class="btn btn-success"><i class="ti-mail"></i> Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card card-body">
+        <div class="table-responsive">
+            <table class="table table-striped search-table v-middle">
+                <thead class="header-item">
+                <th class="text-dark font-weight-bold">Name</th>
+                <th class="text-dark font-weight-bold">Phone</th>
+                <th class="text-dark font-weight-bold">Mobile</th>
+                <th class="text-dark font-weight-bold">#</th>
+                </thead>
+                <tbody>
+                    @foreach (var contact in Model.Contacts)
+                    {
+                        <!-- row -->
+                        <tr class="search-items">
+                            <td>
+                                <input id="UserId" name="UserId" type="hidden" value="@contact.UserId" data-UserId="@contact.UserId" class="usr-userid">
+                                <div class="d-flex align-items-center">
+                                    <img src="@contact.PhotoUrl" alt="avatar" class="rounded-circle" width="35" height="35">
+                                    <div class="ml-2">
+                                        <div class="user-meta-info">
+                                            <h5 class="user-name mb-0" data-name="@contact.FirstName @contact.LastName">@contact.FirstName @contact.LastName</h5>
+                                            <span class="user-work text-muted" data-occupation="IT Manager"><a href="mailto:@contact.EmailAddress" class="__cf_email__">@contact.EmailAddress</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="usr-ph-no" data-phone="@contact.Phone">@contact.Phone</span>
+                            </td>
+                            <td>
+                                <span class="usr-ph-no" data-phone="@contact.Mobile">@contact.Mobile</span>
+                            </td>
+                            <td class="text-left">
+                                @if (!string.IsNullOrEmpty(@contact.ContactId))
+                                {
+                                    <div class="action-btn">
+                                        @*<a href="javascript:void(0)" class="text-info" data-toggle="tooltip" title="Send My Card" onclick="ShareCardForExternalUser('@contact.FirstName @contact.LastName', '@contact.EmailAddress')"><i class="mdi ti-id-badge font-20"></i></a>*@
+                                        <a href="/ManageContacts/Editor/@contact.ContactId" class="text-info" data-toggle="tooltip" title="Edit Contact"><i class="fas fa-edit fa-sm"></i></a>
+                                        @*<a href="javascript:void(0)" class="text-info" data-toggle="tooltip" title="Share Card" onclick="ShareCardExternal('@contact.UserId')"><i class="mdi ti-sharethis font-20"></i></a>*@
+                                        <a href="javascript:void(0)" class="text-danger" data-toggle="tooltip" title="Delete Contact" onclick="DeleteContact('@contact.ContactId')"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    @*<a href="javascript:void(0)" class="text-info" id="btn-add-contact" data-toggle="tooltip" title="Share Card" ><i class="mdi ti-sharethis font-20"></i></a>*@
+                                    @*<a href="javascript:void(0)" class="text-info" data-toggle="tooltip" title="Send My Card" onclick="ShareMyCardInternal('@contact.UserId')"><i class="mdi ti-id-badge font-20"></i></a>*@
+                                    <a href="/ManageContacts/Unlink/contact.ContactId" class="text-danger" data-toggle="tooltip" title="Unlink Contact"><i class="fas fa-unlink fa-sm"></i></a>
+                                }
+                            </td>
+                        </tr>
+                        <!-- /.row -->
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End PAge Content -->
+<!-- ============================================================== -->
+</div>
+@section scripts
+{
+    <script src="@Url.Content("~/assets/js/pages/contact/contact.js")"></script>
+    <script>
+        function ShareMyCardInternal(userId) {
+            $.ajax({
+                url: '@Url.Action("ShareMyCardInternal", "ManageContacts")?requestedUserId=' + userId,
+                type: 'POST',
+                cache: false,
+                async: true,
+                //data: $("#WizardForm").serialize(),
+                success: function(data) {
+                    toastr.success('Request Sent!');
+                },
+                error: function(data) {
+                    alert('Error occurred');
+                }
+            });
+        }
+
+        $('#btn-add-contact').on('click',
+            function(event) {
+                $('#addContactModal #btn-add').show();
+                $('#addContactModal #btn-edit').hide();
+
+                var getParentItem = $(this).parents('.search-items');
+                var $_name = getParentItem.find('.user-name');
+                var $_nameAttrValue = $_name.attr('data-name');
+                var $_userid = getParentItem.find('.usr-userid');
+                var $_useridAttrValue = $_userid.attr('data-name');
+
+                $("#btn-share").click(function() {
+                    //Get Email
+                    var getParent = $(this).parents('.modal-content');
+                    var $_email = getParent.find('#c-email');
+
+                    $.ajax({
+                        url: '@Url.Action("ShareCardExternal", "ManageContacts")?businessId=' + $_useridAttrValue + '&fullName=' + $_nameAttrValue + '&email=' + $_email.val(),
+                        type: 'POST',
+                        cache: false,
+                        async: true,
+                        //data: $("#WizardForm").serialize(),
+                        success: function(data) {
+                            toastr.success('Notification Sent!');
+                        },
+                        error: function(data) {
+                            toastr.error('Error occurred');
+                        }
+                    });
+                });
+
+                $('#addContactModal').modal('show');
+            });
+
+        function ShareCardForExternalUser(fullName, email) {
+            $.ajax({
+                url: '@Url.Action("ShareCardExternal", "ManageContacts")?fullName=' + fullName + '&email=' + email,
+                type: 'POST',
+                cache: false,
+                async: true,
+                //data: $("#WizardForm").serialize(),
+                success: function(data) {
+                    toastr.success('Notification Sent!');
+                },
+                error: function(data) {
+                    toastr.error('Error occurred');
+                }
+            });
+        }
+
+        function DeleteContact(contactId) {
+            $.ajax({
+                url: '@Url.Action("Delete", "ManageContacts")?id=' + contactId,
+                type: 'DELETE',
+                cache: false,
+                async: true,
+                success: function(data) {
+                    toastr.success('Contact Deleted!');
+                    window.location.href = '@Url.Action("Index", "ManageContacts")';
+                },
+                error: function(data) {
+                    toastr.error('Error occurred');
+                }
+            });
+        }
+    </script>
+}

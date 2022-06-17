@@ -1,0 +1,690 @@
+﻿@using SmartASSWeb.Bll
+@using SmartASSWeb.Bll.Services
+@model SmartASSWeb.ViewModels.BusinessCardViewModel
+@{
+    ViewBag.Title = "Business Card";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ILookupDictionary dict = new LookupDictionary();
+}
+@section Heads
+{
+    <link rel="stylesheet" type="text/css" href="~/assets/libs/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/libs/_claviska/jquery-minicolors/jquery.minicolors.css">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")">
+    <style>
+        .previewcard {
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+            .previewcard:hover {
+                border-color: darkcyan;
+                transition: .7s;
+            }
+    </style>
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Company Detail</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Company Detail</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                @using (Ajax.BeginForm("Save", "MyCards",
+                    null,
+                    new AjaxOptions
+                    {
+                        OnSuccess = "OnSuccess",
+                        OnFailure = "OnFailure",
+                        LoadingElementId = "progress"
+                    },
+                    new { @class = "form-horizontal mt-4", role = "form", id = "businessCardEditor", enctype = "multipart/form-data" }))
+                {
+                    <div class="card-body">
+                        @Html.HiddenFor(p => p.BusinessCard.BusinessCardId)
+                        <h4 class="card-title">Business Card Details</h4>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-left control-label col-form-label">Company Name</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.BusinessCard.Name, new { @class = "form-control", placeholder = "Company Name" })
+                                        @Html.ValidationMessageFor(m => m.BusinessCard.Name)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-left control-label col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.BusinessCard.Email, new { @class = "form-control", placeholder = "bob@abc.com", @type = "email" })
+                                        @Html.ValidationMessageFor(m => m.BusinessCard.Email)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label for="cono12" class="col-sm-3 text-left control-label col-form-label">Mobile<small class="text-muted"> e.g. 012 345 1234</small></label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.BusinessCard.Mobile, new { @class = "form-control", @type = "tel", pattern = "[0-9]{3}[0-9]{3}[0-9]{4}" })
+                                        @Html.ValidationMessageFor(m => m.BusinessCard.Mobile)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-lg-3 text-left control-label col-form-label">Card Theme</label>
+                                    <div class="col-sm-9 col-lg-9">
+                                        @Html.DropDownListFor(m => m.BusinessCard.BusinessCardVersion, new SelectList(@dict.BusinessCardVersions, "Key", "Value"), "--- Select Theme ---", new { @class = "custom-select col-12" })
+                                        @Html.ValidationMessageFor(m => m.BusinessCard.BusinessCardVersion)
+                                        <img src="" width="250" id="BusinessCardVersion" class="justify-content-center d-flex previewcard" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-lg-3 text-left control-label col-form-label">Card Background</label>
+                                    <div class="col-sm-9 col-lg-9">
+                                        @Html.DropDownListFor(m => m.BusinessCard.BusinessCardBackgroundImage, new SelectList(@dict.BusinessCardBackgroundImages, "Key", "Value"), "--- Select Background Image ---", new { @class = "custom-select col-12" })
+                                        @Html.ValidationMessageFor(m => m.BusinessCard.BusinessCardVersion)
+                                        <img src="" width="250" id="BusinessCardBackgroundImage" class="justify-content-center d-flex previewcard" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6">
+                                <div class="row">
+                                    <label class="col-6 text-left control-label col-form-label">Theme Color</label>
+                                    <input type="color" class="col-5 form-control form-control-color colorInput" id="@Model.BusinessCard.ThemeColor" value="@Model.BusinessCard.ThemeColor" title="Theme Color">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6" style="margin-top:5px">
+                                <div class="row">
+                                    <label class="col-6 text-left control-label col-form-label">Text Color</label>
+                                    <input type="color" class="col-5 form-control form-control-color colorInput" id="@Model.BusinessCard.CompanyFontColor" value="@Model.BusinessCard.CompanyFontColor" title="Company Text Color">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-6" style="margin-top:5px">
+                                <div class="row">
+                                    <label class="col-6 text-left control-label col-form-label">Primary TextSize</label>
+                                    @Html.DropDownListFor(m => m.BusinessCard.PrimaryFontSize, new SelectList(@dict.FontSizes, "Key", "Value"), new { @class = "custom-select col-5" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6" style="margin-top:5px">
+                                <div class="row">
+                                    <label class="col-6 text-left control-label col-form-label">Secondary TextSize</label>
+                                    @Html.DropDownListFor(m => m.BusinessCard.SecondaryFontSize, new SelectList(@dict.FontSizes, "Key", "Value"), new { @class = "custom-select col-5" })
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="card-body">
+                            <div class="form-group mb-0 text-right">
+                                <button type="button" class="btn btn-warning preview-button" data-toggle="modal" data-target="#myModal">Preview</button>
+                                <button type="submit" class="btn btn-info waves-effect waves-light">Save</button>
+                                <button type="button" class="btn btn-dark waves-effect waves-light" onclick="window.history.back()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="card">
+                @using (Ajax.BeginForm("Save", "MyCards",
+                    null,
+                    new AjaxOptions
+                    {
+                        OnSuccess = "OnSuccess",
+                        OnFailure = "OnFailure",
+                        LoadingElementId = "progress"
+                    },
+                    new { @class = "form-horizontal mt-4", role = "form", id = "companyEditor", enctype = "multipart/form-data" }))
+                {
+                    <div class="card-body">
+                        <h4 class="card-title">Contact Information</h4>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label for="cono12" class="col-sm-3 text-left control-label col-form-label">Phone<small class="text-muted"> e.g. 012 345 1234</small></label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.BusinessCard.Phone1, new { @class = "form-control", @type = "tel", pattern = "[0-9]{3}[0-9]{3}[0-9]{4}" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.Phone1)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-left control-label col-form-label">Website</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.BusinessCard.Website, new { @class = "form-control", placeholder = "http://", @type = "url" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.Website)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label for="cono12" class="col-sm-3 text-left control-label col-form-label">Job Title</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.BusinessCard.Title, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.Title)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label for="cono12" class="col-sm-3 text-left control-label col-form-label">Job Level</label>
+                                    <div class="col-sm-9">
+                                        @Html.DropDownListFor(m => m.BusinessCard.JobLevel, new SelectList(@dict.JobLevels, "Value", "Key"), "-- Select Job Level --", new { @class = "custom-select col-12" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.JobLevel)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="card-body">
+                        <h4 class="card-title">Address Information</h4>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-left control-label col-form-label">Address 1</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.BusinessCard.Address1, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.Address1)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label for="cono12" class="col-sm-3 text-left control-label col-form-label">Address 2</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.BusinessCard.Address2, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label for="BusinessCard_Country" class="col-sm-3 text-left control-label col-form-label">Country</label>
+                                    <div class="col-sm-9">
+                                        @Html.DropDownListFor(m => m.BusinessCard.Country, new SelectList(@Model.Countries, "Name", "Name"), "-- Please select Country --", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.Country)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-left control-label col-form-label">Province/ State</label>
+                                    <div class="col-sm-9">
+                                        @Html.DropDownListFor(m => m.BusinessCard.Province, new SelectList(new List<State>(), "Name", "Name"), "-- Please select Province --", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.Province)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-left control-label col-form-label">City</label>
+                                    <div class="col-sm-9">
+                                        @Html.DropDownListFor(m => m.BusinessCard.City, new SelectList(new List<State>(), "Name", "Name"), "-- Please select City --", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.City)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-left control-label col-form-label">Postal Code</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(m => m.BusinessCard.PostalCode, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.PostalCode)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <!--Company Profile-->
+                    <div class="card-body">
+                        <h4 class="card-title">Company Profile</h4>
+                        <div class="row" style="margin-top: 15px">
+                            <label class="col-sm-2 text-left control-label col-form-label">Company Logo</label>
+                            <div class="col-sm-8 col-lg-8">
+                                <h6 class="card-subtitle">Upload your company logo</h6>
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="profilePictureBtn">
+                                        <label class="custom-file-label" for="profilePictureBtn" accept="image/gif, image/jpeg, image/png, image/jpg">Choose file</label>
+                                    </div>
+                                </div>
+                                <div class="progress mb-2 progress-sm">
+                                    <div id="progressbar" class="progress-bar progress-lg bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                @Html.HiddenFor(c => c.BusinessCard.LogoUrl)
+                                @Html.HiddenFor(p => p.BusinessCard.BusinessCardId, new { id = "updateBusinessCard" })
+                            </div>
+                            <div class="col-sm-2 col-lg-2"></div>
+                        </div><br /><hr />
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 text-left control-label col-form-label">Slogan</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(m => m.BusinessCard.Slogan, new { @class = "form-control", placeholder = "Slogan" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.Slogan)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 text-left control-label col-form-label">Overview</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextAreaFor(m => m.BusinessCard.Overview, new { @class = "form-control", rows = 4 })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.Overview)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 text-left control-label col-form-label">Mission Statement</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextAreaFor(m => m.BusinessCard.MissionStatement, new { @class = "form-control", rows = 4 })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 text-left control-label col-form-label">Company Type</label>
+                                    <div class="col-sm-10">
+                                        @Html.DropDownListFor(m => m.BusinessCard.CompanyType, new SelectList(@dict.CompanyTypes, "Value", "Key"), "-- Select --", new { @class = "custom-select col-12" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.CompanyType)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 text-left control-label col-form-label">Industry</label>
+                                    <div class="col-sm-10">
+                                        @Html.DropDownListFor(m => m.BusinessCard.Industry, new SelectList(@dict.Industries, "Value", "Key"), "-- Select --", new { @class = "custom-select col-12" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.Industry)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 text-left control-label col-form-label">Products/ Services</label>
+                                    <div class="col-sm-10">
+                                        @Html.DropDownListFor(m => m.BusinessCard.ProductServices, new SelectList(ViewBag.ProductServices, "Value", "Key"), new { @id = "tags", multiple = "multiple", style = "width: 100%;height: 36px;" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.ProductServices)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 text-left control-label col-form-label">Company Tags</label>
+                                    <div class="col-sm-10">
+                                        @Html.DropDownListFor(m => m.BusinessCard.Tags, new SelectList(ViewBag.Tags, "Value", "Key"), new { @class = "form-control", @id = "products-services", multiple = "multiple", style = "width: 100%;height: 36px;" })
+                                        @Html.ValidationMessageFor(model => model.BusinessCard.Tags)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <!--Social Media-->
+                    <div class="card-body">
+                        <h4 class="card-title">Social Media</h4>
+                        <div class="row">
+                            <div class="col-sm-2 col-lg-2"></div>
+                            <div class="col-sm-10 col-lg-10">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-info" type="button" data-toggle="tooltip" title="LinkedIn"><i class="ti-linkedin"></i></button>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.BusinessCard.SocialLinkedUrl, new { @class = "form-control", @type = "url", aria_label = "", aria_describedby = "basic-addon1" })
+                                    @Html.ValidationMessageFor(model => model.BusinessCard.SocialLinkedUrl)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 col-lg-2"></div>
+                            <div class="col-sm-10 col-lg-10">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-info" type="button" data-toggle="tooltip" title="Facebook"><i class="ti-facebook"></i></button>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.BusinessCard.SocialFacebookUrl, new { @class = "form-control", @type = "url", aria_label = "", aria_describedby = "basic-addon1" })
+                                    @Html.ValidationMessageFor(model => model.BusinessCard.SocialFacebookUrl)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 col-lg-2"></div>
+                            <div class="col-sm-10 col-lg-10">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-info" type="button" data-toggle="tooltip" title="Twitter"><i class="ti-twitter"></i></button>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.BusinessCard.SocialTwitterUrl, new { @class = "form-control", @type = "url", aria_label = "", aria_describedby = "basic-addon1" })
+                                    @Html.ValidationMessageFor(model => model.BusinessCard.SocialTwitterUrl)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 col-lg-2"></div>
+                            <div class="col-sm-10 col-lg-10">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-info" type="button" data-toggle="tooltip" title="Instagram"><i class="ti-instagram"></i></button>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.BusinessCard.SocialInstagramUrl, new { @class = "form-control", @type = "url", aria_label = "", aria_describedby = "basic-addon1" })
+                                    @Html.ValidationMessageFor(model => model.BusinessCard.SocialInstagramUrl)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 col-lg-2"></div>
+                            <div class="col-sm-10 col-lg-10">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-info" type="button" data-toggle="tooltip" title="YouTube"><i class="ti-youtube"></i></button>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.BusinessCard.SocialYoutubeUrl, new { @class = "form-control", @type = "url", aria_label = "", aria_describedby = "basic-addon1" })
+                                    @Html.ValidationMessageFor(model => model.BusinessCard.SocialYoutubeUrl)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="card-body">
+                        <div class="form-group mb-0 text-right">
+                            <button type="button" class="btn btn-warning preview-button" data-toggle="modal" data-target="#myModal">Preview</button>
+                            <button type="submit" class="btn btn-info waves-effect waves-light">Save</button>
+                            <button type="button" class="btn btn-dark waves-effect waves-light" onclick="window.history.back()">Cancel</button>
+                        </div>
+                    </div>
+                    <!-- Preview Business Card -->
+                    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Business Card Preview</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    @Html.Partial("_BusinessCardSwitch", Model.BusinessCard)
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <!-- This Page JS -->
+    <script src="~/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="~/assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="~/assets/js/pages/forms/select2/select2.init.js"></script>-->
+    <script src="~/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+    <script src="~/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="~/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+    <script src="~/assets/libs/_claviska/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <script src="@Url.Content("~/assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js")"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.2./js/intlTelInput.js"></script>
+    <script type="text/javascript">
+        var themes = {
+            "_MobileCard4": "../../assets/images/card-thumbnails/Template1.JPG",
+            "_MobileCard5": "../../assets/images/card-thumbnails/Template2.JPG",
+            "_MobileCard6": "../../assets/images/card-thumbnails/Template3.JPG"
+        };
+        var backgrounds = {
+            "_Concrete": "../../assets/images/profile-background/bg_concrete.jpg",
+            "_Stones": "../../assets/images/profile-background/bg_stones.jpg",
+            "_Wall": "../../assets/images/profile-background/bg_wall.jpg",
+            "_Waves": "../../assets/images/profile-background/bg_waves.jpg",
+            "_Wood": "../../assets/images/profile-background/bg_wood"
+        };
+        $('#BusinessCard_BusinessCardVersion').change(function () {
+            var val = $('#BusinessCard_BusinessCardVersion').val();
+            $('#BusinessCardVersion').attr("src", themes[val]);
+        });
+        $('#BusinessCard_BusinessCardBackgroundImage').change(function () {
+            var val = $('#BusinessCard_BusinessCardBackgroundImage').val();
+            $('#BusinessCardBackgroundImage').attr("src", backgrounds[val]);
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            if ($("#BusinessCard_Province option").length > 1) {
+                $("#BusinessCard_Province").removeAttr("disabled");
+            }
+
+            if ($("#BusinessCard_City option").length > 1) {
+                $("#BusinessCard_City").removeAttr("disabled");
+            }
+        });
+        $(function() {
+            $("#BusinessCard_Country").change(function() {
+                var selectedValue = $(this).val();
+                var ddlProvince = $("#BusinessCard_Province");
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@Url.Action("GetProvinces","MyCards")",
+                    data: { "country": selectedValue },
+                    success: function(data) {
+                        ddlProvince.html('');
+                        ddlProvince.append('<option>-- Please select Province --</option>');
+                        $.each(data,
+                            function(id, option) {
+                                ddlProvince.append($('<option></option>').val(option.Name).html(option.Name));
+                            });
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert('Failed to get provinces: ' + thrownError);
+                    }
+                });
+            });
+            $("#BusinessCard_Province").change(function() {
+                var selectedValue = $(this).val();
+                var ddlCity = $("#BusinessCard_City");
+
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "@Url.Action("GetCities","MyCards")",
+                    data: { "province": selectedValue },
+                    success: function(data) {
+                        ddlCity.html('');
+                        ddlCity.append('<option>-- Please select City --</option>');
+                        $.each(data,
+                            function(id, option) {
+                                ddlCity.append($('<option></option>').val(option.Name).html(option.Name));
+                            });
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert('Failed to get cities: ' + thrownError);
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#myModal").modal('hide');
+
+            $(".preview-button").on('click',
+                function() {
+                    $('#myModal').modal('show');
+                });
+
+            $(".colorInput").colorpicker({
+                inline: false,
+                container: true,
+                format: 'hex'
+            });
+        });
+        $('a[data-action="collapse"]').on('click',
+            function(e) {
+                e.preventDefault();
+                $(this).closest('.card').find('[data-action="collapse"] i').toggleClass('ti-minus ti-plus');
+                $(this).closest('.card').children('.card-body').collapse('toggle');
+            });
+        //-- Company Theme Color
+        $(".ColorCtrl").minicolors({
+            control: $(this).attr('data-control') || 'hue',
+            defaultValue: $(this).attr('data-defaultValue') || '',
+            format: $(this).attr('data-format') || 'hex',
+            keywords: $(this).attr('data-keywords') || '',
+            inline: $(this).attr('data-inline') === 'true',
+            letterCase: $(this).attr('data-letterCase') || 'lowercase',
+            opacity: $(this).attr('data-opacity'),
+            position: $(this).attr('data-position') || 'bottom left',
+            swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
+            change: function(value, opacity) {
+                if (!value) return;
+                if (opacity) value += ', ' + opacity;
+                if (typeof console === 'object') {
+                    console.log(value);
+                }
+            },
+            theme: 'bootstrap'
+        });
+        //Tag Controls
+        $("#tags").select2({
+            tags: true,
+            tokenSeparators: [',', ' ']
+        });
+        $("#products-services").select2({
+            tags: true,
+            tokenSeparators: [',', ' ']
+        });
+        //-- Phone Controls
+        var phone = document.querySelector("#Company_Phone1");
+        var mobile = document.querySelector("#Company_Mobile");
+        window.intlTelInput(phone,
+            {
+                preferredCountries: ['za'],
+                utilsScript: "../../assets/js/utils.js"
+            });
+        window.intlTelInput(mobile,
+            {
+                placeholderNumberType: "MOBILE",
+                preferredCountries: ['za'],
+                // separateDialCode: true,
+                geoIpLookup: function(callback) {
+                    $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                        var countryCode = (resp && resp.country) ? resp.country : "";
+                        callback(countryCode);
+                    });
+                },
+                utilsScript: "../../assets/js/utils.js"
+            });
+        //Touchspin
+        $(".touchspin").TouchSpin({
+            min: 0,
+            max: 100,
+            step: 1,
+            decimals: 0,
+            boostat: 5,
+            maxboostedstep: 10,
+            postfix: 'px'
+        });
+        //Company Logo Upload
+        var uploader = document.getElementById('progressbar');
+
+        $('#profilePictureBtn').change(function(e) {
+
+            var companyId = $('#CompanyId').val();
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onloadend = function(evt) {
+                var storageRef = firebaseApp.storage().ref('companyProfiles/' + companyId);
+                var task = storageRef.put(file);
+                //
+                task.on('state_changed',
+                    function progress(snapshot) {
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        uploader.value = percentage;
+                        uploader.setAttribute('aria-valuenow', percentage);
+                    },
+                    function error(err) {
+                        toastr.error(err);
+                    },
+                    function complete(result) {
+                        //toastr.success('File Uploaded');
+
+                        if (task.snapshot.exists) {
+                            task.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                                console.log('File available at', downloadURL);
+                                $("#LogoUrl").val(url);
+                            });
+                        } else {
+                            var resizedStorageRef = firebaseApp.storage().ref('companyProfiles/' + companyId + '_200x200');
+                            resizedStorageRef.getDownloadURL().then(function(downloadURL) {
+                                console.log('File available at', downloadURL);
+                                $("#LogoUrl").val(downloadURL);
+                            });
+                        }
+                    }
+                );
+            }
+            reader.onerror = function(e) {
+                console.log("Failed file read: " + e.toString());
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function OnSuccess() {
+            toastr.success('Saved successfully');
+            window.location.href = "@Url.Action("Index", "MyCards")";
+        }
+
+        function OnFailure(err) {
+            toastr.error('Error: ' + err);
+        }
+    </script>
+}

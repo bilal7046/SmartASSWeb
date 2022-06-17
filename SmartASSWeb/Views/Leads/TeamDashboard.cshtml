@@ -1,0 +1,112 @@
+﻿@model SmartASSWeb.ViewModels.LeadManagementViewModel
+@{
+    ViewBag.Title = "Team Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/extra-libs/css-chart/css-chart.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/c3/c3.min.css")" rel="stylesheet">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Team Dashboard</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Team Dashboard</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        @if (Model.TeamMembers.Count > 0)
+        {
+            foreach (var member in Model.TeamMembers)
+            {
+                <div class="col-lg-4">
+                    <!-- Card -->
+                    <a href="#" onclick="@Url.Action("UserRequests", "ProfileStats") ? userId = @member.UserId :" alt="@member.FullName">
+                        <div class="card shadow p-3 mb-5 bg-white rounded">
+                            <div class="card-body">
+                                <div class="d-flex flex-row">
+                                    <div class=""><img src="@member.PhotoURL" alt="user" class="rounded-circle" width="100" /></div>
+                                    <div class="pl-3">
+                                        <h3 class="font-weight-medium">@member.FullName</h3>
+                                        <h6>@member.Designation</h6>
+                                        <h6>@member.EmailAddress</h6>
+                                        <button class="btn btn-info"><i class="ti-plus" onclick="location.href='@Url.Action("Dashboard", "Leads", new { target="_blank" })'"></i> View</button>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row mt-5">
+                                    <!-- Column -->
+                                    <div class="col-md-12 text-left align-self-center">
+                                    <div style="color: dimgray">Connected Leads: <span><strong>@member.ConnectedLeads</strong></span>/ <span class="text-danger">@Model.TeamMemberGoal.ConnectedLeads</span></div>
+                                        <div class="progress progress-lg mb-2">
+                                            <div class="progress-bar" role="progressbar" style="background-color: #4385F6; width: @member.ConnectedLeadsPercentile" aria-valuenow="@member.ConnectedLeadsPercentile + '%'" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="Connected Leads"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Column -->
+                                    <div class="col-md-12 text-left align-self-center">
+                                        <div style="color: dimgray">Qualified Leads: <span><strong>@member.QualifiedLeads</strong></span>/ <span class="text-danger">@Model.TeamMemberGoal.QualifiedLeads</span></div>
+                                        <div class="progress progress-lg mb-2">
+                                            <div class="progress-bar" role="progressbar" style="background-color: #F53AA1; width: @member.QualifiedLeadsPercentile" aria-valuenow="@member.QualifiedLeadsPercentile + '%'" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="Qualified Leads"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Column -->
+                                    <div class="col-md-12 text-left align-self-center">
+                                        <div style="color: dimgray">Quoted Leads: <span><strong>@member.QuotedLeads</strong></span>/ <span class="text-danger">@Model.TeamMemberGoal.QuotedLeads</span></div>
+                                        <div class="progress progress-lg mb-2">
+                                            <div class="progress-bar" role="progressbar" style="background-color: #FABF00; width: @member.QuotedLeadsPercentile" aria-valuenow="@member.QuotedLeadsPercentile + '%'" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="Quoted Leads"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Column -->
+                                    <div class="col-md-12 text-left align-self-center">
+                                        <div style="color: dimgray">Closed Leads: <span><strong>@member.ClosedLeads</strong></span>/ <span class="text-danger">@Model.TeamMemberGoal.ClosedLeads</span></div>
+                                        <div class="progress progress-lg mb-2">
+                                            <div class="progress-bar" role="progressbar" style="background-color: #44D40B; width: @member.ClosedLeadsPercentile" aria-valuenow="@member.ClosedLeadsPercentile + '%'" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="Closed Leads"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Column -->
+                                    <div class="col-md-12 text-left align-self-center">
+                                        <div style="color: dimgray">Lost Leads: <span><strong>@member.LostLeads</strong></span>/ <span class="text-danger">@Model.TeamMemberGoal.LostLeads</span></div>
+                                        <div class="progress progress-lg mb-2">
+                                            <div class="progress-bar" role="progressbar" style="background-color: #E8370E; width: @member.LostLeadsPercentile" aria-valuenow="@member.LostLeadsPercentile + '%'" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" title="Lost Leads"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+    <div class="col-lg-4">
+        <a href=@Url.Action("ManageTeam", "Leads") id="aPrintReport" class="btn btn-info">Add Team Members</a>
+    </div>
+        }
+    </div>
+</div>
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/gaugeJS/dist/gauge.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/pages/widget/widget-charts.js")"></script>
+    <script src="@Url.Content("~/assets/libs/c3/c3.min.js")"></script>
+}

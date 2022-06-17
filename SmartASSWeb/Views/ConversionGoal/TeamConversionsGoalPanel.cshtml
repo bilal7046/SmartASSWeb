@@ -1,0 +1,73 @@
+﻿@model SmartASSWeb.Bll.TeamMemberGoal
+<div class="col-sm-12 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Connected Leads</h4>
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    @Html.TextBoxFor(c => c.ConnectedLeads, new { @class = "form-control input-lg", type = "number", @id = "totalLeads" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Qualified Leads</h4>
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    @Html.TextBoxFor(c => c.QualifiedLeads, new { @class = "form-control input-lg", type = "number", @id = "contactedLeads" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Active Leads</h4>
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    @Html.TextBoxFor(c => c.QuotedLeads, new { @class = "form-control input-lg", type = "text", @id = "activeLeads" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Closed Leads</h4>
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    @Html.TextBoxFor(c => c.ClosedLeads, new { @class = "form-control input-lg", type = "number", @id = "closedLeads" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div class="col-sm-12 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Overcame Objections Leads</h4>
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    @Html.TextBoxFor(c => c.OvercameObjectionLeads, new { @class = "form-control input-lg", type = "number", @id = "overcameObjectionsLeads" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Lost Leads</h4>
+            <div class="form-group">
+                <div class="input-group input-group-lg">
+                    @Html.TextBoxFor(c => c.LostLeads, new { @class = "form-control input-lg", type = "number", @id = "lostLeads" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@

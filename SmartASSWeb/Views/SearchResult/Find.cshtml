@@ -1,0 +1,124 @@
+﻿@using SmartASSWeb.Bll
+@model SmartASSWeb.ViewModels.SearchResultViewModel
+@{
+    ViewBag.Title = "Search Results";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/libs/morris.js/morris.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/chartist/dist/chartist.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/js/pages/chartist/chartist-init.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/css-chart/css-chart.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/c3/c3.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/prism/prism.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/assets/libs/dragula/dist/dragula.min.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.css")" rel="stylesheet" type="text/css">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Search Results</h3>
+        <ol class="breadcrumb mb-0 p-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Search Results</li>
+</ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Search Result For "@Model.SearchText"</h4>
+                    <h6 class="card-subtitle">About @Model.UserProfiles.Count result(s) returned</h6>
+                    <ul class="search-listing list-style-none">
+                        @foreach (var u in Model.UserProfiles)
+                        {
+                            <li class="border-bottom pt-3">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <div class="profile-img">
+                                            <img src="@u.PhotoUrl" alt="user" style="width: 60px; height: 60px;" class="w-60" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h4 class="mb-0"><a href="javacript:void(0)" class="text-info font-medium p-0">@u.FirstName @u.LastName</a></h4>
+                                        <a href="mailto:@u.Email" class="search-links p-0 text-success">@u.Email</a>
+                                        <p>@u.City, @u.Province, @u.Country, @u.PostalCode</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        @if (Model.IsConnected(Model.CurrentUserProfile.LinkedUsers, @u.UserId))
+                                        {
+                                            <a href="javascript:void(0)" class="btn btn-danger"><i class="ti-check"></i> Following</a>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-success" onclick="RequestUser('@u.UserId')"><i class="ti-plus"></i> Request to Follow</button>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                         }
+                    </ul>
+                    @*<nav aria-label="Page navigation example" class="mt-5">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="javascript:void(0)" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0)">Next</a>
+                            </li>
+                        </ul>
+                    </nav>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->>
+@section scripts{
+    <script>
+        function RequestUser(userId) {
+            $.ajax({
+                url: '@Url.Action("SendRequest", "SearchContacts")?requestedUserId=' + userId,
+                type: 'POST',
+                cache: false,
+                async: true,
+                //data: $("#WizardForm").serialize(),
+                success: function(data) {
+                    toastr.success('Request Sent!');
+                },
+                error: function(data) {
+                    alert('Error occurred');
+                }
+            });
+        }
+
+    </script>
+}

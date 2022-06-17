@@ -1,0 +1,203 @@
+﻿@model SmartASSWeb.ViewModels.LeadDashboardViewModel
+@{
+    ViewBag.Title = "Leads: Total Monthly Leads";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/libs/morris.js/morris.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/chartist/dist/chartist.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/js/pages/chartist/chartist-init.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/css-chart/css-chart.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/c3/c3.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/prism/prism.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/assets/libs/dragula/dist/dragula.min.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.css")" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.3/b-colvis-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/cr-1.5.2/r-2.2.5/sc-2.0.2/sp-1.1.1/sl-1.3.1/datatables.min.css" />
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Leads: Total Monthly Leads</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Leads: Total Monthly Leads</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-lg-12 col-xl-12">
+            <div class="card">
+                @if (Model.LeadsForYear == null)
+                {
+                    <div class="justify-content-center">
+                        <div><i class="text-success fas fa-chart-line fa-10x"></i></div>
+                        <h4 class="text-success">No data available!</h4>
+                    </div>
+                }
+                else
+                {
+                    <div class="card-body analytics-info">
+                        <div id="nightingale-chart" style="height: 400px;"></div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/echarts/dist/echarts-en.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/chartist/dist/chartist.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/echarts/dist/echarts-en.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/excanvas.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/jquery.flot.js")"></script>
+    <script src="@Url.Content("~/assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/d3/dist/d3.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/pages/d3-chart/canvasjs.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/c3/c3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/moment/moment.js")"></script>
+    <script src="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/c3/d3.min.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/c3/c3.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/pages/c3-chart/bar-pie/c3-donut.js")"></script>
+    <script>
+        $(document).ready(function() {
+            // ------------------------------
+            // nightingale chart
+            // ------------------------------
+            // based on prepared DOM, initialize echarts instance
+            var nightingaleChart = echarts.init(document.getElementById('nightingale-chart'));
+            var option = {
+                title: {
+                    text: 'Monthly Leads',
+                    subtext: 'Shows the leads for each month',
+                    x: 'center'
+                },
+
+                // Add tooltip
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+
+                // Add legend
+                legend: {
+                    x: 'left',
+                    y: 'top',
+                    orient: 'vertical',
+                    data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                },
+
+                color: [
+                    "#ffbc34",
+                    "#00acc1",
+                    "#4385F6",
+                    "#F53AA1",
+                    "#FABF00",
+                    "#30AA55",
+                    "#9D44FF",
+                    "#129DB0",//
+                    "#F5A52A",
+                    "#23BFAA",
+                    "#FAA586",
+                    "#EB8CC6"
+                ],
+
+                // Display toolbox
+                toolbox: {
+                    show: true,
+                    orient: 'vertical',
+                    feature: {
+                        mark: {
+                            show: true,
+                            title: {
+                                mark: 'Markline switch',
+                                markUndo: 'Undo markline',
+                                markClear: 'Clear markline'
+                            }
+                        },
+                        dataView: {
+                            show: true,
+                            readOnly: false,
+                            title: 'View data',
+                            lang: ['View chart data', 'Close', 'Update']
+                        },
+                        magicType: {
+                            show: true,
+                            title: {
+                                pie: 'Switch to pies',
+                                funnel: 'Switch to funnel',
+                            },
+                            type: ['pie', 'funnel']
+                        },
+                        restore: {
+                            show: true,
+                            title: 'Restore'
+                        },
+                        saveAsImage: {
+                            show: true,
+                            title: 'Same as image',
+                            lang: ['Save']
+                        }
+                    }
+                },
+
+                // Enable drag recalculate
+                calculable: true,
+
+                // Add series
+                series: [
+                    {
+                        name: 'Leads for the Month',
+                        type: 'pie',
+                        radius: ['15%', '73%'],
+                        center: ['50%', '57%'],
+                        roseType: 'area',
+
+                        // Funnel
+                        width: '40%',
+                        height: '78%',
+                        x: '30%',
+                        y: '17.5%',
+                        max: 450,
+                        sort: 'ascending',
+
+                        data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsForYear))
+                    }
+                ]
+            };
+            nightingaleChart.setOption(option);
+        });
+    </script>
+}

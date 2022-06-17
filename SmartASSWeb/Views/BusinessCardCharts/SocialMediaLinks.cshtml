@@ -1,0 +1,152 @@
+﻿@model SmartASSWeb.ViewModels.Charts.BusinessCards.BusinessCardStatsViewModel
+@{
+    ViewBag.Title = "Behavior: Social Media Links";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/css/app.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/morris.js/morris.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.css")" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/assets/extra-libs/prism/prism.css">
+    <link href="~/assets/css/app.css" rel="stylesheet" />
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Behavior: Card Interactions</h3>
+        <ol class="breadcrumb mb-0 p-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Behavior: Card Interactions</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+@using (Ajax.BeginForm("SocialMediaLinks", "BusinessCardCharts",
+    new { @class = "form-horizontal mt-4", role = "form", id = Model.BusinessId, json = true },
+    new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "preloader"
+    }))
+{
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        @Html.Partial("ChartDateRangeOnlyBusiness", Model)
+        <div id="chart-panel" class="row">
+            <!-- column -->
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-total"  style="color:#00acee">Total Card Interactions: @Model.TotalCount</h4>
+                        <h4 class="card-title">Card Interactions</h4>
+                        <p class="text-muted">Displays the number of times an action was taken to interact with you, such as email, website, or via social media. Select a company business card and date range to view statistics.</p>
+                        <ul class="socialMediaIcon list-inline text-left">
+                            <li class="list-inline-item" style="width: 100px; text-align: center;color:#ffa500">
+                                <i class="far fa-envelope fa-2x"></i> Email
+                            </li>
+                            <li class="list-inline-item" style="width: 100px; text-align: center;color:#228B22">
+                                <i class="fas fa-globe fa-2x"></i> Website
+                            </li>
+                            <li class="linkedin list-inline-item" style="width: 100px; text-align: center;color: #0e76a8">
+                                <i class="fab fa-linkedin-in fa-2x"></i> LinkedIn
+                            </li>
+                            <li class="facebook list-inline-item" style="width: 100px; text-align: center;color: #3b5998">
+                                <i class="fab fa-facebook fa-2x"></i> Facebook
+                            </li>
+                            <li class="twitter list-inline-item" style="width: 100px; text-align: center;color: #00acee">
+                                <i class="fab fa-twitter fa-2x"></i> Twitter
+                            </li>
+                            <li class="instagram list-inline-item" style="width: 100px; text-align: center;color: #3f729b">
+                                <i class="fab fa-instagram fa-2x"></i> Instagram
+                            </li>
+                            <li class="youtube list-inline-item" style="width: 100px; text-align: center;color: #c4302b">
+                                <i class="fab fa-youtube fa-2x"></i> YouTube
+                            </li>
+                        </ul>
+                        @if (Model.SocialMediaLinks == null || Model.SocialMediaLinks.Count == 0)
+                        {
+                            <div class="justify-content-center">
+                                <div><i class="text-success fas fa-chart-line fa-10x"></i></div>
+                                <h4 class="text-success">No data available!</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="socialMedia-chart2"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+}
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/raphael/raphael.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/morris.js/morris.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/moment/moment.js")"></script>
+    <script src="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.js")"></script>
+    <script type="text/javascript">
+        var morrisSocialMediaChart;
+        $(document).ready(function() {
+            morrisSocialMediaChart = Morris.Donut({
+                element: 'socialMedia-chart2',
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.SocialMediaLinks)),
+                resize: true,
+                colors: ['#ffa500', '#228B22', '#0e76a8', '#3b5998', '#00acee', '#3f729b', '#c4302b']
+                //colors: ['#1e88e5', '#4AF956', '#C536AC', '#FFD800', '#C0C0C0', '#FF5E42', '#FF7200']
+            });
+
+            /*******************************************/
+            // Date Ranges
+            /*******************************************/
+            $('.daterange').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                showDropdowns: true,
+                dateLimit: {
+                    days: 30
+                },
+                locale: {
+                    format: 'dddd DD MMMM YYYY'
+                },
+                startDate: moment().subtract(30, 'days'),
+                endDate: moment()
+            });
+
+        });
+        function OnSuccess(data) {
+            morrisSocialMediaChart.setData(data.SocialMediaLinks);
+            toastr.success('Filtered successfully');
+        }
+
+        function OnFailure(error) {
+            toastr.error('Error occurred ' + error.responseText);
+        }
+    </script>
+
+}

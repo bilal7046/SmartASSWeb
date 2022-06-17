@@ -1,0 +1,195 @@
+﻿@using SmartASSWeb.Bll
+@model SmartASSWeb.ViewModels.Charts.BusinessCards.BusinessCardStatsViewModel
+@{
+    ViewBag.Title = "Demographics: Job Level";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/libs/morris.js/morris.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/chartist/dist/chartist.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/js/pages/chartist/chartist-init.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/css-chart/css-chart.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/c3/c3.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/prism/prism.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/assets/libs/dragula/dist/dragula.min.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.css")" rel="stylesheet" type="text/css">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Demographics</h3>
+        <ol class="breadcrumb mb-0 p-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Job Level</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+@using (Ajax.BeginForm("JobLevelClicks", "BusinessCardCharts",
+    new { @class = "form-horizontal mt-4", role = "form", id = Model.BusinessId, json = true },
+    new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "preloader"
+    }))
+{
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        @Html.Partial("ChartDateRangeOnlyBusiness", Model)
+        <!-- Row -->
+        <div class="card-group">
+            <div class="row">
+                <!-- column -->
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-total" style="color:#FFC023">Total Job Level Clicks: @Model.TotalCount</h4>
+                            <h4 class="card-title">Job Levels vs Clicks</h4>
+                            <p class="text-muted">Displays the various job levels of people that you have interacted with such as senior, executive, internship etc. Select a company business card and date range to view statistics.</p>
+                            @if (Model.JobLevelData.Data.Sum(c => c) == 0)
+                            {
+                                <div class="justify-content-center">
+                                    <div><i class="text-success fas fa-chart-line fa-10x"></i></div>
+                                    <h4 class="text-success">No data available!</h4>
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="jobLevelClicks-chart" style="height:400px;width:100%"></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- column -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+}
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/raphael/raphael.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/morris.js/morris.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/jquery.flot.js")"></script>
+    <script src="@Url.Content("~/assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/d3/dist/d3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/c3/c3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/moment/moment.js")"></script>
+    <script src="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/excanvas.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.pie.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.time.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.stack.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.crosshair.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/echarts/dist/echarts-en.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/excanvas.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/echarts/dist/echarts.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // based on prepared DOM, initialize e-charts instance
+            var jobLevelClicksChart = echarts.init(document.getElementById('jobLevelClicks-chart'));
+            var optionBarBasic = {
+                // Setup grid
+                    grid: {
+                        containLabel: true,
+                        x: 60,
+                        x2: 40,
+                        y: 45,
+                        y2: 25
+                    },
+                    // Add tooltip
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    // Add legend
+                    legend: {
+                        data: ['Job Levels Vs Clicks']
+                    },
+                    // Add custom colors
+                    color: ['#FFC023', '#00acc1'],
+                    // Horizontal axis
+                    xAxis: [{
+                        type: 'value',
+                        boundaryGap: [0, 0.01]
+                    }],
+                    // Vertical axis
+                    yAxis: [{
+                        type: 'category',
+                        data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.JobLevelData.JobLevels))
+                    }],
+                    // Add series
+                    series : [{
+                        name:'Job Levels Vs Clicks',
+                        type:'bar',
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.JobLevelData.Data))
+                    }]
+            };
+            // use configuration item and data specified to show chart
+            jobLevelClicksChart.setOption(optionBarBasic);
+
+            //------------------------------------------------------
+            // Resize chart on menu width change and window resize
+            //------------------------------------------------------
+            $(function () {
+                // Resize chart on menu width change and window resize
+                $(window).on('resize', resize);
+                $(".sidebartoggler").on('click', resize);
+
+                // Resize function
+                function resize() {
+                    setTimeout(function() {
+                        // Resize chart
+                        jobLevelClicksChart.resize();
+                    }, 200);
+                }
+            });
+
+        /*******************************************/
+        // Date Ranges
+        /*******************************************/
+        $('.daterange').daterangepicker({
+                                ranges: {
+                                    'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            showDropdowns: true,
+            dateLimit: {
+                days: 30
+            }
+        });
+
+        function OnSuccess() {
+            alert('Filtered');
+        }
+
+        function OnFailure() {
+            alert('Failure filtering');
+        }
+    });
+    </script>
+
+}

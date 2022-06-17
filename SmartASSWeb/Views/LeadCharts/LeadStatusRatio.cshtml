@@ -1,0 +1,188 @@
+﻿@model SmartASSWeb.ViewModels.LeadDashboardViewModel
+@{
+    ViewBag.Title = "Leads: Status Ratio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/extra-libs/c3/c3.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/prism/prism.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.css")" rel="stylesheet" type="text/css">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Leads: Conversion Funnel</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Leads: Conversion Funnel</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+@using (Ajax.BeginForm("LeadStatusRatio", "LeadCharts",
+    new {@class = "form-horizontal mt-4", role = "form", id = Model.BusinessId, dateRange = Model.DateRange, json = true},
+    new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "preloader"
+    }))
+{
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        @Html.Partial("ChartDateRangeOnly", Model)
+        <div class="row">
+            <div class="col-lg-12 col-xl-12">
+                <div class="card">
+                    <div class="card-body analytics-info">
+                        <h4 class="card-title">Conversion Funnel</h4>
+                        <p class="text-muted">Shows the different stages of the sales process in a funnel view.</p>
+                        @if (Model.LeadStatusData == null)
+                        {
+                            <div class="justify-content-center">
+                                <div><i class="text-success fas fa-chart-line fa-10x"></i></div>
+                                <h4 class="text-success">No data available!</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="chartContainer" style="height: 470px; max-width: 920px; margin: 0px auto;"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+}
+    @section scripts
+{
+        <script src="@Url.Content("~/assets/libs/echarts/dist/echarts-en.min.js")"></script>
+        <script src="@Url.Content("~/assets/libs/d3/dist/d3.min.js")"></script>
+        <script src="@Url.Content("~/assets/js/pages/d3-chart/canvasjs.min.js")"></script>
+        <script src="@Url.Content("~/assets/libs/moment/moment.js")"></script>
+        <script src="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.js")"></script>
+        <script>
+        CanvasJS.addColorSet("customColorSet1",
+            [   //colorSet
+                "#4385F6",
+                "#F53AA1",
+                "#FABF00",
+                "#44D40B",
+                "#9D44FF",
+                "#129DB0",//
+                "#F5A52A",
+                "#23BFAA",
+                "#FAA586",
+                "#EB8CC6"
+            ]);
+        var chart = new CanvasJS.Chart("chartContainer",
+            {
+                animationEnabled: true,
+                theme: "light1", //"light1", "dark1", "dark2"
+                colorSet: "customColorSet1",
+                title: {
+                    text: ""
+                },
+                data: [
+                    {
+                        type: "funnel",
+                        neckHeight: 0,
+                        indexLabelPlacement: "inside",
+                        indexLabelFontColor: "white",
+                        toolTipContent: "<b>{label}</b>: {y} <b>({percentage}%)</b>",
+                        indexLabel: "{label} ({percentage}%)",
+                        dataPoints: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadStatusData))
+                    }
+                ]
+            });
+        calculatePercentage();
+        chart.render();
+
+        function calculatePercentage() {
+            var dataPoint = chart.options.data[0].dataPoints;
+            var total = 0;
+            for(var i = 0; i < dataPoint.length; i++) {
+                total = total + dataPoint[i].y;
+            }
+            for(var i = 0; i < dataPoint.length; i++) {
+                //if(i == 0) {
+                //	chart.options.data[0].dataPoints[i].percentage = 100;
+                //} else {
+                chart.options.data[0].dataPoints[i].percentage = ((dataPoint[i].y / total) * 100).toFixed(2);
+                //}
+            }
+        }
+
+        /*******************************************/
+        // Date Ranges
+        /*******************************************/
+        $('.daterange').daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            showDropdowns: true,
+            dateLimit: {
+                days: 30
+            },
+            locale: {
+                format: 'dddd DD MMMM YYYY'
+            },
+            startDate: moment().subtract(30, 'days'),
+            endDate: moment()
+        });
+
+        /*******************************************/
+        // Date Ranges
+        /*******************************************/
+        $('.daterange').daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            showDropdowns: true,
+            dateLimit: {
+                days: 30
+            },
+            locale: {
+                format: 'dddd DD MMMM YYYY'
+            },
+            startDate: moment().subtract(30, 'days'),
+            endDate: moment().add(30, 'days')
+        });
+        </script>
+    }

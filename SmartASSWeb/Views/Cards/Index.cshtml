@@ -1,0 +1,33 @@
+﻿@model SmartASSWeb.Bll.BusinessCard
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads{
+    <link href="~/assets/css/businesscards.css" rel="stylesheet" />
+    <style>
+    </style>
+}
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h2>Mobile Card 4</h2>
+        @Html.Partial("BusinessCards/_MobileCard4", Model)
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h2>Mobile Card 5</h2>
+        @Html.Partial("BusinessCards/_MobileCard5", Model)
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h2>Mobile Card 6</h2>
+        @Html.Partial("BusinessCards/_MobileCard6", Model)
+    </div>
+    <div class="col-md-4"></div>
+</div>

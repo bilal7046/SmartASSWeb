@@ -1,0 +1,293 @@
+﻿@using SmartASSWeb.Bll.Core
+@model SmartASSWeb.ViewModels.ChatViewModel
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var currentUser = ((CustomPrincipal) User).UserId;
+}
+@section Heads{
+    <style>
+        .footer {
+            display: none !important;
+        }
+    </style>
+    <link href="~/assets/libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+@*<div class="row page-titles">
+        <div class="col-md-5 col-12 align-self-center">
+            <h3 class="text-themecolor mb-0">Chat</h3>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Chat</li>
+            </ol>
+        </div>
+        <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+        </div>
+    </div>*@
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="chat-application">
+    <!-- ============================================================== -->
+    <!-- Left Part  -->
+    <!-- ============================================================== -->
+    <div class="left-part bg-white fixed-left-part user-chat-box" style=" margin-top: 75px;">
+        <!-- Mobile toggle button -->
+        <a class="ti-menu ti-close btn btn-success show-left-part d-block d-md-none" href="javascript:void(0)"></a>
+        <!-- Mobile toggle button -->
+        <div class="scrollable position-relative" style="height: 100%;">
+            <div class="p-3 border-bottom">
+                <h3 class="card-title">Chat Room</h3>
+                @using (Html.BeginForm("AddChat", "Chat", FormMethod.Post, new { @class = "form-material app-search", role = "form" }))
+                {
+                    <div class="searchbar row">
+                        <div class="col-md-10">@Html.TextBoxFor(p => p.ChatName, new { @class = "form-control", placeholder = "Add New Chat" })</div>
+                        <div class="col-md-2"><button type="submit" class="btn btn-success round-btn" data-tooltip="tooltip" title="Start New Chat" style="margin-left:-20px;"><i class="fas fa-plus-square"></i></button></div>
+                    </div>
+                }
+            </div>
+            <ul class="mailbox list-style-none app-chat">
+                <li>
+                    <div class="message-center chat-scroll chat-users">
+                        @foreach (var chat in Model.Chats)
+                        {
+                            <div class="">
+                                <!-- Message -->
+                                <a href="javascript:void(0)" onclick="loadChatRoom('@chat.ChatId')" class="chat-user message-item align-items-center border-bottom px-3 py-2" id="chat_user_1" data-user-id="1">
+                                    <span class="user-img position-relative d-inline-block">
+                                        @if (chat.Participants.Length > 2)
+                                        {
+                                            <i class="fas fa-user-friends fa-2x"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fas fa-users fa-2x"></i>
+                                        }
+                                    </span>
+                                    <div class="mail-contnet w-75 d-inline-block v-middle pl-2">
+                                        <h5 class="message-title mb-0 mt-1" data-username="@chat.Name">@chat.Name</h5>
+                                        <span class="font-12 text-nowrap d-block text-muted">@chat.DateCreated.ToDateTime()</span>
+                                    </div>
+                                </a>
+                                <!-- Message -->
+                            </div>
+                        }
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Left Part  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right Part  Mail Compose -->
+    <!-- ============================================================== -->
+    <div class="right-part chat-container">
+        <div class="chat-box-inner-part">
+            <div class="chat-not-selected">
+                <div class="text-center justify-content-center align-items-center" >
+                    <span class="display-5 text-info">
+                        <i class="mdi ti-comments"></i>
+                    </span>
+                    <h5>Open chat from the list</h5>
+                </div>
+            </div>
+            <div id="chats">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="chat-windows"></div>
+@section scripts{
+    <script src="@Url.Content("~/assets/js/pages/chat/chat.js")"></script>
+    <script src="~/assets/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="~/assets/extra-libs/sweetalert2/sweet-alert.init.js"></script>
+    <script>
+        var isLoaded = false;
+
+        function loadChatRoom(chatRoomId) {
+            var url = '@Url.Action("LoadChat", "Chat")';
+            $('#chats').load(url, { chatRoomId: chatRoomId });
+
+            firebase.firestore().collection("chats").where("chatId", "==", chatRoomId)
+                .onSnapshot(function(snapshot) {
+                    snapshot.docChanges().forEach(function(response) {
+                        if (response.type === "added") {
+                            console.log("New chat message: ", response.doc.data());
+                        }
+                        if (response.type === "modified") {
+                            console.log("Modified chat message: ", response.doc.data());
+                            var lastMessage = response.doc.data().chatMessages[response.doc.data().chatMessages.length - 1];
+                            var html = "";
+                            if (lastMessage.userId === '@currentUser') {
+                                html += "<li class=\"odd mt-4\">";
+                                html += "<div class=\"chat-content pl-3 d-inline-block text-right\">";
+                                html += "<div class=\"box mb-2 d-inline-block text-dark rounded p-2 bg-light-inverse\">" + lastMessage.message + "</div>";
+                                html += "<br />";
+                                html += "</div>";
+                                html += "<div class=\"chat-time d-inline-block text-right text-muted\">" + lastMessage.dateCreated.toDate().toDateString() + " " + lastMessage.dateCreated.toDate().toLocaleTimeString() + "</div>";
+                                html += "</li>";
+                            } else {
+                                html += "<li class=\"mt-4\">";
+                                html += "<div class=\"chat-img d-inline-block align-top\">";
+                                html += "<img src=\"" + lastMessage.photoUrl + "\" alt=\"user\" class=\"rounded-circle w-100\"  width=\"35\" height=\"35\"/>";
+                                html += "</div>";
+                                html += "<div class=\"chat-content pl-3 d-inline-block\">";
+                                html += "<h5 class=\"text-muted\">" + lastMessage.fullName + "</h5>";
+                                html += "<div class=\"box mb-2 d-inline-block text-dark rounded p-2 bg-light-info\">" + lastMessage.message + "</div>";
+                                html += "</div>";
+                                html += "<div class=\"chat-time d-inline-block text-right text-muted\">" + lastMessage.dateCreated.toDate().toDateString() + " " + lastMessage.dateCreated.toDate().toLocaleTimeString() + "</div>";
+                                html += "</li>";
+                            }
+                            
+                            if (document.getElementById("messages") !== null) {
+                                document.getElementById("messages").innerHTML += html;
+                            }
+                        }
+                        if (response.type === "removed") {
+                            console.log("Removed chat message: ", response.doc.data());
+                        }
+                    });
+                });
+
+        }
+
+        //listen for incoming message
+        @*firebase.firestore().collection("chats").onSnapshot(
+            function(snapshot) {
+                snapshot.docChanges().forEach(function(response) {
+                    if (response.type === "modified") { //response.type === "added"
+                        var html = "";
+                        for (i = 0; i < response.doc.data().chatMessages.length; i++) {
+                            if (response.doc.data().chatMessages[i].userId === '@currentUser') {
+                                html += "<li class=\"odd mt-4\">";
+                                html += "<div class=\"chat-content pl-3 d-inline-block text-right\">";
+                                html += "<div class=\"box mb-2 d-inline-block text-dark rounded p-2 bg-light-inverse\">" + response.doc.data().chatMessages[i].message + "</div>";
+                                html += "<br />";
+                                html += "</div>";
+                                html += "<div class=\"chat-time d-inline-block text-right text-muted\">" + response.doc.data().chatMessages[i].dateCreated + "</div>";
+                                html += "</li>";
+                            } else {
+                                html += "<li class=\"mt-4\">";
+                                html += "<div class=\"chat-img d-inline-block align-top\">";
+                                html += "<img src=\"" + response.doc.data().chatMessages[i].photoUrl + "\" alt=\"user\" class=\"rounded-circle w-100\"  width=\"35\" height=\"35\"/>";
+                                html += "</div>";
+                                html += "<div class=\"chat-content pl-3 d-inline-block\">";
+                                html += "<h5 class=\"text-muted\">" + response.doc.data().chatMessages[i].fullName + "</h5>";
+                                html += "<div class=\"box mb-2 d-inline-block text-dark rounded p-2 bg-light-info\">" + response.doc.data().chatMessages[i].message + "</div>";
+                                html += "</div>";
+                                html += "<div class=\"chat-time d-inline-block text-right text-muted\">" + response.doc.data().chatMessages[i].dateCreated + "</div>";
+                                html += "</li>";
+                            }
+                        }
+
+                        if (document.getElementById("messages") !== null) {
+                            document.getElementById("messages").innerHTML += html;
+                        }
+                    }
+                });
+            });*@
+
+        function sendMessage() {
+            // Number 13 is the "Enter" key on the keyboard
+            //if ($(this).keyCode === 13) {
+            // Cancel the default action, if needed
+            ///     $(this).preventDefault();
+            //Add chat
+            //firebase.firestore().collection("messages").add({
+            //    "sender": myName,
+            //    "message": message,
+            //    "dateCreated": firebase.firestore.FieldValue.serverTimestamp()
+            //});
+            var message = $('#textarea1').val();
+            if (message === '') return;
+            var chatRoomId = $("#CurrentChatId").val();
+
+            var url = '@Url.Action("SendMessage", "Chat")?chatRoomId=' + chatRoomId + '&message=' + message;
+            $.ajax({
+                url: url,
+                type: 'POST',
+                cache: false,
+                async: true,
+                success: function(result) {
+
+                    toastr.success(result);
+                },
+                error: function(data) {
+                    toastr.error('Error occurred');
+                }
+            });
+            //}
+        }
+
+        function addParticipant() {
+            var participantId = $("#ParticipantId").val();
+            var chatRoomId = $("#CurrentChatId").val();
+            var url = '@Url.Action("AddParticipant", "Chat")?chatRoomId=' + chatRoomId + '&userId=' + participantId;
+            $.ajax({
+                url: url,
+                type: 'POST',
+                cache: false,
+                async: true,
+                success: function(result) {
+                    $("#members").html(result);
+                    toastr.success('Participant added to chat');
+                },
+                error: function(data) {
+                    toastr.error('Error occurred');
+                }
+            });
+        }
+
+        function deleteChat(chatId) {
+            Swal.fire({
+                    title: "Delete Chat?",
+                    text: "Are you sure you want to delete the chat?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Delete!",
+                    closeOnConfirm: false
+                },
+                function() {
+                    var url = '@Url.Action("DeleteChat", "Chat")?chatId=' + chatId;
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        cache: false,
+                        async: true,
+                        success: function(result) {
+                            toastr.success('Chat deleted');
+                            window.location.href = '@Url.Action("Index", "Chat")';
+                        },
+                        error: function(data) {
+                            toastr.error('Error occurred');
+                        }
+                    });
+                    //swal("Deleted!", "The chat has been deleted.", "success");
+                });
+
+        }
+
+        function OnSuccess(model) {
+            $("#currentParticipants").html(model.Participants);
+            toastr.success('Participant added to chat');
+        }
+
+        function OnFailure() {
+            toastr.error('Error occurred');
+        }
+
+    </script>
+}

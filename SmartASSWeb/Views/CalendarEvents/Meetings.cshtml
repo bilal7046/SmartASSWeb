@@ -1,0 +1,77 @@
+﻿@using SmartASSWeb.Bll
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads
+{
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-12 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Setup Meetings</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Setup Meetings</li>
+        </ol>
+        <div class="text-muted mt-0">Choose a date and time to setup a meeting with a potential client. View meetings in month, week or day format.</div>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    @(Html.Kendo().Scheduler<CalendarEvent>()
+                        .Name("scheduler")
+                        .Date(DateTime.Now)
+                        .Height(600)
+                        .Views(views =>
+                        {
+                            views.DayView();
+                            views.WorkWeekView(workWeekView => workWeekView.Selected(true));
+                            views.WeekView();
+                            views.MonthView();
+                            views.AgendaView();
+                            views.TimelineView();
+                        })
+                        .Timezone("Etc/UTC")
+                        .DataSource(d => d
+                            .Model(m => {
+                                m.Id(f => f.CalendarEventId);
+                                m.Field(f => f.Title).DefaultValue("No title");
+                                m.Field(f => f.UserId).DefaultValue(1);
+                            })
+                            .Read("Basic_Usage_Read", "CalendarEvents")
+                            .Create("Basic_Usage_Create", "CalendarEvents")
+                            .Destroy("Basic_Usage_Destroy", "CalendarEvents")
+                            .Update("Basic_Usage_Update", "CalendarEvents")
+                        )
+                    )
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section scripts{
+    <!--This page JavaScript -->
+    <script src="@Url.Content("~/assets/libs/moment/min/moment.min.js")"></script>
+    <script src="~/assets/libs/moment/moment.js"></script>
+}

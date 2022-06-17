@@ -1,0 +1,182 @@
+﻿@model SmartASSWeb.Bll.AffiliateProfile
+@{
+    ViewBag.Title = "Affiliate Sign Up";
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+@section Heads
+{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.3/b-colvis-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/cr-1.5.2/r-2.2.5/sc-2.0.2/sp-1.1.1/sl-1.3.1/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/libs/dropzone/dist/min/dropzone.min.css")">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Affiliate Sign Up</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Affiliate Sign Up</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <!-- Row -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Welcome To Our Affiliate Program!</h4>
+                    <h6 class="card-subtitle">Our program is free to join, it's easy to sign-up and requires no technical knowledge. Affiliate programs are common throughout the Internet and offer website owners an additional way to profit from their websites. Affiliates generate traffic and sales for commercial websites and in return receive a commission payment.</h6>
+                    <p>Login 24 hours a day to check your sales, traffic, account balance and see how your banners are performing.</p>
+                </div>
+                <hr>
+                <form action="@Url.Action("SignUp", "Affiliates")" method="POST" name="affiliateEditor" id="affiliateEditor" class="form-horizontal" enctype="multipart/form-data">
+                <div class="card-body">
+                            <h4 class="card-title">User Profile</h4>
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Affiliate Code</label>
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(m => m.AffiliateCode, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Status</label>
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(m => m.AffiliateAccountStatus, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "First Name" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = "Last Name" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Password</label>
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "Password", @type = "password" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Password</label>
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password", @type = "password" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row center">
+                                <div class="col-sm-12 col-lg-12">
+                                    <div class="form-group row">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">https://smartassdigitalbusinescard.com/</span>
+                                            </div>
+                                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Enter username" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <h4 class="card-title">Contact Information</h4>
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Email</label>
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control", placeholder = "bob@abc.com", @type = "email" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Website</label>
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(m => m.Website, new { @class = "form-control", placeholder = "http://" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group row">
+                                        <label for="cono12" class="col-sm-3 text-right control-label col-form-label">Contact No</label>
+                                        <div class="col-sm-9">
+                                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "000 000 0000", @type = "tel" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-6">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h6 class="card-subtitle">Upload your profile picture</h6>
+                                            <form action="#" class="dropzone">
+                                                <div class="fallback">
+                                                    <input name="file" type="file" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <div class="form-group mb-0 text-right">
+                                <button type="submit" class="btn btn-info waves-effect waves-light">Sign Up</button>
+                                <button type="reset" class="btn btn-dark waves-effect waves-light">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->
+</div>
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/dropzone/dist/min/dropzone.min.js")"></script>
+}

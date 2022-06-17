@@ -1,0 +1,26 @@
+﻿@model SmartASSWeb.ViewModels.TeamMembersViewModel
+@foreach (var userProfile in Model.SearchedUserProfiles)
+{
+    <div class="col-lg-4">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div class=""><img src="@userProfile.PhotoUrl" alt="user" class="rounded-circle" width="100" height="100" /></div>
+                    <div class="pl-3">
+                        <h3 class="font-weight-medium">@userProfile.FirstName @userProfile.LastName</h3>
+                        <h6>@userProfile.Designation</h6>
+                        <h6><i class="ti-mail"></i><a href="mailto:@userProfile.Email"> @userProfile.Email</a></h6>
+                        @if (Model.IsAlreadyTeamMember(Model.CurrentUserProfile.TeamMembers, @userProfile.UserId))
+                        {
+                            <a href="javascript:void(0)" class="btn btn-danger"><i class="ti-check"></i> Team Member</a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-success" onclick="AddTeamMember('@userProfile.UserId')"><i class="ti-plus"></i> Add to Team</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,29 @@
+﻿@using SmartASSWeb.Bll
+@model SmartASSWeb.ViewModels.NotificationsViewModel
+<div class="card-body bg-light">
+    <button type="button" id="back_to_inbox" onclick="goBackDetails()" class="btn btn-outline-secondary font-18 mr-2"><i class="mdi ti-arrow-left"></i></button>
+</div>
+<div class="card-body border-bottom">
+    <h4 class="mb-0">@Model.CurrentNotification.NotificationType</h4>
+</div>
+<div class="card-body border-bottom">
+    <div class="d-flex no-block align-items-center mb-5">
+        <div class="mr-2"><img src="@Model.CurrentNotification.RequestorPhotoUrl" alt="user" class="rounded-circle" width="45" height="45"></div>
+        <div class="">
+            <h5 class="mb-0 font-16 font-medium">@Model.CurrentNotification.RequestorName <small> ( @Model.CurrentNotification.DateCreated.ToDateTime().ToString("dd/MM/yyyy hh:mm tt") )</small></h5><span>to Myself</span>
+        </div>
+    </div>
+    <h4 class="mb-3">Attention:<br/></h4>
+    <p>@Model.CurrentNotification.Message</p>
+    @if (@Model.CurrentNotification.NotificationType == EnumNotificationType.REQUEST.ToString())
+    {
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
+                <button onclick="LinkUser('@Model.CurrentNotification.RequestorUserId')" class="btn btn-success">Accept</button>
+                <button onclick="RefuseUser('@Model.CurrentNotification.Id')" class="btn btn-danger">Decline</button>
+            </div>
+            <div class="col-md-9"></div>
+        </div>
+    }
+</div>

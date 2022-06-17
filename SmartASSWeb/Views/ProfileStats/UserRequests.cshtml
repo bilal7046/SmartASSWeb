@@ -1,0 +1,322 @@
+﻿@model SmartASSWeb.ViewModels.Charts.BusinessCards.BusinessCardStatsViewModel
+@{
+    ViewBag.Title = "Profile Statistics";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/libs/morris.js/morris.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/chartist/dist/chartist.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/js/pages/chartist/chartist-init.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/css-chart/css-chart.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/c3/c3.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/prism/prism.css")" rel="stylesheet" type="text/css" >
+    <link href="@Url.Content("~/assets/libs/dragula/dist/dragula.min.css")" rel="stylesheet" type="text/css" >
+    <link href="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.css")" rel="stylesheet" type="text/css" >
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Profile Statistics</h3>
+        <ol class="breadcrumb mb-0 p-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Profile Statistics</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+@using (Ajax.BeginForm("FilterUserRequests", "ProfileStats",
+    new { @class = "form-horizontal mt-4", role = "form", id = "chartEditor" },
+    new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "preloader"
+    }))
+{
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Default DateRange Picker -->
+                    <h4 class="card-title">Chart Date Range</h4>
+                    <h6 class="card-subtitle">Select a date range to view data.</h6>
+                    <div class='input-group mb-3'>
+                        @Html.TextBoxFor(m=> m.DateRange, new { @class = "form-control daterange" })
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <span class="ti-calendar"></span>
+                            </span>
+                        </div>
+                        <button type="submit" class="btn btn-info">Load</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="chart-panel" class="row">
+        <!-- column -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Card Requests</h4>
+                    <div id="cardSent-chart"></div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <!-- column -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Accepted Cards</h4>
+                    <div id="acceptedInvite-bar-chart"></div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <!-- column -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Pending Cards</h4>
+                    <div id="pendingCards-bar-chart"></div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <!-- column -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Card Invites</h4>
+                    <div id="invitesReceived-bar-chart"></div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <!-- column -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Card Shares</h4>
+                    <div id="cardShares-chart"></div>
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <!-- column -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Social Media Links</h4>
+                    <ul class="list-inline text-left">
+                        <li class="list-inline-item">
+                            <h5><i class="fa ti-linkedin mr-1 text-info"></i>Linked-In</h5>
+                        </li>
+                        <li class="list-inline-item">
+                            <h5><i class="fa ti-facebook mr-1 text-inverse"></i>Facebook</h5>
+                        </li>
+                        <li class="list-inline-item">
+                            <h5><i class="fa ti-twitter-alt mr-1 text-inverse"></i>Twitter</h5>
+                        </li>
+                        <li class="list-inline-item">
+                            <h5><i class="fa ti-instagram mr-1 text-inverse"></i>Instagram</h5>
+                        </li>
+                    </ul>
+                    <div id="socialMedia-chart2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+
+</div>
+}
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/raphael/raphael.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/morris.js/morris.min.js")"></script>
+    @* <script src="@Url.Content("~/assets/js/pages/morris/morris-data.js")"></script> *@
+    <script src="@Url.Content("~/assets/libs/chartist/dist/chartist.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/echarts/dist/echarts-en.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/excanvas.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/jquery.flot.js")"></script>
+    <script src="@Url.Content("~/assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/d3/dist/d3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/c3/c3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/gaugeJS/dist/gauge.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/pages/widget/widget-charts.js")"></script>
+    <script src="@Url.Content("~/assets/libs/dragula/dist/dragula.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/moment/moment.js")"></script>
+    <script src="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.js")"></script>
+    <script>
+        $(function() {
+            dragula([document.getElementById("draggable-area")]),
+                dragula([document.getElementById("card-colors")]).on("drag",
+                    function(e) {
+                        e.className = e.className.replace("card-moved", "");
+                    }).on("drop",
+                    function(e) {
+                        e.className += " card-moved";
+                    }).on("over",
+                    function(e, t) {
+                        t.className += " card-over";
+                    }).on("out",
+                    function(e, t) {
+                        t.className = t.className.replace("card-over", "");
+                    }), dragula([document.getElementById("copy-left"), document.getElementById("copy-right")],
+                    {
+                        copy: !0
+                    }), dragula([document.getElementById("left-handles"), document.getElementById("right-handles")],
+                    {
+                        moves: function(e, t, n) {
+                            return n.classList.contains("handle");
+                        }
+                    }), dragula([document.getElementById("left-titleHandles"), document.getElementById("right-titleHandles")],
+                    {
+                        moves: function(e, t, n) {
+                            return n.classList.contains("titleArea");
+                        }
+                    });
+        });
+    </script>
+    <script type="text/javascript">
+        var morrisCardsSentChart;
+        var morrisAcceptedInvitesChart;
+        var morrisPendingCardsChart;
+        var morrisInvitesReceivedChart;
+        var morrisCardSharesChart;
+        var morrisSocialMediaChart;
+        $(document).ready(function() {
+            // Morris bar chart
+            morrisCardsSentChart = Morris.Bar({
+                element: 'cardSent-chart',
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.NumberOfCardsSent)),
+                xkey: 'Key',
+                ykeys: ['Value'],
+                labels: ['Cards Sent'],
+                barColors: ['#fc4b6c'],
+                hideHover: 'auto',
+                gridLineColor: '#eef0f2',
+                resize: true
+            });
+
+            // Morris bar chart
+            morrisAcceptedInvitesChart = Morris.Bar({
+                element: 'acceptedInvite-bar-chart',
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.AcceptedCards)),
+                xkey: 'Key',
+                ykeys: ['Value'],
+                labels: ['Invites Accepted'],
+                barColors: ['#0DAD33'],
+                hideHover: 'auto',
+                gridLineColor: '#eef0f2',
+                resize: true
+            });
+
+            // Morris bar chart
+            morrisPendingCardsChart = Morris.Bar({
+                element: 'pendingCards-bar-chart',
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.PendingCards)),
+                xkey: 'Key',
+                ykeys: ['Value'],
+                labels: ['Pending Invites'],
+                barColors: ['#1e88e5'],
+                hideHover: 'auto',
+                gridLineColor: '#00acc1',
+                resize: true
+            });
+
+            // Morris bar chart
+            morrisInvitesReceivedChart = Morris.Bar({
+                element: 'invitesReceived-bar-chart',
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.InvitesReceived)),
+                xkey: 'Key',
+                ykeys: ['Value'],
+                labels: ['Invites Received'],
+                barColors: ['#FFB444'],
+                hideHover: 'auto',
+                gridLineColor: '#00acc1',
+                resize: true
+            });
+
+            // Morris bar chart
+            morrisCardSharesChart = Morris.Bar({
+                element: 'cardShares-chart',
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.PeopleSharedMyCards)),
+                xkey: 'Key',
+                ykeys: ['Value'],
+                labels: ['People Shared My Card'],
+                barColors: ['#664FFF'],
+                hideHover: 'auto',
+                gridLineColor: '#00acc1',
+                resize: true
+            });
+
+            morrisSocialMediaChart = Morris.Donut({
+                element: 'socialMedia-chart2',
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.SocialMediaLinks)),
+                resize: true,
+                colors: ['#1e88e5', '#fc4b6c', '#C536AC', '#FFD800', '#C0C0C0', '#FF5E42']
+            });
+
+            /*******************************************/
+            // Date Ranges
+            /*******************************************/
+            $('.daterange').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                showDropdowns: true,
+                dateLimit: {
+                    days: 30
+                },
+                locale: {
+                    format: 'dddd DD MMMM YYYY'
+                },
+                startDate: moment().subtract(30, 'days'),
+                endDate: moment()
+            });
+
+        });
+        function OnSuccess(data) {
+            morrisCardsSentChart.setData(data.NumberOfCardsSent);
+            morrisAcceptedInvitesChart.setData(data.AcceptedInvites);
+            morrisPendingCardsChart.setData(data.PendingCards);
+            morrisInvitesReceivedChart.setData(data.InviteReceived);
+            morrisCardSharesChart.setData(data.PeopleSharedMyCards);
+            morrisSocialMediaChart.setData(data.SocialMediaLinks);
+            toastr.success('Filtered successfully');
+        }
+
+        function OnFailure(error) {
+            toastr.error('Error occurred ' + error.responseText);
+        }
+    </script>
+
+}

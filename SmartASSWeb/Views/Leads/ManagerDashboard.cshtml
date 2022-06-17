@@ -1,0 +1,435 @@
+﻿@using System
+@using System.Collections.Generic;
+@model SmartASSWeb.ViewModels.ManagerDashboardViewModel
+@{
+    ViewBag.Title = "Manager Dashboard";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/libs/morris.js/morris.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/css-chart/css-chart.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/c3/c3.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/prism/prism.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/assets/libs/dragula/dist/dragula.min.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.css")" rel="stylesheet" type="text/css">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Manager Dashboard</h3>
+        <ol class="breadcrumb mb-0 p-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Manager Dashboard</li>
+        </ol>
+        <div class="text-muted">Add, edit or remove team members.</div>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+@using (Ajax.BeginForm("Filter", "ProfileStats",
+    new { @class = "form-horizontal mt-4", role = "form", id = "chartEditor" },
+    new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "preloader"
+    }))
+{
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Default DateRange Picker -->
+                        <h4 class="card-title">Chart Date Range</h4>
+                        <h6 class="card-subtitle">Select a date range to view data.</h6>
+                        <div class='input-group mb-3'>
+                            @Html.TextBoxFor(m => m.DateRange, new { @class = "form-control daterange" })
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <span class="ti-calendar"></span>
+                                </span>
+                            </div>
+                            <button type="submit" class="btn btn-info">Load</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="chart-panel" class="row">
+            @Html.Partial("ManagerDashboardPanel", Model)
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+
+    </div>
+}
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/raphael/raphael.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/morris.js/morris.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/jquery.flot.js")"></script>
+    <script src="@Url.Content("~/assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/d3/dist/d3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/c3/c3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/moment/moment.js")"></script>
+    <script src="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/excanvas.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.pie.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.time.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.stack.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.crosshair.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/echarts/dist/echarts-en.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/excanvas.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/echarts/dist/echarts.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // LINE CHART
+            @*var line = new Morris.Bar({
+                element: 'morris-line-chart',
+                resize: true,
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.TotalRevenueForPeriod)),
+                xkey: 'Key',
+                ykeys: ['Value'],
+                labels: ['Total Revenue'],
+                gridLineColor: '#eef0f2',
+                lineColors: ['#1e88e5'],
+                lineWidth: 1,
+                hideHover: 'auto'
+            });*@
+            
+            Morris.Bar({
+                element: 'leadsRevenue-chart',
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.TotalRevenueForPeriod)),
+                xkey: 'Key',
+                ykeys: ['Value'],
+                labels: ['Total Revenue'],
+                barColors: ['#57C13F'],
+                hideHover: 'auto',
+                gridLineColor: '#eef0f2',
+                resize: true
+            });
+
+            //$(function () {
+            //    "use strict";
+            //    Morris.Area({
+            //            element: 'morris-area-chart',
+            //            data: [{
+            //                    period: '2010',
+            //                    iphone: 50
+            //                }, {
+            //                    period: '2011',
+            //                    iphone: 130
+            //                }, {
+            //                    period: '2012',
+            //                    iphone: 80
+            //                }, {
+            //                    period: '2013',
+            //                    iphone: 70
+            //                }, {
+            //                    period: '2014',
+            //                    iphone: 180
+            //                }, {
+            //                    period: '2015',
+            //                    iphone: 105
+            //                },
+            //                {
+            //                    period: '2016',
+            //                    iphone: 250
+            //                }],
+            //            xkey: 'period',
+            //            ykeys: ['iphone'],
+            //            labels: ['Total Revenue'],
+            //            pointSize: 3,
+            //            fillOpacity: 0,
+            //            pointStrokeColors:['#fc4b6c'],
+            //            behaveLikeLine: true,
+            //            gridLineColor: '#e0e0e0',
+            //            lineWidth: 3,
+            //            hideHover: 'auto',
+            //            lineColors: ['#fc4b6c'],
+            //            resize: true
+            //    });
+            //});
+
+
+            // sales bar chart
+            @*$(function () {
+                //some data
+                //var d1 = [];
+                //for (var i = 0; i <= 10; i += 1) d1.push([i, parseInt(Math.random() * 60)]);
+                //var d2 = [];
+                //for (var i = 0; i <= 10; i += 1) d2.push([i, parseInt(Math.random() * 40)]);
+                //var d3 = [];
+                //for (var i = 0; i <= 10; i += 1) d3.push([i, parseInt(Math.random() * 25)]);
+                //var ds = new Array();
+                //ds.push({ label: "New Leads", data: d1, bars: { order: 1 } });
+                //ds.push({ label: "Qualified Leads", data: d2, bars: { order: 2 } });
+                //ds.push({ label: "Active Leads", data: d3, bars: { order: 3 } });
+                var stack = 0
+                    , bars = true
+                    , lines = true
+                    , steps = true;
+                var options = {
+                    bars: { show: true, barWidth: 0.2, fill: 1 }
+                    , grid: { show: true, aboveData: false, labelMargin: 5, axisMargin: 0, borderWidth: 1, minBorderMargin: 5, clickable: true, hoverable: true, autoHighlight: false, mouseActiveRadius: 20, borderColor: '#f5f5f5' }
+                    , series: { stack: stack }
+                    , legend: {
+                        position: "ne", margin: [0, 0], noColumns: 0, labelBoxBorderColor: null, labelFormatter: function (label, series) {
+                            // just add some space to labels
+                            return '' + label + '&nbsp;&nbsp;';
+                        }
+                        , width: 30
+                        , height: 5
+                    }
+                    , yaxis: { tickColor: '#f5f5f5', font: { color: '#bdbdbd' } }
+                    , xaxis: { tickColor: '#f5f5f5', font: { color: '#bdbdbd' } }
+                    , colors: ["#4F5467", "#FFD800", "#009efb", "#26c6da"]
+                    , tooltip: true, //activate tooltip
+                    tooltipOpts: { content: "%s : %y.0", shifts: { x: -30, y: -50 } }
+                };
+                var ds = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.ClosedLeadsOverPeriod));
+                $.plot($(".sales-bars-chart"), ds, options);
+            });*@
+
+            $(function() {
+                var barOptions = {
+                    series: {
+                        bars: {
+                            show: true,
+                            barWidth: 43200000
+                        }
+                    },
+                    xaxis: {
+                        mode: "time",
+                        timeformat: "%d/%m",
+                        minTickSize: [2, "month"]
+                    },
+                    legend: {
+                        show: false
+                    },
+                    grid: {
+                        color: "#AFAFAF",
+                        hoverable: true,
+                        borderWidth: 0,
+                        backgroundColor: '#FFF'
+                    },
+                    tooltip: true,
+                    tooltipOpts: {
+                        content: "Date: %x, Total Closed Leads: %y"
+                    }
+                };
+                var barData = {
+                    label: "bar",
+                    color: "#57C13F",
+                    data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.ClosedLeadsOverPeriod))
+                };
+                $.plot($("#flot-bar-chart"), [barData], barOptions);
+            });
+            /*******************************************/
+            // Date Ranges
+            /*******************************************/
+            $('.daterange').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                showDropdowns: true,
+                dateLimit: {
+                    days: 30
+                }
+            });
+
+            // ------------------------------
+            // Stacked bar chart
+            // ------------------------------
+            // based on prepared DOM, initialize e-charts instance
+            var stackedChart = echarts.init(document.getElementById('stacked-bar'));
+
+            // specify chart configuration item and data
+            var option = {
+                // Setup grid
+                grid: {
+                    x: 40,
+                    x2: 40,
+                    y: 45,
+                    y2: 25
+                },
+                // Add tooltip
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer : {            // Axis indicator axis trigger effective
+                        type : 'shadow'        // The default is a straight line, optionally: 'line' | 'shadow'
+                    }
+                },
+                // Add legend
+                legend: {
+                    data: ['Connected', 'Qualified', 'Quoted', 'Closed', 'Overcame Objections', 'Lost']
+                },
+                // Add custom colors
+                color: ['#1e88e5', '#fc4b6c', '#212529', '#CF77FF', '#00acc1', '#dadada'],
+                // Horizontal axis
+                xAxis: [{
+                    type: 'value'
+                }],
+                // Vertical axis - Team Member Names
+                yAxis: [{
+                    type: 'category',
+                    data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.TeamMembers))
+                }],
+                // Add series
+                series : [
+                    {
+                        name:'Connected',
+                        type:'bar',
+                        stack: 'Total',
+                        itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.ConnectedLeads.ToArray()))
+                    },
+                    {
+                        name:'Qualified',
+                        type:'bar',
+                        stack: 'Total',
+                        itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.QualifiedLeads.ToArray()))
+                    },
+                    {
+                        name:'Overcame Objections',
+                        type:'bar',
+                        stack: 'Total',
+                        itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.OvercameLeads.ToArray()))
+                    },
+                    {
+                        name:'Closed',
+                        type:'bar',
+                        stack: 'Total',
+                        itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.ClosedLeads.ToArray()))
+                    },
+                    {
+                        name:'Closed',
+                        type:'bar',
+                        stack: 'Total',
+                        itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.ClosedLeads.ToArray()))
+                    },
+                    {
+                        name:'Lost',
+                        type:'bar',
+                        stack: 'Total',
+                        itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.LostLeads.ToArray()))
+                    }
+                ]
+            };
+            // use configuration item and data specified to show chart
+            stackedChart.setOption(option);
+
+            // ------------------------------
+            // Basic line chart
+            // ------------------------------
+            // based on prepared DOM, initialize e-charts instance
+            var barBasicChart = echarts.init(document.getElementById('bar-basic'));
+            var optionBarBasic = {
+                // Setup grid
+                    grid: {
+                        x: 60,
+                        x2: 40,
+                        y: 45,
+                        y2: 25
+                    },
+                    // Add tooltip
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    // Add legend
+                    legend: {
+                        data: ['Leads Per Industry']
+                    },
+                    // Add custom colors
+                    color: ['#1e88e5', '#00acc1'],
+                    // Horizontal axis
+                    xAxis: [{
+                        type: 'value',
+                        boundaryGap: [0, 0.01]
+                    }],
+                    // Vertical axis
+                    yAxis: [{
+                        type: 'category',
+                        data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerIndustry.Industries))
+                    }],
+                    // Add series
+                    series : [
+                        {
+                            name:'Leads Per Industry',
+                            type:'bar',
+                            data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerIndustry.Data))
+                        }
+                    ]
+            };
+            // use configuration item and data specified to show chart
+            barBasicChart.setOption(optionBarBasic);
+            
+            // Morris bar chart
+            Morris.Bar({
+                element: 'leadForPeriod-chart',
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.ClosedLeadsOverPeriod)),
+                xkey: 'Key',
+                ykeys: ['Value'],
+                labels: ['Total Closed Leads'],
+                barColors: ['#FFA03A'],
+                hideHover: 'auto',
+                gridLineColor: '#eef0f2',
+                resize: true
+            });
+            //------------------------------------------------------
+            // Resize chart on menu width change and window resize
+            //------------------------------------------------------
+            $(function () {
+                // Resize chart on menu width change and window resize
+                $(window).on('resize', resize);
+                $(".sidebartoggler").on('click', resize);
+
+                // Resize function
+                function resize() {
+                    setTimeout(function() {
+                        // Resize chart
+                        stackedChart.resize();
+                        barBasicChart.resize();
+                    }, 200);
+                }
+            });
+        });
+
+        function OnSuccess(data) {
+            toastr.success('Filtered successfully');
+            $('#chart-panel').html(data);
+        }
+
+        function OnFailure(error) {
+            toastr.error('Error occurred ' + error.responseText);
+        }
+    </script>
+}

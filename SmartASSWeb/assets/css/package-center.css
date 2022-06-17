@@ -1,0 +1,272 @@
+﻿
+.pricing-section {
+    position: relative;
+    padding: 70px 0 130px
+}
+
+    .pricing-section .sec-title {
+        margin-bottom: 70px
+    }
+
+    .pricing-section.style-two {
+        padding-top: 130px
+    }
+
+    .pricing-section .pricing-option {
+        position: relative;
+        text-align: center;
+        margin-top: 60px
+    }
+
+        .pricing-section .pricing-option .option-inner {
+            position: relative;
+            display: inline-block;
+            cursor: pointer
+        }
+
+        .pricing-section .pricing-option span.monthly {
+            position: relative;
+            top: -5px;
+            color: #333;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            text-transform: capitalize
+        }
+
+        .pricing-section .pricing-option span.yearly {
+            position: relative;
+            top: -4px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
+            text-transform: capitalize;
+            transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            -o-transition: all .3s ease
+        }
+
+        .pricing-section .pricing-option span.icon {
+            position: relative;
+            top: 8px;
+            width: 65px;
+            height: 32px;
+            margin: 0 8px;
+            display: inline-block;
+            border-radius: 50px;
+            border: 1px solid #d9d9d9
+        }
+
+            .pricing-section .pricing-option span.icon:before {
+                position: absolute;
+                content: '';
+                left: 2px;
+                top: 2px;
+                bottom: 1px;
+                width: 25px;
+                height: 25px;
+                display: inline-block;
+                border-radius: 50%;
+                background-color: #ff6489;
+                -webkit-transition: all .3s ease;
+                transition: all .5s ease;
+                -webkit-transition: all .5s ease;
+                -ms-transition: all .5s ease;
+                -o-transition: all .5s ease
+            }
+
+        .pricing-section .pricing-option .option-inner.active span.icon:before {
+            left: 36px
+        }
+
+    .pricing-section .pricing-inner-container .monthly-package, .pricing-section .pricing-inner-container .yearly-package {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        opacity: 0
+    }
+
+    .pricing-section .pricing-inner-container .monthly-package {
+        position: relative;
+        opacity: 1
+    }
+
+    .pricing-section .pricing-inner-container.toggle-package .yearly-package {
+        position: relative;
+        opacity: 1
+    }
+
+    .pricing-section .pricing-inner-container.toggle-package .monthly-package {
+        position: absolute;
+        opacity: 0
+    }
+
+.price-block {
+    position: relative;
+    margin-bottom: 60px
+}
+
+.pricing-section .monthly-package .price-block, .pricing-section .toggle-package .monthly-package .price-block, .pricing-section .yearly-package .price-block {
+    visibility: hidden;
+    transform: scaleX(.5);
+    -webkit-transition: all .7s ease;
+    -ms-transition: all .7s ease;
+    transition: all .7s ease
+}
+
+.pricing-section .default-active .price-block, .pricing-section .monthly-package .price-block {
+    opacity: 1;
+    visibility: visible;
+    transform: scaleX(1)
+}
+
+.pricing-section .toggle-package .yearly-package .price-block {
+    opacity: 1;
+    visibility: visible;
+    transform: scaleX(1)
+}
+
+.price-block .inner-box {
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid #e4e4e4;
+    box-shadow: 0 0 45px rgba(0,0,0,.1)
+}
+
+    .price-block .inner-box .ribbon {
+        position: absolute;
+        right: 10px;
+        top: 21px;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 8px 16px 8px 25px;
+        display: inline-block;
+        background-color: #9f70ed;
+        transform: rotate(-90deg);
+        font-family: 'Open Sans',sans-serif
+    }
+
+        .price-block .inner-box .ribbon:after {
+            position: absolute;
+            content: '';
+            left: -1px;
+            bottom: 0;
+            border-top: 22px solid transparent;
+            border-left: 15px solid #fff;
+            border-bottom: 22px solid transparent
+        }
+
+    .price-block .inner-box .title-box {
+        position: relative;
+        text-align: center;
+        padding: 30px 15px;
+        border-bottom: 1px solid #e4e4e4
+    }
+
+        .price-block .inner-box .title-box h2 {
+            position: relative;
+            color: #444;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase
+        }
+
+    .price-block .inner-box .content-box {
+        position: relative;
+        text-align: center;
+        padding: 25px 15px 0
+    }
+
+        .price-block .inner-box .content-box .price {
+            position: relative;
+            color: #444;
+            font-weight: 700;
+            line-height: 1em;
+            font-size: 44px;
+            font-family: 'Open Sans',sans-serif
+        }
+
+            .price-block .inner-box .content-box .price sub {
+                position: relative;
+                font-size: 22px;
+                font-weight: 600
+            }
+
+            .price-block .inner-box .content-box .price span {
+                font-size: 22px;
+                font-weight: 600
+            }
+
+        .price-block .inner-box .content-box .title {
+            position: relative;
+            color: #24cfb5;
+            font-size: 15px;
+            line-height: 1.3em;
+            font-weight: 600;
+            margin: 20px 0 25px
+        }
+
+.price-block:nth-child(2) .inner-box .content-box .title {
+    color: #9a60fa
+}
+
+.price-block:nth-child(3) .inner-box .content-box .title {
+    color: #4ca6fb
+}
+
+.price-block:nth-child(4) .inner-box .content-box .title {
+    color: #ff617d
+}
+
+.price-block:nth-child(5) .inner-box .content-box .title {
+    color: #35ce3c
+}
+
+.price-block:nth-child(6) .inner-box .content-box .title {
+    color: #fb4cf1
+}
+
+.price-block .inner-box .content-box .price-list {
+    position: relative;
+    margin-bottom: 45px
+}
+
+    .price-block .inner-box .content-box .price-list li {
+        position: relative;
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 8px;
+        font-weight: 600;
+        padding-left: 15px;
+        font-family: 'Open Sans',sans-serif
+    }
+
+        .price-block .inner-box .content-box .price-list li:last-child {
+            margin-bottom: 0
+        }
+
+        .price-block .inner-box .content-box .price-list li .check {
+            position: relative;
+            color: #50e245;
+            margin-right: 6px
+        }
+
+        .price-block .inner-box .content-box .price-list li .remove {
+            position: relative;
+            color: #ff3044;
+            margin-right: 6px
+        }
+
+.price-block .inner-box .content-box .btn-box {
+    position: relative;
+    margin-bottom: -30px
+}

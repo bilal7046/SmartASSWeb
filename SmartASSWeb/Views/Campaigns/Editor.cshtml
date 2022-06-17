@@ -1,0 +1,118 @@
+﻿@model SmartASSWeb.Bll.Campaign
+@{
+    ViewBag.Title = "Manage Campaigns";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css")" rel="stylesheet">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Campaign</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Campaign</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-body">
+                <h4 class="card-title">Lead</h4>
+                <h6 class="card-subtitle"> Capture new Campaign </h6>
+            @using (Ajax.BeginForm("Save", "Campaigns",
+                new { @class = "form-horizontal mt-4", role = "form", id = "campaignEditor" },
+                new AjaxOptions
+                {
+                    OnSuccess = "OnSuccess",
+                    OnFailure = "OnFailure",
+                    LoadingElementId = "progress"
+                }))
+            {
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.CampaignStatus)
+                            @Html.DropDownListFor(m => m.CampaignStatus, new List<SelectListItem>
+                            {
+                                new SelectListItem(){Text = "Pending", Value = "Pending"},
+                                new SelectListItem(){Text = "Approved", Value = "Approved"},
+                                new SelectListItem(){Text = "Declined", Value = "Declined"}
+                            }, "-- Select --", new { @class = "custom-select col-12" })
+                        </div>
+                        <div class="col-md-6">
+                            <label>Campaign Name*</label>
+                            @Html.TextBoxFor(m=>m.Name, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.CampaignDate)
+                            @Html.EditorFor(m=>m.CampaignDate)
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label>Commission Amount</label>
+                            @Html.TextBoxFor(m => m.CommissionAmount, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            <label>Sales Amount</label>
+                            @Html.TextBoxFor(m => m.SalesAmount, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label>Notes</label>
+                            @Html.TextAreaFor(m => m.Notes, new { @class = "form-control", rows = "5" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-success waves-effect waves-light mr-2">
+                                Submit
+                            </button>
+                            <button type="btn" class="btn btn-inverse waves-effect waves-light">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="@Url.Content("~/assets/js/pages/forms/jasny-bootstrap.js")"></script>
+    <script type="text/javascript">
+        function OnSuccess()
+        {
+
+        }
+        function OnFailure()
+        {
+
+        }
+    </script>
+}

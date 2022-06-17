@@ -1,0 +1,252 @@
+﻿@using SmartASSWeb.Bll
+@model SmartASSWeb.ViewModels.MyCardsViewModel
+@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart-ASS | Digital Business Card Analytics Software System</title>
+    @Scripts.Render("~/bundles/modernizr")
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="description" content="SmartASS | Digital Business Card Software System">
+    <meta name="author" content="Donald Mafa - Wald Cloud Solutions">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon.png">
+    <!-- Custom CSS -->
+    <link href="@Url.Content("~/assets/css/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/themify-icons.css")" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+    <!-- International Telephone Input-->
+    <link href="@Url.Content("https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/css/intlTelInput.css")" rel="stylesheet" />
+    <link href="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons-wind.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css")" rel="stylesheet" />
+    <link href="~/assets/css/icons/font-awesome/css/all.min.css" rel="stylesheet" />
+    <script src="~/assets/css/icons/font-awesome/js/all.min.js" type="text/javascript"></script>
+    <link href="~/assets/css/fonts.css" rel="stylesheet" />
+    <link href="~/assets/css/businesscards.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .image-circle {
+            border-radius: 50%;
+            width: 175px;
+            height: 175px;
+            border: 4px solid #FFF;
+            margin: 10px;
+        }
+    </style>
+    <link href="~/assets/css/fonts.css" rel="stylesheet" />
+    <link href="~/assets/css/businesscards.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/assets/extra-libs/prism/prism.css">
+    <link href="~/assets/css/app.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="main-wrapper">
+        @Html.HiddenFor(m => m.CurrentUserProfile.UserId)
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" style="min-height: 100px;">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
+                        <i class="ti-menu ti-close"></i>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                        <!-- Logo icon -->
+                        <b class="logo-icon">
+                            <!-- Dark Logo icon -->
+                            <img src="@Url.Content("~/assets/images/SmartAss200.png")" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="@Url.Content("~/assets/images/SmartAss200.png")" alt="homepage" class="light-logo" />
+                        </b>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-4 col-md-4"></div>
+                    <!-- Business Card Card -->
+                <div class="row">
+                    <div class="col-md-11 col-lg-11">
+                        @Html.Partial("_BusinessCardSwitch", @Model.CurrentBusinessCard)
+                    </div>
+                </div>
+                <!-- Card -->
+                    <div class="col-lg-2 col-md-2"></div>
+                </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer">
+        © 2020 Smart ASS - Digital Business Card
+    </footer>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="@Url.Content("~/assets/libs/jquery/dist/jquery.min.js")"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="@Url.Content("~/assets/libs/popper.js/dist/umd/popper.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/bootstrap/dist/js/bootstrap.min.js")"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>
+    $('[data-toggle="tooltip"]').tooltip();
+    $(".preloader").fadeOut();
+    // ==============================================================
+    // Login and Recover Password
+    // ==============================================================
+    $('#to-recover').on("click", function() {
+        $("#loginform").slideUp();
+        $("#recoverform").fadeIn();
+    });
+    </script>
+    <script>
+    function ShareClick(shareUrl) {
+        var userId = $('#UserId');
+        $.ajax({
+            url: '@Url.Action("ShareClick", "UserProfile")?id=' + userId,
+            type: 'POST',
+            cache: false,
+            async: true,
+            success: function (data) {
+
+            },
+            error: function(data) {
+                alert('Error occurred');
+            }
+        });
+    }
+    function EmailClick(emailUrl) {
+        var userId = $('#UserId');
+        $.ajax({
+            url: '@Url.Action("EmailClick", "UserProfile")?id=' + userId,
+            type: 'POST',
+            cache: false,
+            async: true,
+            success: function (data) {
+
+            },
+            error: function(data) {
+                alert('Error occurred');
+            }
+        });
+    }
+    function WebsiteClick(websiteUrl) {
+        var userId = $('#UserId');
+        $.ajax({
+            url: '@Url.Action("WebsiteClick", "UserProfile")?id=' + userId,
+            type: 'POST',
+            cache: false,
+            async: true,
+            success: function (data) {
+
+            },
+            error: function(data) {
+                alert('Error occurred');
+            }
+        });
+    }
+    function LinkedInClick(linkedInUrl) {
+        var userId = $('#UserId');
+        $.ajax({
+            url: '@Url.Action("LinkedInClick", "UserProfile")?id=' + userId,
+            type: 'POST',
+            cache: false,
+            async: true,
+            success: function (data) {
+
+            },
+            error: function(data) {
+                alert('Error occurred');
+            }
+        });
+    }
+    function TwitterClick(twitterUrl) {
+        var userId = $('#UserId');
+        $.ajax({
+            url: '@Url.Action("TwitterClick", "UserProfile")?id=' + userId,
+            type: 'POST',
+            cache: false,
+            async: true,
+            success: function (data) {
+
+            },
+            error: function(data) {
+                alert('Error occurred');
+            }
+        });
+    }
+    function FacebookClick(facebookUrl) {
+        var userId = $('#UserId');
+        $.ajax({
+            url: '@Url.Action("FacebookClick", "UserProfile")?id=' + userId,
+            type: 'POST',
+            cache: false,
+            async: true,
+            success: function (data) {
+
+            },
+            error: function(data) {
+                alert('Error occurred');
+            }
+        });
+    }
+    function InstagramClick(instagramUrl) {
+        var userId = $('#UserId');
+        $.ajax({
+            url: '@Url.Action("InstagramClick", "UserProfile")?id=' + userId,
+            type: 'POST',
+            cache: false,
+            async: true,
+            success: function (data) {
+
+            },
+            error: function(data) {
+                alert('Error occurred');
+            }
+        });
+    }
+    </script>
+</body>
+
+</html>

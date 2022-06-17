@@ -1,0 +1,392 @@
+﻿@using SmartASSWeb.Bll
+@using SmartASSWeb.Bll.Core
+@model SmartASSWeb.ViewModels.ProfileViewModel
+@{
+    ViewBag.Title = "My Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads
+{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/libs/dropzone/dist/min/dropzone.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/libs/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css")">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Profile</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Profile</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <!-- Row -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+            @using (Html.BeginForm("SaveProfile", "UserProfile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+            <div class="card-body">
+                <h4 class="card-title">User Profile</h4>
+                @Html.HiddenFor(p=>p.Profile.UserId)
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">First Name</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.FirstName, new {@class = "form-control", placeholder = "First Name"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">Last Name</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.LastName, new {@class = "form-control", placeholder = "Last Name"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">Gender</label>
+                            <div class="col-sm-9">
+                                @Html.DropDownListFor(m => m.Profile.Gender, new List<SelectListItem> { new SelectListItem() {Text = EnumGender.Male.GetDescription(), Value = EnumGender.Male.ToString()}, new SelectListItem() {Text = EnumGender.Female.ToString(), Value = EnumGender.Female.ToString()}, new SelectListItem() {Text = EnumGender.Other.ToString(), Value = EnumGender.Other.ToString()} }, "-- Select --", new {@class = "custom-select col-12"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">Date of Birth</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.DateOfBirthHolder, new {@class = "form-control ", @id = "mdate"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="card-body">
+                <h4 class="card-title">Contact Information</h4>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">Email</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.Email, new {@class = "form-control", placeholder = "bob@abc.com", @type = "email", @readonly="true"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">Website</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.Website, new {@class = "form-control", placeholder = "http://"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label for="cono12" class="col-sm-3 text-right control-label col-form-label">Phone</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.Phone, new { @class = "form-control", @type = "tel" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label for="cono12" class="col-sm-3 text-right control-label col-form-label">Mobile</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.Mobile, new {@class = "form-control", @type = "tel"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label for="cono12" class="col-sm-3 text-right control-label col-form-label">Job Title</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.Designation, new {@class = "form-control", @type = "text"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label for="cono12" class="col-sm-3 text-right control-label col-form-label">Job Level</label>
+                            <div class="col-sm-9">
+                                @* @Html.DropDownListFor(m => m.Profile.JobLevel, new List<SelectListItem> { new SelectListItem() {Text = EnumJobLevel.EntryLevel.GetDescription(), Value = EnumJobLevel.EntryLevel.ToString()}, new SelectListItem() {Text = EnumJobLevel.Intermediate.ToString(), Value = EnumJobLevel.Intermediate.ToString()}, new SelectListItem() {Text = EnumJobLevel.MidLevel.ToString(), Value = EnumJobLevel.MidLevel.ToString()}, new SelectListItem() {Text = EnumJobLevel.Senior.ToString(), Value = EnumJobLevel.Senior.ToString()}, new SelectListItem() {Text = EnumJobLevel.Executive.ToString(), Value = EnumJobLevel.Executive.ToString()} }, "-- Select Job Level --", new {@class = "custom-select col-12"}) *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Address Information</h4>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">Address 1</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.AddressLine1, new {@class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 text-right control-label col-form-label">Province</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.Province, new {@class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label for="cono12" class="col-sm-3 text-right control-label col-form-label">Address 2</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.AddressLine2, new {@class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label for="cono12" class="col-sm-3 text-right control-label col-form-label">Country</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.Country, new {@class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label for="cono12" class="col-sm-3 text-right control-label col-form-label">City</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.City, new {@class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group row">
+                            <label for="cono12" class="col-sm-3 text-right control-label col-form-label">Postal Code</label>
+                            <div class="col-sm-9">
+                                @Html.TextBoxFor(m => m.Profile.PostalCode, new {@class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="card-body">
+                <h4 class="card-title">Social Media</h4>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-info" type="button"><i class="ti-linkedin"></i></button>
+                            </div>
+                            @Html.TextBoxFor(m => m.Profile.SocialLinkedUrl, new {@class = "form-control", @type = "url", aria_label = "", aria_describedby = "basic-addon1"})
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-info" type="button"><i class="ti-facebook"></i></button>
+                            </div>
+                            @Html.TextBoxFor(m => m.Profile.SocialFacebookUrl, new {@class = "form-control", @type = "url", aria_label = "", aria_describedby = "basic-addon1"})
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-info" type="button"><i class="ti-twitter"></i></button>
+                            </div>
+                            @Html.TextBoxFor(m => m.Profile.SocialTwitterUrl, new {@class = "form-control", @type = "url", aria_label = "", aria_describedby = "basic-addon1"})
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-info" type="button"><i class="ti-instagram"></i></button>
+                            </div>
+                            @Html.TextBoxFor(m => m.Profile.SocialInstagramUrl, new {@class = "form-control", @type = "url", aria_label = "", aria_describedby = "basic-addon1"})
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-info" type="button"><i class="ti-sharethis"></i></button>
+                            </div>
+                            @Html.TextBoxFor(m => m.Profile.SocialMediaLink1, new {@class = "form-control", @type = "url", aria_label = "", aria_describedby = "basic-addon1", @placeholder = "Other Social Media Link"})
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-info" type="button"><i class="ti-sharethis"></i></button>
+                            </div>
+                            @Html.TextBoxFor(m => m.Profile.SocialMediaLink2, new {@class = "form-control", @type = "url", aria_label = "", aria_describedby = "basic-addon1", @placeholder = "Other Social Media Link"})
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <h6 class="card-subtitle">Upload your profile picture</h6>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="profilePictureBtn">
+                                <label class="custom-file-label" for="profilePictureBtn" accept="image/gif, image/jpeg, image/png, image/jpg">Choose file</label>
+                            </div>
+                        </div>
+                        <div class="progress mb-2 progress-sm">
+                            <div id="progressbar" class="progress-bar progress-lg bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        @Html.HiddenFor(c => c.Profile.PhotoUrl)
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="card-body">
+                <div class="form-group mb-0 text-right">
+                    <button type="submit" class="btn btn-info waves-effect waves-light">Save</button>
+                    <button type="btn" class="btn btn-dark waves-effect waves-light" onclick="'location.href=@Url.Action("Index", "UserProfile")'">Cancel</button>
+                </div>
+            </div>
+            }
+            </div>
+        </div>
+    </div>
+    <!-- End Row -->
+</div>
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/dropzone/dist/min/dropzone.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/moment/moment.js")"></script>
+    <script src="@Url.Content("~/assets/libs/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker-custom.js")"></script>
+    <script>
+        var phone = document.querySelector("#Profile_Phone");
+        var mobile = document.querySelector("#Profile_Mobile");
+        window.intlTelInput(phone, {
+            preferredCountries: ['za'],
+            utilsScript: "../../assets/js/utils.js"
+        });
+        window.intlTelInput(mobile, {
+            placeholderNumberType: "MOBILE",
+            preferredCountries: ['za'],
+            // separateDialCode: true,
+            geoIpLookup: function(callback) {
+              $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "";
+                callback(countryCode);
+              });
+            },
+            utilsScript: "../../assets/js/utils.js"
+        });
+        var uploader = document.getElementById('progressbar');
+        var userId = $('#Profile_UserId').val();
+
+        $('#profilePictureBtn').change(function(e) {
+
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onloadend = function(evt) {
+                var storageRef = firebaseApp.storage().ref('userProfiles/' + userId);
+                // Create file metadata to update
+                //var newMetadata = {
+                //    cacheControl: 'public,max-age=300',
+                //    contentType: file.type
+                //}
+
+                // Update metadata properties
+                //storageRef.updateMetadata(newMetadata).then(function(metadata) {
+                //    console.log('Metadata Updated');
+                //}).catch(function(error) {
+                //    // Uh-oh, an error occurred!
+                //    toastr.error('Error: ' + error);
+                //});
+                var task = storageRef.put(file);
+
+                // 
+                task.on('state_changed',
+                    function progress(snapshot) {
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        uploader.value = percentage;
+                        uploader.setAttribute('aria-valuenow', percentage);
+                    },
+                    function error(err) {
+                        toastr.error(err);
+                    },
+                    function complete(result) {
+                        toastr.success('File Uploaded');
+
+                        if (task.snapshot.exists) {
+                            task.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                                console.log('File available at', downloadURL);
+                                $("#Profile_PhotoUrl").val(url); 
+                            });
+                        } else {
+                            var resizedStorageRef = firebaseApp.storage().ref('userProfiles/' + userId + '_200x200');
+                            resizedStorageRef.getDownloadURL().then(function(downloadURL) {
+                                console.log('File available at', downloadURL);
+                                $("#Profile_PhotoUrl").val(downloadURL);
+                            });
+                        }
+                        
+                    }
+                );
+            }
+            reader.onerror = function(e) {
+                console.log("Failed file read: " + e.toString());
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Material Date picker    
+        $('#mdate').bootstrapMaterialDatePicker({ weekStart: 0, time: false, format: 'DD/MM/YYYY', maxDate: new Date() });
+        $('#timepicker').bootstrapMaterialDatePicker({ format: 'HH:mm', time: true, date: false, maxDate: new Date(2000, 1, 1) });
+        $('#date-format').bootstrapMaterialDatePicker({ format: 'dddd DD MMMM YYYY - HH:mm' });
+
+        $('#min-date').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
+        $('#date-fr').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', lang: 'fr', weekStart: 1, cancelText: 'CANCEL' });
+        $('#date-end').bootstrapMaterialDatePicker({ weekStart: 0 });
+        $('#date-start').bootstrapMaterialDatePicker({ weekStart: 0 }).on('change',
+            function(e, date) {
+                $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+            });
+    </script>
+}
+

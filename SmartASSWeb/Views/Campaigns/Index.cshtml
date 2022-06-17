@@ -1,0 +1,134 @@
+﻿@model IEnumerable<SmartASSWeb.Bll.Campaign>
+@{
+    ViewBag.Title = "Manage Campaigns";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads
+{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.3/b-colvis-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/cr-1.5.2/r-2.2.5/sc-2.0.2/sp-1.1.1/sl-1.3.1/datatables.min.css" />
+    @* <link href="@Url.Content("~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css")" rel="stylesheet"> *@
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Manage Campaigns</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Manage Campaigns</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="zero_config" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Campaign Date</th>
+                                    <th>Commission Amount</th>
+                                    <th>Sales Amount</th>
+                                    <th>Campaign Status</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var campaign in Model)
+                                {
+                                <tr>
+                                    <td>@campaign.Name</td>
+                                    <td>@campaign.CampaignDate</td>
+                                    <td>@campaign.CommissionAmount</td>
+                                    <td>@campaign.SalesAmount</td>
+                                    <td>@campaign.CampaignStatus</td>
+                                    <td>
+                                        <div class="row">
+                                            @* <div class="col-md-2"><a href='#' class='btn btn-success ti-eye' onclick="ViewDetails(' + @campaign.CampaignId + ')" data-toggle="tooltip" title="View"></a></div> *@
+                                            <div class="col-md-2"><a class="btn btn-info ti-slice" href="/Campaigns/Editor/@campaign.CampaignId" data-toggle="tooltip" title="Edit"></a></div>
+                                            <div class="col-md-2"><a href='#' class='btn btn-danger ti-trash' onclick="DeleteData(' + @campaign.CampaignId + ')" data-toggle="tooltip" title="Delete"></a></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.21/b-1.6.3/b-colvis-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/cr-1.5.2/r-2.2.5/sc-2.0.2/sp-1.1.1/sl-1.3.1/datatables.min.js"></script>
+    <script src="@Url.Content("~/assets/js/pages/datatable/custom-datatable.js")"></script>
+    <script>
+        $('#zero_config').DataTable(
+            {
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        text: 'Add New Campaign',
+                        action: function (e, dt, node, config) {
+                            window.open("@Url.Action("Editor")");
+                        }
+                    }
+                ],
+                "language":
+                {
+                    "processing": "<div class='overlay custom-loader-background'><i class='fa fa-cog fa-spin custom-loader-color'></i></div>"
+                },
+                "processing": true
+            });
+
+
+        function DeleteData(Id) {
+            if (confirm("Are you sure you want to delete?")) {
+                Delete(Id);
+            } else {
+                return false;
+            }
+        }
+
+
+        function Delete(Id) {
+            var url = '@Url.Content("~/")' + "Campaigns/Delete";
+            $.post(url,
+                { ID: Id },
+                function(data) {
+                    if (data == "Deleted") {
+                        alert("Deleted Record!");
+                        oTable = $('#zero_config').DataTable();
+                        oTable.draw();
+                    } else {
+                        alert("Something Went Wrong!");
+                    }
+                });
+        }
+
+        function ViewDetails(Id) {
+            var id = Id;
+            window.location = '@Url.Content("~/")' + "Campaigns/Details/" + id;
+        }
+    </script>
+}
+ 

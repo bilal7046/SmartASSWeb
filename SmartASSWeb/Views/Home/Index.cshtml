@@ -1,0 +1,213 @@
+﻿@using SmartASSWeb.Bll
+@model SmartASSWeb.ViewModels.HomeViewModel
+@section Heads
+{
+    <link href="~/assets/css/fonts.css" rel="stylesheet" />
+    <link href="~/assets/css/businesscards.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/assets/extra-libs/prism/prism.css">
+    <link href="~/assets/css/app.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <!-- Row -->
+    <div class="row">
+        @foreach (var businessCard in Model.BusinessCards)
+        {
+            <!-- column -->
+            <div class="col-lg-4 col-md-4 col-sm-4" style="margin-bottom: 25px; margin-right: 0px; margin-left: 0px;">
+                <!-- Business Card -->
+                <div class="row">
+                    <div class="col-md-11 col-lg-11">
+                        @Html.Partial("_BusinessCardSwitch", businessCard)
+                    </div>
+                </div>
+                <!-- Card -->
+            </div>
+            <!-- column -->
+        }
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <a href="@Url.Action("CardShares", "BusinessCardCharts", new {businessId = @Model.BusinessCards.FirstOrDefault()?.BusinessCardId})" data-toggle="tooltip" title="Go to cards sent statistics">
+                <div class="row card bg-cyan">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="mr-3 align-self-center">
+                                <h1 class="text-white"><i class="ti-pie-chart"></i></h1>
+                            </div>
+                            <div>
+                                <h3 class="card-title text-white">Cards Sent</h3>
+                                <h6 class="card-subtitle text-white op-5">Total number of cards sent</h6>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-4 align-self-center">
+                                <h2 class="font-weight-light text-white text-nowrap">@Model.TotalCardsSent</h2>
+                            </div>
+                            <div class="col-8 pb-3 pt-2 align-self-center">
+                                <div class="usage chartist-chart" style="height: 45px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="@Url.Action("AcceptedCards", "BusinessCardCharts", new {businessId = @Model.BusinessCards.FirstOrDefault()?.BusinessCardId})" data-toggle="tooltip" title="Go to cards accepted statistics">
+                <div class="row card bg-info">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="mr-3 align-self-center">
+                                <h1 class="text-white"><i class="ti-pie-chart"></i></h1>
+                            </div>
+                            <div>
+                                <h3 class="card-title text-white">Cards Accepted</h3>
+                                <h6 class="card-subtitle text-white op-5">Total number of cards accepted</h6>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-4 align-self-center">
+                                <h2 class="font-weight-light text-white text-nowrap">@Model.TotalCardsAccepted</h2>
+                            </div>
+                            <div class="col-8 pb-3 pt-2 align-self-center">
+                                <div class="usage chartist-chart" style="height: 45px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="@Url.Action("Index", "ManageContacts")" data-toggle="tooltip" title="Go to manage contacts">
+                <div class="row card bg-primary">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="mr-3 align-self-center">
+                                <h1 class="text-white"><i class="ti-pie-chart"></i></h1>
+                            </div>
+                            <div>
+                                <h3 class="card-title text-white">Total Contacts</h3>
+                                <h6 class="card-subtitle text-white op-5">Total number of contacts</h6>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-4 align-self-center">
+                                <h2 class="font-weight-light text-white text-nowrap">@Model.TotalContacts</h2>
+                            </div>
+                            <div class="col-8 pb-3 pt-2 align-self-center">
+                                <div class="usage chartist-chart" style="height: 65px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="row card bg-success">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="mr-3 align-self-center">
+                            <h1 class="text-white"><i class="icon-cloud-download"></i></h1>
+                        </div>
+                        <div>
+                            <h3 class="card-title text-white">Request to Connect</h3>
+                            <h6 class="card-subtitle text-white op-5">Year @DateTime.Now.Year</h6>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-4 align-self-center">
+                            <h2 class="font-weight-light text-white text-nowrap text-truncate">@Model.RequestCount</h2>
+                        </div>
+                        <div class="col-8 pb-3 pt-2 text-right">
+                            <div class="spark-count" style="height: 65px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <!-- Column -->
+            <div class="card">
+                <div class="card-body bg-info rounded-top">
+                    <h4 class="text-white card-title">Recent Contacts</h4>
+                    <h6 class="card-subtitle text-white mb-0 op-5">Go to <a href="@Url.Action("Index","ManageContacts")" style="color:white">Manage</a> to manage contacts</h6>
+                </div>
+                <div class="card-body">
+                    <div class="message-box contact-box position-relative">
+                        <div class="message-widget contact-widget position-relative">
+                            @foreach (var contact in Model.Contacts)
+                            {
+                                <a href="index.html#" class="py-3 px-2 border-bottom d-flex align-items-center text-decoration-none">
+                                    <div class="user-img position-relative d-inline-block mr-2">
+                                        <img src="@contact.PhotoUrl" alt="user"
+                                             class="rounded-circle w-100" width="100" height="50">
+                                        <span class="profile-status pull-right d-inline-block position-absolute bg-success rounded-circle"></span>
+                                    </div>
+                                    <div class="w-75 d-inline-block v-middle pl-2">
+                                        <h5 class="my-1">@contact.FirstName @contact.LastName</h5> <span class="mail-desc font-12 text-truncate overflow-hidden text-nowrap d-block"><span class="__cf_email__">@contact.EmailAddress</span></span>
+                                    </div>
+                                </a>
+                            }
+                            @if (Model.Contacts.Count() == 0)
+                            {
+                                <a href="index.html#" class="py-3 px-2 border-bottom d-flex align-items-center text-decoration-none">
+                                    <div class="w-75 d-inline-block v-middle pl-2">
+                                        <h5 class="my-1">No contacts found</h5>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Column -->
+            <div class="card">
+                <img class="rounded-top" src="../assets/images/background/weatherbg.jpg"
+                     alt="Card image cap">
+                <div class="card-img-overlay" style="height: 110px;">
+                    <div class="d-flex align-items-center">
+                        <h3 class="card-title text-white mb-0 d-inline-block">@Model.WeatherDetail.City</h3>
+                        <div class="ml-auto">
+                            <small class="card-text text-white font-weight-light">
+                                @DateTime.Now.ToString("D")
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 weather-small">
+                    <div class="row">
+                        <div class="col-8 border-right align-self-center">
+                            <div class="d-flex">
+                                <div class="display-6 text-info"><i class="wi wi-day-rain-wind"></i></div>
+                                <div class="ml-3">
+                                    <h1 class="font-weight-light text-info mb-0">@Model.WeatherDetail.Temp<sup>0</sup></h1>
+                                    <small>@Model.WeatherDetail.Description</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <h1 class="font-weight-light mb-0">@Model.WeatherDetail.TempMin<sup>0</sup></h1>
+                            <small>Tonight</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+//            var businessCards = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.BusinessCards.Count));
+//
+//            if (businessCards.length === '') {
+//                Swal.fire({
+//                        title: "Welcome to SmartASS!",
+//                        text: "Let's start off by creating your first Digital Business Card",
+//                        type: "success",
+//                        showCancelButton: true,
+//                        confirmButtonColor: "#DD6B55",
+//                        confirmButtonText: "Take Me There!",
+//                        closeOnConfirm: true
+//                    },
+//                    function() {
+//                        window.location.href = '@Url.Action("Index", "MyCards")';
+//
+//                    });
+//            }
+        });
+    </script>
+}

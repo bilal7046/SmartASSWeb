@@ -1,0 +1,41 @@
+﻿@model SmartASSWeb.ViewModels.TeamMembersViewModel
+<!-- Row -->
+<h4 >My Team</h4>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="zero_config" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Phone</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var teamMember in Model.TeamMembers)
+                        {
+                            <tr>
+                                <td>@teamMember.FirstName</td>
+                                <td>@teamMember.LastName</td>
+                                <td>@teamMember.Phone</td>
+                                <td>@teamMember.Mobile</td>
+                                <td>@teamMember.Email</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3"><a class="btn btn-success ti-eye" href="/Leads/TeamMemberDetail?id=@teamMember.UserId" data-toggle="tooltip" title="View"></a></div>
+                                        <div class="col-md-3"><a class="btn btn-danger ti-trash" href="javascript: void(0);" onclick="RemoveTeamMember('@teamMember.UserId')" data-toggle="tooltip" title="Remove Team Member"></a></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

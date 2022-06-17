@@ -1,0 +1,88 @@
+﻿@model SmartASSWeb.ViewModels.ConnectedCardsViewModel
+<!-- Modal -->
+<div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Share Card with Contact(s)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @using (Ajax.BeginForm("ShareBusinessCard", "ConnectedCards",
+            new { },
+            new AjaxOptions
+            {
+                OnSuccess = "OnSuccess",
+                OnFailure = "OnFailure",
+                LoadingElementId = "preloader"
+            }, new { @class = "form-horizontal mt-4", role = "form" }))  
+        {
+            <div class="modal-body">
+                <div class="add-contact-box">
+                    <div class="add-contact-content">
+                            @Html.HiddenFor(p => p.SelectedBusinessCardId)
+                            <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
+                                <table class="table table-striped search-table v-middle">
+                                    <thead class="header-item">
+                                    <th>
+                                        <div class="n-chk align-self-center text-center">
+                                            <div class="checkbox checkbox-info">
+                                                <input type="checkbox" class="material-inputs" id="contact-check-all" onclick="checkOpts(this)">
+                                                <label class="" for="contact-check-all"></label>
+                                                <span class="new-control-indicator"></span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th class="text-dark font-weight-bold">Name</th>
+                                    <th class="text-dark font-weight-bold"></th>
+                                    </thead>
+                                <tbody>
+                                @for (int i = 0; i < Model.Contacts.Count; i++)
+                                {
+                                    @Html.HiddenFor(m=> Model.Contacts[i].UserId)
+                                    @Html.HiddenFor(m=> Model.Contacts[i].Email) 
+                                    @Html.HiddenFor(m=> Model.Contacts[i].IsSmartAssUser) 
+                                    <input type="hidden" id="IsSelectedHidden_@i" name="@Model.Contacts[i].IsSelected" value="@Model.Contacts[i].IsSelected" /> 
+                                    @Html.HiddenFor(m=> Model.Contacts[i].Name)
+                                    <!-- row -->
+                                    <tr class="search-items">
+                                        <td>
+                                            <div class="n-chk align-self-center text-center">
+                                                <div class="checkbox checkbox-info">
+                                                    @Html.CheckBoxFor(c=> @Model.Contacts[i].IsSelected, new { @class = "contact-chkbox"})
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="@Model.Contacts[i].PhotoUrl" alt="avatar" class="rounded-circle" width="35">
+                                                <div class="ml-2">
+                                                    <div class="user-meta-info">
+                                                        <h5 class="user-name mb-0" data-name="@Model.Contacts[i].Name">@Model.Contacts[i].Name</h5>
+                                                        <i class="far fa-envelope"></i><span class="usr-email-addr" data-email="@Model.Contacts[i].Email"><a href="mailto:@Model.Contacts[i].Email" class="__cf_email__"> @Model.Contacts[i].Email</a></span><br/>
+                                                        <i class="fas fa-phone"></i><span class="user-work text-muted" data-occupation="@Model.Contacts[i].Phone"> @Model.Contacts[i].Phone</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <!-- /.row -->
+                                }
+                                </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-add" type="submit" class="btn btn-success">Share</button>
+                    <button id="btn-edit" class="btn btn-success">Save</button>
+                    <button class="btn btn-danger" data-dismiss="modal"> Discard</button>
+                </div>
+            }
+                    </div>
+    </div>
+</div>

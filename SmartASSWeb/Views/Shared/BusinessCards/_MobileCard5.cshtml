@@ -1,0 +1,67 @@
+﻿@using SmartASSWeb.Bll.Services
+@model SmartASSWeb.Bll.BusinessCard
+@{
+    IQRCodeGeneratorService qrService = new QRCodeGeneratorService();
+}
+<div class="row diagonal-wrapper business-card" style="min-height: 500px;">
+    <div class="col-md-12 diagonal-box" style="background-color: @Model.ThemeColor">
+        <div class="row diagonal-content">
+            <div class="col-md-8">
+                <!--LOGO-->
+                @if (string.IsNullOrEmpty(Model.LogoUrl))
+                {
+                    <div class="d-flex" style="margin-top: -50px; font-size: @Model.PrimaryFontSize;">@Model.Name</div>
+                }
+                else
+                {
+                    <img src="@Model.LogoUrl" class="justify-content-start" style="margin-top: -50px; margin-left: -20px; margin-bottom: 20px; max-height: 150px; max-width: 200px;" />
+                }
+                @* <img src="@Model.ProfileImage" class="rounded-circle justify-content-end d-flex" width="200" style="margin-top: -250px;margin-left: -40px;margin-bottom: 50px;max-height: 180px; max-width: 200px; height: 180px; width: 200px;" /> *@
+                <!--CONTACT DETAILS-->
+                <h2 class="text-left" style=""><strong>@Model.ProfileFullName</strong></h2>
+                <h3 class="text-left" style="margin-top: 0px">@Model.Title</h3>
+                <hr />
+                <div class="text-left wrap span" style="margin-top: 0px; margin-bottom: 0px;">
+                    <span>@Model.Address1 @Model.Address2 @Model.City @Model.Province @Model.Country @Model.PostalCode</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!--PROFILE PICTURE-->
+                @* <img src="@Model.ProfileImage" class="rounded-circle justify-content-end" width="200" style="margin-top: -250px;margin-left: -40px;margin-bottom: 50px;max-height: 180px; max-width: 200px; height: 180px; width: 200px;" /> *@
+                <p class="text-right" style="margin-top: 0px">
+                    <a href="tel:@Model.Phone1" target="_blank"><i class="fas fa-phone-square-alt fa-2x" style="margin-right: 5px"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=@Model.Mobile" target="_blank"><i class="fab fa-whatsapp-square fa-2x" style="margin-right: 5px"></i></a>
+                    <a href="@Model.Website" target="_blank"><i class="fas fa-globe fa-2x" style="margin-right: 5px"></i></a>
+                    <a href="mailto:@Model.Email" target="_blank"><i class="fas fa-envelope fa-2x" style="margin-right: 5px"></i></a>
+                </p>
+                <!--QR CODE-->
+                <img src="@qrService.GetQRCodeBase64(Model.BusinessCodeUrl)" alt="" style="height:80px; width: 80px;float:right" />
+                <div class="row" style="margin-top: 10px;">
+                    <ul class="socialMediaIcon " style="list-style: none; padding-inline-start: 0 !important">
+                        @if (!string.IsNullOrEmpty(@Model.SocialLinkedUrl))
+                        {
+                            <li class="linkedin "><a target="_blank" href="@Model.SocialLinkedUrl" rel="noopener noreferrer" data-tooltip="toggle" title="LinkedIn">LinkedIn</a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(@Model.SocialFacebookUrl))
+                        {
+                            <li class="facebook "><a target="_blank" href="@Model.SocialFacebookUrl" rel="noopener noreferrer" data-tooltip="toggle" title="Facebook">Facebook</a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(@Model.SocialTwitterUrl))
+                        {
+                            <li class="twitter "><a target="_blank" href="@Model.SocialTwitterUrl" rel="noopener noreferrer" data-tooltip="toggle" title="Twitter">Twitter</a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(@Model.SocialInstagramUrl))
+                        {
+                            <li class="instagram "><a target="_blank" href="@Model.SocialInstagramUrl" rel="noopener noreferrer" data-tooltip="toggle" title="Instagram">Instagram</a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(@Model.SocialYoutubeUrl))
+                        {
+                            <li class="youtube "><a target="_blank" href="@Model.SocialYoutubeUrl" rel="noopener noreferrer" data-tooltip="toggle" title="Youtube">You Tube</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="diagonal-folder" style="background-color: #fff"></div>
+    </div>
+</div>

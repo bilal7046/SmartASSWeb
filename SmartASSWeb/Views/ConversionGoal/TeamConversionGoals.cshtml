@@ -1,0 +1,103 @@
+﻿@model SmartASSWeb.Bll.TeamMemberGoal
+@{
+    ViewBag.Title = "Team Conversion Goals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Heads{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css")">
+}
+
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Team Conversion Goals</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+                <a href="javascript:void(0)">Home</a>
+            </li>
+            <li class="breadcrumb-item active">Team Conversion Goals</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- Row -->
+    @using (Ajax.BeginForm("SaveTeamConversionGoals", "ConversionGoal",
+        new { @class = "form-horizontal mt-4", role = "form", id = "leadEditor" },
+        new AjaxOptions
+        {
+            OnSuccess = "OnSuccess",
+            OnFailure = "OnFailure",
+            LoadingElementId = "progress"
+        }))
+    {
+    <p class="text-muted">Setup a goal that you would like your team to achieve and monitor. You can also edit or remove a goal.</p>
+        <div class="row">
+            @Html.Partial("TeamConversionsGoalPanel", Model)
+            <div class="form-group row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success waves-effect waves-light mr-2">
+                        Save
+                    </button>
+                </div>
+                <div class="col-md-9"></div>
+            </div>
+        </div>
+        <div>@Html.HiddenFor(c => c.UserId)</div>
+    }
+</div>
+
+@section scripts{
+    <script src="@Url.Content("~/assets/libs/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js")"></script>
+    <script>
+
+        //==================================================//
+        //          TouchSpin with button(large)            //
+        //==================================================//
+        $("input[name='TotalLeads']").TouchSpin({
+            min: 0,
+            max: 1000,
+            step: 10
+        });
+        $("input[name='ContactedLeads']").TouchSpin({
+            min: 0,
+            max: 1000,
+            step: 10
+        });
+        $("input[name='ActiveLeads']").TouchSpin({
+            min: 0,
+            max: 1000,
+            step: 10
+        });
+        $("input[name='ClosedLeads']").TouchSpin({
+            min: 0,
+            max: 1000,
+            step: 10
+        });
+    </script>
+    <script type="text/javascript">
+        function OnSuccess(data) {
+            toastr.success('Team Conversion Goals Saved');
+            $('#conversionGoal').html(data);
+        }
+
+        function OnFailure(error) {
+            console.log(error.responseText);
+            toastr.error('Error occurred: ' + error);
+        }
+    </script>
+}

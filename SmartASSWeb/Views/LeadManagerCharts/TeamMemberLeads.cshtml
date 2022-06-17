@@ -1,0 +1,226 @@
+﻿@model SmartASSWeb.ViewModels.ManagerDashboardViewModel
+@{
+    ViewBag.Title = "Leads by Team Member";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/libs/morris.js/morris.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/css-chart/css-chart.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/c3/c3.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/extra-libs/prism/prism.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/assets/libs/dragula/dist/dragula.min.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.css")" rel="stylesheet" type="text/css">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Leads by Team Member</h3>
+        <ol class="breadcrumb mb-0 p-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Leads by Team Member</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+@using (Ajax.BeginForm("Filter", "ProfileStats",
+    new { @class = "form-horizontal mt-4", role = "form", id = "chartEditor" },
+    new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "preloader"
+    }))
+{
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        @Html.Partial("ChartDateRange", Model)
+        <!-- column -->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Leads by Team Members</h4>
+                    <p class="text-muted">Displays each team members leads status. Also shows the number of leads at each step of the sales process per team member. Select a company business card and date range to view statistics.</p>
+                    @if (Model.LeadsPerTeamMember.TeamMembers == null || Model.LeadsPerTeamMember.TeamMembers.Length == 0)
+                    {
+                        <div class="justify-content-center">
+                            <div><i class="text-success fas fa-chart-line fa-10x"></i></div>
+                            <h4 class="text-success">No data available!</h4>
+                        </div>
+                    }
+                    else
+                    {
+                        <div id="stacked-bar" style="height:400px;width:100%"></div>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- column -->
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+
+    </div>
+}
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/raphael/raphael.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/morris.js/morris.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/jquery.flot.js")"></script>
+    <script src="@Url.Content("~/assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/d3/dist/d3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/c3/c3.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/moment/moment.js")"></script>
+    <script src="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/excanvas.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.pie.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.time.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.stack.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot/jquery.flot.crosshair.js")"></script>
+    <script src="@Url.Content("~/assets/extra-libs/flot.tooltip/js/jquery.flot.tooltip.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/echarts/dist/echarts-en.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/flot/excanvas.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/echarts/dist/echarts.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*******************************************/
+            // Date Ranges
+            /*******************************************/
+            $('.daterange').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                showDropdowns: true,
+                dateLimit: {
+                    days: 30
+                }
+            });
+
+            // ------------------------------
+            // Stacked bar chart
+            // ------------------------------
+            // based on prepared DOM, initialize e-charts instance
+            var stackedChart = echarts.init(document.getElementById('stacked-bar'));
+
+            // specify chart configuration item and data
+            var option = {
+                // Setup grid
+                grid: {
+                    containLabel: true,
+                    x: 40,
+                    x2: 40,
+                    y: 45,
+                    y2: 25
+                },
+                // Add tooltip
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer : {            // Axis indicator axis trigger effective
+                        type : 'shadow'        // The default is a straight line, optionally: 'line' | 'shadow'
+                    }
+                },
+                // Add legend
+                legend: {
+                    data: ['Connected', 'Qualified', 'Quoted', 'Closed', 'Lost']
+                },
+                // Add custom colors
+                color: ['#4385F6', '#F53AA1', '#FABF00', '#44D40B', '#E8370E'],
+                // Horizontal axis
+                xAxis: [{
+                    type: 'value'
+                }],
+                // Vertical axis - Team Member Names
+                yAxis: [{
+                    type: 'category',
+                    data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.TeamMembers))
+                }],
+                // Add series
+                series : [
+                    {
+                        name:'Connected',
+                        type:'bar',
+                        stack: 'Total',
+                        itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.ConnectedLeads.ToArray()))
+                    },
+                    {
+                        name:'Qualified',
+                        type:'bar',
+                        stack: 'Total',
+                        itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.QualifiedLeads.ToArray()))
+                    },
+                    {
+                        name:'Quoted',
+                        type:'bar',
+                        stack: 'Total',
+                        itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.QuotedLeads.ToArray()))
+                    },
+                    {
+                        name:'Closed',
+                        type:'bar',
+                        stack: 'Total',
+                        itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.ClosedLeads.ToArray()))
+                    },
+                    {
+                        name:'Lost',
+                        type:'bar',
+                        stack: 'Total',
+                        itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                        data:@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.LeadsPerTeamMember.LostLeads.ToArray()))
+                    }
+                ]
+            };
+            // use configuration item and data specified to show chart
+            stackedChart.setOption(option);
+
+            //------------------------------------------------------
+            // Resize chart on menu width change and window resize
+            //------------------------------------------------------
+            $(function () {
+                // Resize chart on menu width change and window resize
+                $(window).on('resize', resize);
+                $(".sidebartoggler").on('click', resize);
+
+                // Resize function
+                function resize() {
+                    setTimeout(function() {
+                        // Resize chart
+                        stackedChart.resize();
+                        barBasicChart.resize();
+                    }, 200);
+                }
+            });
+        });
+
+        function OnSuccess(data) {
+            toastr.success('Filtered successfully');
+            $('#chart-panel').html(data);
+        }
+
+        function OnFailure(error) {
+            toastr.error('Error occurred ' + error.responseText);
+        }
+    </script>
+}

@@ -1,0 +1,40 @@
+﻿@model SmartASSWeb.ViewModels.ChatViewModel
+<div class="chat-meta-user pb-3 border-bottom">
+    <div class="current-chat-user-name">
+    @using (Ajax.BeginForm("AddParticipant", "Chat",
+        new AjaxOptions
+        {
+            OnSuccess = "OnSuccess",
+            OnFailure = "OnFailure",
+            LoadingElementId = "progress"
+        }, new {@class = "form-horizontal mt-4", role = "form", id = "conversionGoalsEditor"}))
+    {
+        <div class="row">
+            <div class="col-md-6">
+                @if (Model.CurrentChat == null)
+                {
+                    <i class="fas fa-comments"></i>
+                }
+                else if (Model.CurrentChat.Participants.Length > 2)
+                {
+                    <i class="fas fa-user-friends"></i>
+                }
+                else
+                {
+                    <i class="fas fa-users fa-2x"></i>
+                }
+                <span class="name font-weight-bold ml-2">@Model.CurrentChat.Name</span>
+                <p id="members">Members: <div id="currentParticipants">@Model.Participants</div></p>
+                @Html.Hidden("CurrentChatId", Model.CurrentChat.ChatId)
+            </div>
+            <div class="col-md-4">
+                @Html.DropDownListFor(p => p.ParticipantId, new SelectList(Model.Contacts, "UserId", "FullName"), "-- Select Contact --", new {@class = "form-control"})
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success" data-toggle="tooltip" title="Add new participant"><i class="fas fa-user-plus"></i></button>
+                <button type="button" class="btn btn-danger" onclick="deleteChat('@Model.CurrentChat.ChatId')" data-toggle="tooltip" title="Delete current chat"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </div>
+    }
+    </div>
+</div>

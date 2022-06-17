@@ -1,0 +1,62 @@
+﻿@model SmartASSWeb.ViewModels.SearchContactsViewModel
+@foreach (var userProfile in Model.UserProfiles)
+{
+    <div class="col-lg-6">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div class=""><img src="@userProfile.PhotoUrl" alt="user" class="rounded-circle" width="100" height="100" /></div>
+                    <div class="pl-3">
+                        <h3 class="font-weight-medium">@userProfile.FirstName @userProfile.LastName</h3>
+                        <h6>@userProfile.Designation</h6>
+                        @if (Model.IsFollowing(Model.CurrentUserProfile.LinkedUsers, @userProfile.UserId))
+                        {
+                            <a href="javascript:void(0)" class="btn btn-danger"><i class="ti-check"></i> Following</a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-success" onclick="RequestUser('@userProfile.UserId')"><i class="ti-plus"></i> Request to Follow</button>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div class="card-body">
+                <div class="text-left aboutscroll"><a href="mailto:@userProfile.Email"><i class="ti-email"><span> @userProfile.Email</span></i></a></div>
+                @if (!string.IsNullOrEmpty(@userProfile.Website))
+                {
+                    <div class="text-left aboutscroll"><a href="@userProfile.Website" target="_blank"><i class="ti-world"> <span>@userProfile.Website</span></i></a></div>
+                }
+                @if (!string.IsNullOrEmpty(@userProfile.City))
+                {
+                    <div class="text-left aboutscroll"><br/>Location:<br/> @userProfile.City, @userProfile.Province, @userProfile.Country</div>
+                }
+                <hr />
+                <ul class="list-style-none list-icons d-flex flex-item text-center pt-2">
+                    @if (!string.IsNullOrEmpty(@userProfile.Website))
+                    {
+                        <li class="col my-1"><a href="@userProfile.Website" data-toggle="tooltip" title="Website"><i class="fa ti-world pl-2"></i></a></li>
+                    }
+                    @if (!string.IsNullOrEmpty(@userProfile.SocialLinkedUrl))
+                    {
+                        <li class="col my-1"><a href="@userProfile.SocialLinkedUrl" data-toggle="tooltip" title="Linked-In"><i class="fab ti-linkedin pl-2"></i></a></li>
+                    }
+                    @if (!string.IsNullOrEmpty(@userProfile.SocialTwitterUrl))
+                    {
+                        <li class="col my-1"><a href="@userProfile.SocialTwitterUrl" data-toggle="tooltip" title="Twitter"><i class="fab ti-twitter pl-2"></i></a></li>
+                    }
+                    @if (!string.IsNullOrEmpty(@userProfile.SocialFacebookUrl))
+                    {
+                        <li class="col my-1"><a href="@userProfile.SocialFacebookUrl" data-toggle="tooltip" title="Facebook"><i class="fab ti-facebook pl-2"></i></a></li>
+                    }
+                    @if (!string.IsNullOrEmpty(@userProfile.SocialInstagramUrl))
+                    {
+                        <li class="col my-1"><a href="@userProfile.SocialInstagramUrl" data-toggle="tooltip" title="Instagram"><i class="fab ti-instagram pl-2"></i></a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}

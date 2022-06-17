@@ -1,0 +1,364 @@
+﻿@model IEnumerable<SmartASSWeb.Bll.Lead>
+@{
+    ViewBag.Title = "Package Center";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Heads
+{
+    <link href="~/assets/css/package-center.css" rel="stylesheet"/>
+}
+
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+
+<div class="row page-titles">
+    <div class="col-md-12 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Upgrade</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+                <a href="javascript:void(0)">Home</a>
+            </li>
+            <li class="breadcrumb-item active">Upgrade</li>
+        </ol>
+        <div class="text-muted">View the list of packages SmartASS has to offer.</div>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<!-- Row -->
+<section class="spacer">
+<div class="container">
+    <div class="row justify-content-center pt-5">
+        <div class="col-md-11 col-lg-8 text-center">
+            <h2 class="display-6">Licenses and Pricing</h2>
+            <p class="font-18 mt-3">Get started with one of SmartAss packages that suit your business profile? <a href="https://smartassdigitalbusinesscard.com/#pricing" data-wpel-link="internal" rel="follow">Package Details</a></p>
+            <p class="text-center">
+                <ul class="text-info" id="results"></ul>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container">
+<div class="row no-gutters mt-5">
+<div class="col-md-6 col-lg-3">
+    <div class="card border-top-4 border-top-info">
+        <div class="card-body border-bottom">
+            <h4 class="mb-1">Starter (Free) Pack</h4>
+           country: @ViewBag.Country
+            <p>For Startups, Students & NPO's</p>
+            <h3 class="mb-0 display-6">FREE<sup class="font-12">/user/month</sup></h3>
+        </div>
+        <div class="card-body bg-light">
+            <ul class="list-style-none py-2">
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Multiple business cards
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Unlimited card shares & contacts
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> IOS and Andriod Apps
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Admin dashboard (web browser)
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Global search & connect feature
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Social links and images
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Activity notifications
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> App-less digital business card<br /><br />
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> <strong>Basic analytics:</strong><br/>
+                    - Card Requests<br />
+                    - Accepted cards<br />
+                    - Pending Cards<br />
+                    - Card Invites<br />
+                    - Card Shares<br />
+                    - Card Interactions<br />
+                    - Engagement Rate<br />
+                </li>
+            </ul>
+            <div class="text-center mt-4 mb-2">
+                <button id="btn-starter" type="button" class="btn btn-outline-secondary btn-lg">Get Started</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-lg-3">
+    <div class="card border-top-4 border-top-primary">
+        <div class="card-body border-bottom">
+            <h4 class="mb-1">Small Business Pack</h4>
+            <p>For Small Businesses</p>
+            <h3 class="mb-0 display-6"><sup class="font-18">$</sup>3.49<sup class="font-12"> /user/month</sup></h3>
+        </div>
+        <div class="card-body bg-light">
+            <ul class="list-style-none py-2">
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Everything in Free, as well as:
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Business profile page
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Business card directory
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Calendar meetings and reminders
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Create personalized notes
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Video integration (Youtube, Vimeo etc.)
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Sales Cycle Management (sales pipeline)
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Leads management<br /><br />
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> <strong>Advanced Analytics:</strong>
+                    <br /><br />
+                    <strong>Demographics:</strong><br />
+                    - Age Groups<br />
+                    - Gender<br />
+                    - Job Levels<br />
+                    <br />
+                    <strong>Acquisition:</strong><br />
+                    - Conversion funnel<br />
+                    - Leads sourced<br />
+                    - Monthly leads analysis<br />
+                    - Leads status<br />
+                </li>
+            </ul>
+            <div class="text-center mt-4 mb-2">
+                <button id="btn-small-business" type="button" class="btn btn-primary btn-lg">Get Started</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-lg-3">
+    <div class="card border-top-4 border-top-warning">
+        <div class="card-body border-bottom">
+            <h4 class=" mb-1">Business Pack</h4>
+            <p>For Medium-Sized businesses</p>
+            <h3 class="mb-0 display-6"><sup class="font-18">$</sup>6.00<sup class="font-12">/user/month</sup></h3>
+        </div>
+        <div class="card-body bg-light">
+            <ul class="list-style-none py-2">
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Everything in Small Business Pack as well as:
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Departmental business card
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> CRM Integration / Data export
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Customized branded business card
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Sales team management
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Goals (individual & team)<br /><br />
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> <strong>Team Analytics:<br/><br />
+                        Goals:</strong><br />
+                    - Conversion Goals<br />
+                    - Team Goals<br /><br />
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> <strong>Team Management:</strong><br />
+                    - Overview<br />
+                    - Sales revenue<br />
+                    - Team Leads<br />
+                    - Industry Leads<br />
+                    - Sales contest<br />
+                </li>
+            </ul>
+            <div class="text-center mt-4 mb-2">
+                <button id="btn-business-pack" type="button" class="btn btn-outline-secondary btn-lg">Get Started</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-lg-3">
+    <div class="card border-top-4 border-top-danger">
+        <div class="card-body border-bottom">
+            <h4 class=" mb-1">Enterprise Pack</h4>
+            <p>For Large Businesses and Teams</p>
+            <h3 class="mb-0 display-6">Call<sup class="font-12">/user/month</sup></h3>
+        </div>
+        <div class="card-body bg-light">
+            <ul class="list-style-none py-2">
+                <li class="font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Everything in Business Pack as well as:
+                </li>
+                <li class="font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Customized features
+                </li>
+                <li class="font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Customized design and layout
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Tailor-made plan
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Onboarding assistance
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Monthly technical support
+                </li>
+                <li class=" font-15">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check list-icon mr-2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg> Tailored maintenance agreement
+                </li>
+            </ul>
+            <div class="text-center mt-4 mb-2">
+                <a id="btn-enterprise-pack" href="https://smartassdigitalbusinesscard.com/#contact-us" target="_blank" class="btn btn-outline-secondary btn-lg">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</section>
+<div class="hidden">
+    <form action="https://secure.paygate.co.za/payweb3/process.trans" method="POST">
+        <input id="PAY_REQUEST_ID" name="PAY_REQUEST_ID" type="hidden" />
+        <input id="CHECKSUM" name="CHECKSUM" type="hidden" />
+        <input id="REDIRECT" type="submit" />
+    </form>
+</div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $('#btn-small-business').on('click', function () {
+            var node = document.createElement("li");
+            node.innerText = "Processing...";
+            document.querySelector("#results").appendChild(node);
+            $.get('@Url.Action("GetStarted","PackageCenter")' + '?amount=' + JSON.stringify(3.49))
+                .done(data => success(data))
+                .fail(err => error(err));
+        });
+        $('#btn-business-pack').on('click', function () {
+            var node = document.createElement("li");
+            node.innerText = "Processing...";
+            document.querySelector("#results").appendChild(node);
+            $.get('@Url.Action("GetStarted","PackageCenter")' + '?amount=' + JSON.stringify(6))
+                .done(data => success(data))
+                .fail(err => error(err));
+        });
+        function success(data) {
+            var requestNode = document.createElement("li");
+            requestNode.innerText = "Request retrieved";
+            document.querySelector("#results").appendChild(requestNode);
+            requestNode.innerText = data.message;
+            if (data.success) {
+                $("#PAY_REQUEST_ID").val(data.results.PAY_REQUEST_ID);
+                $("#CHECKSUM").val(data.results.CHECKSUM);
+                var redirectNode = document.createElement("li");
+                redirectNode.innerText = "Redirecting...";
+                document.querySelector("#results").appendChild(redirectNode);
+                document.querySelector("#REDIRECT").click();
+            }
+        }
+        function error(data) {
+            console.log("Error");
+            var node = document.createElement("li");
+            node.innerText = data;
+            document.querySelector("#results").appendChild(node);
+        }
+    </script>
+}

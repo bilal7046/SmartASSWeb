@@ -1,0 +1,163 @@
+﻿@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon.png">
+    <title>Smart-Ass: Digital Business Card Analytics Software System</title>
+    <!-- Custom CSS -->
+    <link href="@Url.Content("~/assets/css/style.min.css")" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+    <script src="~/assets/js/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <script src="~/assets/js/login.js"></script>
+    <link type="text/css" rel="stylesheet" href="~/assets/css/login.css" />
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(../../assets/images/background/login-register.jpg) no-repeat center center; background-size: cover;">
+            <div class="auth-box on-sidebar p-4 bg-white m-0">
+                <div id="loginform">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="logo text-center">
+                                <span class="db">
+                                    <img src="../../assets/images/SmartAss200.png" alt="logo" style="width:80%"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-12">
+                            <form class="form-horizontal mt-3 form-material" id="" action="">
+                                <div class="form-group mb-0">
+                                    <div class="col-sm-12 justify-content-center d-flex">
+                                        <p>Don't have an account? <a href="@Url.Action("Register", "Account")" class="text-info font-weight-normal ml-1">Sign Up</a></p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Form -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="firebaseui-auth-container"></div>
+                            <div id="loader">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8 justify-content-center d-flex">
+                            <p style="font-size: 10px">By continuing, you are indicating that you accept our <a href="https://smartassdigitalbusinesscard.com/terms-and-conditions/" class="text-info font-weight-normal ml-1">Terms of Service</a> and <a href="https://www.smartassdigitalbusinesscard.com/privacy-policy/" class="text-info font-weight-normal ml-1">Privacy Policy</a></p>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <div class="form-group mb-0 justify-content-center d-flex" style="margin-top: 20px;">
+                                <a href="@Url.Action("RequestDemo", "Account")" class="btn btn-googleplus btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Request A Demo</a>
+                            </div>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+                <div id="recoverform">
+                    <div class="logo">
+                        <h3 class="font-weight-medium mb-3">Recover Password</h3>
+                        <span>Enter your Email and instructions will be sent to you!</span>
+                    </div>
+                    <div class="row mt-3">
+                        <!-- Form -->
+                        <form class="col-12 form-material" action="index.html">
+                            <!-- email -->
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <input class="form-control" type="email" required="true" placeholder="Email">
+                                </div>
+                            </div>
+                            <!-- pwd -->
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <button class="btn btn-block btn-lg btn-primary text-uppercase" type="submit" name="action">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="@Url.Content("~/assets/libs/jquery/dist/jquery.min.js")"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="@Url.Content("~/assets/libs/popper.js/dist/umd/popper.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/bootstrap/dist/js/bootstrap.min.js")"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>$('[data-toggle="tooltip"]').tooltip();
+    $(".preloader").fadeOut();
+    // ==============================================================
+    // Login and Recover Password
+    // ==============================================================
+    $('#to-recover').on("click", function() {
+        $("#loginform").slideUp();
+        $("#recoverform").fadeIn();
+    });</script>
+</body>
+
+</html>

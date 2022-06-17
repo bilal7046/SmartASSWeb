@@ -1,0 +1,265 @@
+﻿@model SmartASSWeb.ViewModels.NotificationsViewModel
+@{
+    ViewBag.Title = "Notifications";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Heads{
+    <link href="@Url.Content("~/assets/libs/summernote/dist/summernote-bs4.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/dropzone/dist/min/dropzone.min.css")" rel="stylesheet">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-12 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Notifications</h3>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Notifications</li>
+        </ol>
+        <div class="text-muted mt-0">Monitor your business card activity such as requests to connect, pending invites, etc.</div>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+@using (Ajax.BeginForm("Search", "Notifications",
+    new {@class = "form-horizontal mt-4", role = "form", id = "notificationEditor"},
+    new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "preloader"
+    }))
+{
+    <!-- ============================================================== -->
+    <!-- Email App Part -->
+    <!-- ============================================================== -->
+    <div class="email-app">
+        <!-- ============================================================== -->
+        <!-- Left Part -->
+        <!-- ============================================================== -->
+        <div class="left-part">
+            <a class="ti-menu ti-close btn btn-success show-left-part d-block d-md-none" href="javascript:void(0)"></a>
+            <div class="scrollable" style="height: 100%;">
+                @*<div class="p-3">
+                    <a id="compose_mail" class="waves-effect waves-light btn btn-danger d-block" href="javascript: void(0)">Compose</a>
+                </div>
+                <div class="divider"></div>*@
+                <ul class="list-group">
+                    <li class="list-group-item border-0 p-0">
+                        <hr>
+                    </li>
+                    <li>
+                        <small class="p-3 grey-text text-lighten-1 db">Notification Types</small>
+                    </li>
+                    <li class="list-group-item border-0 p-0">
+                        <a href="javascript:void(0)" class="list-group-item-action d-block"><i class="font-18 align-middle mr-1 badge badge-danger text-danger mdi mdi-checkbox-blank-circle">  </i> Alert </a>
+                    </li>
+                    <li class="list-group-item border-0 p-0">
+                        <a href="javascript:void(0)" class="list-group-item-action d-block"><i class="font-18 align-middle mr-1 badge badge-warning text-warning mdi mdi-checkbox-blank-circle">   </i> Message </a>
+                    </li>
+                    <li class="list-group-item border-0 p-0">
+                        <a href="javascript:void(0)" class="list-group-item-action d-block"><i class="font-18 align-middle mr-1 badge badge-success text-cyan mdi mdi-checkbox-blank-circle">   </i> Request </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Right Part -->
+        <!-- ============================================================== -->
+        <div class="right-part mail-list bg-white overflow-auto">
+            <div class="p-3 border-bottom">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h4>View Notifications </h4>
+                        <span>New notifications in bold and at the top</span>
+                    </div>
+                    <div class="ml-auto">
+                        <div class="input-group mb-3">
+                            @Html.TextBoxFor(m => m.SearchText, new {@class = "form-control", @placeholder= "Search notifications", aria_describedby="basic-addon1"})
+                            <div class="input-group-append">
+                                <button class="btn btn-success" onclick="" type="submit"><i class="ti-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Action part -->
+            <!-- Button group part -->
+            @*<div class="bg-light p-3 d-flex align-items-center do-block">
+                <div class="btn-group mt-1 mb-1">
+                    <div class="checkbox checkbox-info">
+                        <input type="checkbox" class="sl-all material-inputs" id="cstall">
+                        <label for="cstall"> <span>Check all</span> </label>
+                    </div>
+                </div>
+                <div class="ml-auto">
+                    <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                        <button type="button" class="btn btn-outline-secondary font-18"><i class="mdi mdi-reload"></i></button>
+                        <button type="button" class="btn btn-outline-secondary font-18"><i class="mdi mdi-alert-octagon"></i></button>
+                        <button type="button" class="btn btn-outline-secondary font-18"><i class="mdi mdi-delete"></i></button>
+                    </div>
+                    <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-folder font-18 "></i> </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1"> <a class="dropdown-item" href="javascript:void(0)">Dropdown link</a> <a class="dropdown-item" href="javascript:void(0)">Dropdown link</a> </div>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-label font-18"></i> </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1"> <a class="dropdown-item" href="javascript:void(0)">Dropdown link</a> <a class="dropdown-item" href="javascript:void(0)">Dropdown link</a> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+            <!-- Action part -->
+            <!-- Mail list-->
+            <div id="notificaitonPanel" class="table-responsive">
+                @Html.Partial("NotificationPanel", Model)
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Right Part  Mail detail -->
+        <!-- ============================================================== -->
+        <div class="right-part mail-details bg-white overflow-auto" style="display: none;">
+            @Html.Partial("ViewNotification", Model)
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+}
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    @section scripts
+    {
+        <script src="@Url.Content("~/assets/js/pages/email/email.js")"></script>
+        <script src="@Url.Content("~/assets/libs/summernote/dist/summernote-bs4.min.js")"></script>
+        <script src="@Url.Content("~/assets/libs/dropzone/dist/min/dropzone.min.js")"></script>
+        <script>
+            $('#summernote').summernote({
+                placeholder: 'Type your email Here',
+                tabsize: 2,
+                height: 250
+            });
+            Dropzone.autoDiscover = false;
+            $("#dzid").dropzone({ url: "/file/post" });
+
+            function RemoveNotification(id) {
+                Swal.fire({
+                    title: 'Delete Notification?',
+                    text: "Are you sure you want to delete this notification?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Delete'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: '@Url.Action("Delete", "Notifications")?id=' + id,
+                            type: 'POST',
+                            cache: false,
+                            async: true,
+                            success: function(data) {
+                                toastr.success('Notification Deleted!');
+                            },
+                            error: function(data) {
+                                toastr.error('Error occurred');
+                            }
+                        });
+                    }
+                });
+            }
+
+            function OnSuccess(data) {
+                $('#notificationPanel').html(data);
+
+                toastr.success('Result(s) returned!', 'Search Results');
+            }
+
+            function OnFailure() {
+                toastr.error('Error Occurred!');
+            }
+
+            function ViewNotification(id) {
+                $('.right-part.mail-list').fadeOut("fast");
+                $.ajax({
+                    url: '@Url.Action("ViewNotification", "Notifications")?id=' + id,
+                    type: 'POST',
+                    cache: false,
+                    async: false,
+                    success: function(data) {
+                        $('.right-part.mail-details').html(data);
+                        $('.right-part.mail-details').fadeIn("fast");
+                    },
+                    error: function(data) {
+                        alert('Error occurred');
+                    }
+                });
+            }
+
+            function LinkUser(requestUserId) {
+                $.ajax({
+                    url: '@Url.Action("LinkUser", "Notifications")?requestUserId=' + requestUserId,
+                    type: 'POST',
+                    cache: false,
+                    async: true,
+                    success: function(data) {
+                        toastr.success('New contact accepted!');
+                        goBackDetails();
+                    },
+                    error: function(data) {
+                        toastr.error('Error occurred');
+                    }
+                });
+            }
+
+            function RefuseUser(notificationId) {
+                Swal.fire({
+                    title: 'Decline Request?',
+                    text: "Are you sure  you want to decline this request?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Decline'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: '@Url.Action("Delete", "Notifications")?id=' + notificationId,
+                            type: 'POST',
+                            cache: false,
+                            async: true,
+                            success: function(data) {
+                                toastr.success('Request Declined!');
+                                goBackDetails();
+                            },
+                            error: function(data) {
+                                toastr.error('Error occurred');
+                            }
+                        });
+                    }
+                });
+            }
+
+            function goBackDetails() {
+                $('.right-part.mail-details').fadeOut("fast");
+                $('.right-part.mail-list').fadeIn("fast");
+            }
+        </script>
+    }

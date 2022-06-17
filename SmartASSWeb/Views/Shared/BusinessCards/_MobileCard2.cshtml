@@ -1,0 +1,49 @@
+﻿@model SmartASSWeb.Bll.BusinessCard
+<div class="container card-two">
+    <div class="logo-cards"><a href="#"><img src="~/assets/cards/images/logo.png" /></a></div>
+    <div class="bg">
+        <div class="profile-pic-main">
+            <img src="@Model.ProfileImage" />
+        </div>
+        <div class="name-box">
+            <div class="iner">
+                <h1>@Model.ProfileFullName</h1>
+                <h2>@Model.Title</h2>
+            </div>
+        </div>
+        <div class="social-links">
+            <a href="tel:@Model.Mobile" class="link-all">
+                <div class="boxes">
+                    <span class="fa fa-phone-square icons"></span>
+                    <p>Call</p>
+                </div>
+            </a>
+            <a href="@Model.Website" class="link-all">
+                <div class="boxes">
+                    <span class="fa fa-globe icons"></span>
+                    <p>Website</p>
+                </div>
+            </a>
+            <a href="tel:@Model.Mobile" class="link-all">
+                <div class="boxes">
+                    <span class="fa fa-whatsapp icons"></span>
+                    <p>WhatsApp</p>
+                </div>
+            </a>
+            <a href="#" class="link-all">
+                <div class="boxes">
+                    <span class="fa fa-map-marker icons"></span>
+                    <p>Address</p>
+                </div>
+            </a>
+        </div>
+        <footer>
+            <div class="social-list">
+                <a href="@Model.SocialInstagramUrl"><span class="fa fa-instagram"></span></a>
+                <a href="@Model.SocialLinkedUrl"><span class="fa fa-linkedin-square"></span></a>
+                <a href="@Model.SocialFacebookUrl"><span class="fa fa-facebook-square"></span></a>
+                <a href="@Model.SocialTwitterUrl"><span class="fa fa-twitter-square"></span></a>
+            </div>
+        </footer>
+    </div>
+</div>

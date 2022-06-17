@@ -1,0 +1,222 @@
+{
+  "Menu": [
+    {
+      "MainHeading": "AUDIENCE",
+      "Level": 1,
+      "Menus": [
+        {
+          "Level": 1,
+          "Name": "Behavior",
+          "IconClass": "mdi ti-bar-chart",
+          "HasChild": true,
+          "Child": [
+
+            {
+              "Name": "Card Requests",
+              "Action": "CardsRequested",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "Accepted Cards",
+              "Action": "AcceptedCards",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "Pending cards",
+              "Action": "PendingCards",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "Card Invites",
+              "Action": "CardInvites",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "CardShares",
+              "Action": "Card Shares",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "Card Interactions",
+              "Action": "SocialMediaLinks",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "EngagementRate",
+              "Action": "EngagementRate",
+              "Controller": "BusinessCardCharts"
+            }
+          ]
+        },
+        {
+          "Level": 2,
+          "Name": "Demographics",
+          "IconClass": "mdi ti-world",
+          "HasChild": true,
+          "Child": [
+
+            {
+              "Name": "Age Groups",
+              "Action": "AgeGroupClicks",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "Gender",
+              "Action": "GenderClicks",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "Job Levels",
+              "Action": "JobLevelClicks",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "Card Invites",
+              "Action": "CardInvites",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "CardShares",
+              "Action": "Card Shares",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "Card Interactions",
+              "Action": "SocialMediaLinks",
+              "Controller": "BusinessCardCharts"
+            },
+            {
+              "Name": "EngagementRate",
+              "Action": "EngagementRate",
+              "Controller": "BusinessCardCharts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "MainHeading": "ACQUISITION",
+      "Level": 2,
+      "Menus": [
+        {
+          "Level": 2,
+          "Name": "Overview",
+          "IconClass": "mdi ti-world",
+          "HasChild": true,
+          "Child": [
+
+            {
+              "Name": "Conversion Funnel",
+              "Action": "LeadStatusRatio",
+              "Controller": "LeadCharts"
+            },
+            {
+              "Name": "Leads Sourced",
+              "Action": "LeadSourceRatio",
+              "Controller": "LeadCharts"
+            },
+            {
+              "Name": "Monthly Leads",
+              "Action": "MonthlyLeads",
+              "Controller": "LeadCharts"
+            }
+
+          ]
+        },
+        {
+          "Level": 2,
+          "Name": "Leads",
+          "IconClass": "mdi ti-agenda",
+          "HasChild": false,
+          "Action": "Index",
+          "Controller": "Leads",
+          "Child": []
+        }
+      ]
+    },
+    {
+      "MainHeading": "Goals",
+      "Level": 3,
+      "Menus": [
+        {
+          "Level": 3,
+          "Name": "Conversion Goals",
+          "IconClass": "mdi ti-medall",
+          "HasChild": false,
+          "Action": "MyConversionGoals",
+          "Controller": "ConversionGoal",
+          "Child": []
+        },
+        {
+          "Level": 4,
+          "Name": "Team Goals",
+          "IconClass": "mdi mdi-drawing",
+          "HasChild": false,
+          "Action": "TeamConversionGoals",
+          "Controller": "ConversionGoal",
+          "Child": []
+        }
+      ]
+    },
+    {
+      "MainHeading": "Team Managemen",
+      "Level": 3,
+      "Menus": [
+        {
+          "Level": 3,
+          "Name": "Manage Team",
+          "IconClass": "mdi mdi-dots-horizontal",
+          "HasChild": false,
+          "Action": "ManageTeam",
+          "Controller": "Leads",
+          "Child": []
+        },
+        {
+          "Level": 4,
+          "Name": "Overview",
+          "IconClass": "mdi ti-world",
+          "HasChild": true,
+          "Child": [
+            {
+              "Name": "Sales Revenue",
+              "Action": "TotalRevenue",
+              "Controller": "LeadManagerCharts"
+            },
+            {
+              "Name": "Team Leads",
+              "Action": "TeamMemberLeads",
+              "Controller": "LeadManagerCharts"
+            },
+            {
+              "Name": "Industry Leads",
+              "Action": "LeadsPerIndustry",
+              "Controller": "LeadManagerCharts"
+            },
+            {
+              "Name": "Sales Contest",
+              "Action": "SalesContest",
+              "Controller": "LeadManagerCharts"
+            }
+
+          ]
+        }
+      ]
+    },
+    {
+      "MainHeading": "Team DashBoard",
+      "Level": 3,
+      "Menus": [
+        {
+          "Level": 3,
+          "Name": "Team Dashboard",
+          "IconClass": "mdi mdi-drawing",
+          "HasChild": false,
+          "Action": "TeamDashboard",
+          "Controller": "Leads",
+          "Child": []
+        }
+
+      ]
+    }
+  ]
+}

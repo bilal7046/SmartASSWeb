@@ -1,0 +1,35 @@
+﻿@model SmartASSWeb.ViewModels.ConversionGoalViewModel
+@foreach (var goal in Model.ConversionGoals)
+{
+    <div class="col-sm-2">
+        @Html.Hidden("Id", goal.Id)
+        <div class="form-group">
+            <input type="text" class="form-control" id="Goal" name="Goal" readonly="readonly" value="@goal.ConversionValue">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <input type="text" class="form-control" id="GoalName" name="GoalName" readonly="readonly" value="@goal.Name">
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="form-group">
+            <input type="text" class="form-control" id="Start" name="StartDate" readonly="readonly" value="@goal.Start.ToDateTime().ToShortDateString()">
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="form-group">
+            <input type="text" class="form-control" id="End" name="EndDate" readonly="readonly" value="@goal.End.ToDateTime().ToShortDateString()">
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="form-group">
+            <input type="text" class="form-control" id="Period" name="Period" readonly="readonly" value="@goal.Period">
+        </div>
+    </div>
+    <div class="col-sm-1">
+        <div class="form-group">
+            <button class="btn btn-danger" type="button" onclick="delete_conversiongoal('@goal.Id');"><i class="far fa-trash-alt"></i></button>
+        </div>
+    </div>
+}

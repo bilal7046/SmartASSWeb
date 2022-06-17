@@ -1,0 +1,134 @@
+﻿@using System.Globalization
+@model SmartASSWeb.ViewModels.Charts.BusinessCards.BusinessCardStatsViewModel
+@{
+    ViewBag.Title = "Behavior: Cards Requested";
+}
+@section Heads
+{
+    <link href="@Url.Content("~/assets/libs/morris.js/morris.css")" rel="stylesheet">
+    <link href="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.css")" rel="stylesheet" type="text/css">
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Behavior</h3>
+        <ol class="breadcrumb mb-0 p-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Cards Requested</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+@using (Ajax.BeginForm("CardsRequested", "BusinessCardCharts",
+    new { @class = "form-horizontal mt-4", role = "form", id = Model.BusinessId, dateRange = Model.DateRange, json = true },
+    new AjaxOptions
+    {
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "preloader"
+    }))
+{
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        @Html.Partial("ChartDateRange", Model)
+        <div id="chart-panel" class="row">
+            <!-- column -->
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-total" style="color:#fc4b6c">Total Card Requests: @Model.TotalCount</h4>
+                        <h4 class="card-title">Card Requests</h4>
+                        <p class="text-muted">Displays the number of business cards you sent to people from your specific company. Select a company business card and date range to view statistics.</p>
+                        @if (Model.NumberOfCardsSent == null || Model.NumberOfCardsSent.Count == 0)
+                        {
+                            <div class="justify-content-center">
+                                <div><i class="text-success fas fa-chart-line fa-10x"></i></div>
+                                <h4 class="text-success">No data available!</h4>
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="cardsSent-chart"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <!-- column -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+    </div>
+}
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+@section scripts
+{
+    <script src="@Url.Content("~/assets/libs/moment/moment.js")"></script>
+    <script src="@Url.Content("~/assets/libs/daterangepicker/daterangepicker.js")"></script>
+    <script src="@Url.Content("~/assets/libs/raphael/raphael.min.js")"></script>
+    <script src="@Url.Content("~/assets/libs/morris.js/morris.min.js")"></script>
+    <script type="text/javascript">
+        var morrisCardsSentChart;
+        $(document).ready(function() {
+            // Morris bar chart
+            morrisCardsSentChart = Morris.Bar({
+                element: 'cardsSent-chart',
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.NumberOfCardsSent)),
+                xkey: 'Key',
+                ykeys: ['Value'],
+                labels: ['Cards Sent'],
+                barColors: ['#fc4b6c'],
+                hideHover: 'auto',
+                gridLineColor: '#eef0f2',
+                resize: true,
+                yLabelFormat: function(y){return y != Math.round(y)?'':y;}
+            });
+
+            /*******************************************/
+            // Date Ranges
+            /*******************************************/
+            $('.daterange').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                showDropdowns: true,
+                dateLimit: {
+                    days: 30
+                },
+                locale: {
+                    format: 'dddd DD MMMM YYYY'
+                },
+                startDate: moment().subtract(30, 'days'),
+                endDate: moment()
+            });
+
+        });
+        function OnSuccess(data) {
+            morrisCardsSentChart.setData(data.NumberOfCardsSent);
+            toastr.success('Filtered successfully');
+        }
+
+        function OnFailure(error) {
+            toastr.error('Error occurred ' + error.responseText);
+        }
+    </script>
+
+}

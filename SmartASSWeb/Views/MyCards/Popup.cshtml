@@ -1,0 +1,83 @@
+﻿@section Heads{
+
+}
+<div class="card card-body">
+    <div class="row">
+        <div class="col-md-4">
+            <form>
+                <input type="text" class="form-control product-search" id="input-search" placeholder="Search Contacts...">
+            </form>
+        </div>
+        <div class="col-md-8 text-right d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
+            <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info"><i class="mdi mdi-account-multiple-plus font-16 mr-1"></i> Add Contact</a>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="add-contact-box">
+                    <div class="add-contact-content">
+                        <form id="addContactModalTitle">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="contact-name">
+                                        <input type="text" id="c-name" class="form-control" placeholder="Name">
+                                        <span class="validation-text"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="contact-email">
+                                        <input type="text" id="c-email" class="form-control" placeholder="Email">
+                                        <span class="validation-text"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="contact-occupation">
+                                        <input type="text" id="c-occupation" class="form-control" placeholder="Occupation">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="contact-phone">
+                                        <input type="text" id="c-phone" class="form-control" placeholder="Phone">
+                                        <span class="validation-text"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <div class="contact-location">
+                                        <input type="text" id="c-location" class="form-control" placeholder="Location">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-add" class="btn btn-success">Add</button>
+                <button id="btn-edit" class="btn btn-success">Save</button>
+                <button class="btn btn-danger" data-dismiss="modal"> Discard</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/assets/js/pages/contact/contact.js"></script>
+}

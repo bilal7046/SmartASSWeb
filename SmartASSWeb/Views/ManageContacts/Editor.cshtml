@@ -1,0 +1,161 @@
+﻿@model SmartASSWeb.Bll.Contact
+@{
+    ViewBag.Title = "Manage Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 col-12 align-self-center">
+        <h3 class="text-themecolor mb-0">Manage Contact</h3>
+        <ol class="breadcrumb mb-0 p-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Manage Contact</li>
+        </ol>
+    </div>
+    <div class="col-md-7 col-12 align-self-center d-none d-md-block">
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Manage Contact</h4>
+                    @using (Ajax.BeginForm("Save", "ManageContacts",
+                        new { @class = "form-material mt-4", role = "form", id = "contactEditor" },
+                        new AjaxOptions
+                        {
+                            OnSuccess = "OnSuccess",
+                            OnFailure = "OnFailure",
+                            LoadingElementId = "progress"
+                        }))
+                    {
+                        @Html.HiddenFor(c => c.UserId)
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>First Name<small class="text-muted"> e.g. John</small></label>
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-control-line" })
+                                @Html.ValidationMessageFor(m => m.FirstName)
+                            </div>
+                            <div class="col-md-6">
+                                <label>Last Name<small class="text-muted"> e.g. Doe</small></label>
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-control-line" })
+                                @Html.ValidationMessageFor(m => m.LastName)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Phone<small class="text-muted"> e.g. 012 345 1234</small></label>
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @type = "tel", pattern = "[0-9]{3}[0-9]{3}[0-9]{4}" })
+                                @Html.ValidationMessageFor(m => m.Phone)
+                            </div>
+                            <div class="col-md-6">
+                                <label>Mobile<small class="text-muted"> e.g. 012 345 1234</small></label>
+                                @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", @type = "tel", pattern = "[0-9]{3}[0-9]{3}[0-9]{4}" })
+                                @Html.ValidationMessageFor(m => m.Mobile)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="">
+                                    Email<small class="text-muted"> e.g. <a href="#">test@abc.com</a></small>
+                                </label>
+                                @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control", @type = "email" })
+                                @Html.ValidationMessageFor(m => m.EmailAddress)
+                            </div>
+                            <div class="col-md-6">
+                                <label>Website</label>
+                                @Html.TextBoxFor(m => m.Website, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Website)
+                            </div>
+                        </div>
+                        <hr />
+                        <h4>Address Information</h4>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Address 1</label>
+                                @Html.TextBoxFor(m => m.AddressLine1, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.AddressLine1)
+                            </div>
+                            <div class="col-md-6">
+                                <label>Province</label>
+                                @Html.TextBoxFor(m => m.Province, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Province)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Address 2</label>
+                                @Html.TextBoxFor(m => m.AddressLine2, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.AddressLine2)
+                            </div>
+                            <div class="col-md-6">
+                                <label>Country</label>
+                                @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Country)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>City</label>
+                                @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.City)
+                            </div>
+                            <div class="col-md-3">
+                                <label>Postal Code</label>
+                                @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PostalCode)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-10"></div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-success waves-effect waves-light mr-2">
+                                    Submit
+                                </button>
+                                <button id="btnCancel" type="button" class="btn btn-inverse waves-effect waves-light">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+</div>
+@section scripts
+{
+    <script src="@Url.Content("~/assets/js/pages/forms/jasny-bootstrap.js")"></script>
+    <script>
+        $('#btnCancel').click(function (e) {
+            e.preventDefault();
+            location.href = '@Url.Action("Index", "ManageContacts")';
+        });
+
+        function OnSuccess() {
+            toastr.success('Contact saved successfully');
+            window.location.href = '@Url.Action("Index","ManageContacts")';
+        }
+
+        function OnFailure() {
+            toastr.error('Error saving contact');
+        }
+    </script>
+}

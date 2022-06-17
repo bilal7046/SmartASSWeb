@@ -1,0 +1,31 @@
+﻿@using System.Globalization
+@model SmartASSWeb.ViewModels.ChartBaseModel
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <!-- Default DateRange Picker -->
+                <h4 class="card-title">Chart Date Range</h4>
+                <h6 class="card-subtitle">Select a company and date range to load data</h6>
+                <div class="row">
+                    <div class="col-4">
+                        @Html.DropDownListFor(m => m.BusinessId, new SelectList(@Model.GetCompanies(User.Identity.Name), "BusinessCardId", "Name"), new { @class = "custom-select col-12"})
+                    </div>
+                    <div class="col-6">
+                        <div class='input-group mb-3'>
+                            @Html.TextBoxFor(m => m.DateRange, new { @class = "form-control daterange" })
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <span class="ti-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-info">Load</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

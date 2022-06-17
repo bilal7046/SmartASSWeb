@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Heads
+{
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="@Url.Content("~/assets/cards-new/template-1/css/style.css")" rel="stylesheet" />
+    @*<link href="@Url.Content("~/assets/cards-new/template-2/css/style.css")" rel="stylesheet" />*@
+}
+
+@section scripts
+{
+    @*<script src="~/assets/cards-new/template-2/js/function.js"></script>*@
+}
+
+<div style="margin-top: 25px;">
+    @Html.Partial("BusinessCards/_BusinessCard-One")
+</div>
+
+
+

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "700426758001",
+    "firebase_url": "https://smartass-28ae3.firebaseio.com",
+    "project_id": "smartass-28ae3",
+    "storage_bucket": "smartass-28ae3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700426758001:android:63d582a24a5583360e38d0",
+        "android_client_info": {
+          "package_name": "io.ionic.smartass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700426758001-2f484plqrlqlrberpvk9oletf3ic3bu2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWhoD_RFJFIgBbD6AZZfBAmBT5PnnW_uY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700426758001-2f484plqrlqlrberpvk9oletf3ic3bu2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
