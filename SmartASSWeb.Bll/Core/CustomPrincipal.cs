@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Security.Principal;
 using System.Web;
 
@@ -53,7 +55,9 @@ namespace SmartASSWeb.Bll.Core
         }
         public string GetPath()
         {
-            return HttpContext.Current.Server.MapPath("Menu.json");
+            var a = AppDomain.CurrentDomain.BaseDirectory;
+            var path = Path.Combine(a, "Menu/Menu.json");
+            return path;
         }
         public CustomPrincipal(string email)
         {

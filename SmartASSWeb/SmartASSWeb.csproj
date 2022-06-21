@@ -873,7 +873,7 @@
     <Content Include="assets\css\fonts\BebasNeue-Book.ttf" />
     <Content Include="assets\css\fonts\BebasNeue-Regular.ttf" />
     <Content Include="assets\css\fonts\SweetSansPro-Regular.ttf" />
-    <Content Include="Menu.json" />
+    <Content Include="Menu\Menu.json" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jqBootstrapValidation.js" />

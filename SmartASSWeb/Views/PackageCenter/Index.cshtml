@@ -127,7 +127,11 @@
         <div class="card-body border-bottom">
             <h4 class="mb-1">Small Business Pack</h4>
             <p>For Small Businesses</p>
-            <h3 class="mb-0 display-6"><sup class="font-18">$</sup>3.49<sup class="font-12"> /user/month</sup></h3>
+            <h3 class="mb-0 display-6"><sup class="font-18">$</sup><span id="small-business-amount">@ViewBag.SmallBusiness</span><sup class="font-12"> /user/month</sup></h3>
+            <select onchange="onSmallBusinessChange(@ViewBag.SmallBusiness,1)" id="small-business">
+                <option value="1">Monthly</option>
+                <option value="12">12 Month+ 3 Month</option>
+            </select>
         </div>
         <div class="card-body bg-light">
             <ul class="list-style-none py-2">
@@ -199,7 +203,11 @@
         <div class="card-body border-bottom">
             <h4 class=" mb-1">Business Pack</h4>
             <p>For Medium-Sized businesses</p>
-            <h3 class="mb-0 display-6"><sup class="font-18">$</sup>6.00<sup class="font-12">/user/month</sup></h3>
+            <h3 class="mb-0 display-6"><sup class="font-18">$</sup><span id="business-pack-amount">@ViewBag.BusinessPack</span><sup class="font-12">/user/month</sup></h3>
+            <select onchange="onBusinessPackChange(@ViewBag.BusinessPack,2)" id="business-pack">
+                <option value="1">Monthly</option>
+                <option value="12">12 Month+ 3 Month</option>
+            </select>
         </div>
         <div class="card-body bg-light">
             <ul class="list-style-none py-2">
@@ -324,11 +332,54 @@
 @section scripts
 {
     <script type="text/javascript">
+        var onSmallBusinessChange = function(value,type)
+        {
+            value = $('#small-business').val();
+
+            $.ajax({
+                method: 'Get',
+                url: '/PackageCenter/UpdatePackageValue?val='+value+'&type='+type,
+
+                success: function (res) {
+                    alert(res)
+                    if (Number(res)>0) {
+                        $('#small-business-amount').html(res);
+                    }
+                        
+                    
+                },
+                error: function (error) {
+                    alert(JSON.stringify(error))
+                }
+            });
+        }
+
+        var onBusinessPackChange = function (value, type) {
+            value = $('#business-pack').val();
+
+            $.ajax({
+                method: 'Get',
+                url: '/PackageCenter/UpdatePackageValue?val=' + value + '&type=' + type,
+
+                success: function (res) {
+               
+                    if (Number(res) > 0) {
+                        $('#business-pack-amount').html(res);
+                    }
+
+
+                },
+                error: function (error) {
+                    alert(JSON.stringify(error))
+                }
+            });
+        }
+
         $('#btn-small-business').on('click', function () {
             var node = document.createElement("li");
             node.innerText = "Processing...";
             document.querySelector("#results").appendChild(node);
-            $.get('@Url.Action("GetStarted","PackageCenter")' + '?amount=' + JSON.stringify(3.49))
+            $.get('@Url.Action("GetStarted","PackageCenter")' + '?amount=' + JSON.stringify())
                 .done(data => success(data))
                 .fail(err => error(err));
         });
@@ -336,7 +387,7 @@
             var node = document.createElement("li");
             node.innerText = "Processing...";
             document.querySelector("#results").appendChild(node);
-            $.get('@Url.Action("GetStarted","PackageCenter")' + '?amount=' + JSON.stringify(6))
+            $.get('@Url.Action("GetStarted","PackageCenter")' + '?amount=' + JSON.stringify($('#small-business-amount').text()))
                 .done(data => success(data))
                 .fail(err => error(err));
         });
