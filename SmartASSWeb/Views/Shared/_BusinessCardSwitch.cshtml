@@ -3,37 +3,31 @@
 @model SmartASSWeb.Bll.BusinessCard
 @if (Model.BusinessCardVersion == EnumBusinessCardVersion._BusinessCard1.ToString())
 {
-    @Html.Partial("BusinessCards/_BusinessCard1", Model)
-}
+@Html.Partial("BusinessCards/_BusinessCard1", Model) }
 else if (Model.BusinessCardVersion == EnumBusinessCardVersion._BusinessCard2.ToString())
 {
-    @Html.Partial("BusinessCards/_BusinessCard2", Model)
-}
+@Html.Partial("BusinessCards/_BusinessCard2", Model) }
 else if (Model.BusinessCardVersion == EnumBusinessCardVersion._BusinessCard3.ToString())
 {
-    @Html.Partial("BusinessCards/_BusinessCard3", Model)
-}
+@Html.Partial("BusinessCards/_BusinessCard3", Model) }
 else if (Model.BusinessCardVersion == EnumBusinessCardVersion._MobileCard1.ToString())
 {
-    @Html.Partial("BusinessCards/_MobileCard1", Model)
-}
+@Html.Partial("BusinessCards/_MobileCard1", Model) }
 else if (Model.BusinessCardVersion == EnumBusinessCardVersion._MobileCard2.ToString())
 {
-    @Html.Partial("BusinessCards/_MobileCard2", Model)
-}
+@Html.Partial("BusinessCards/_MobileCard2", Model) }
 else if (Model.BusinessCardVersion == EnumBusinessCardVersion._MobileCard3.ToString())
 {
-    @Html.Partial("BusinessCards/_MobileCard3", Model)
-}
+@Html.Partial("BusinessCards/_MobileCard3", Model) }
 else if (Model.BusinessCardVersion == EnumBusinessCardVersion._MobileCard4.ToString())
 {
-    @Html.Partial("BusinessCards/_MobileCard4", Model)
-}
+@Html.Partial("BusinessCards/_MobileCard4", Model)}
+
 else if (Model.BusinessCardVersion == EnumBusinessCardVersion._MobileCard5.ToString())
 {
-    @Html.Partial("BusinessCards/_MobileCard5", Model)
-}
+@Html.Partial("BusinessCards/_MobileCard5", Model) }
 else if (Model.BusinessCardVersion == EnumBusinessCardVersion._MobileCard6.ToString())
 {
-    @Html.Partial("BusinessCards/_MobileCard6", Model)
+@Html.Partial("BusinessCards/_MobileCard6", Model)
 }
+

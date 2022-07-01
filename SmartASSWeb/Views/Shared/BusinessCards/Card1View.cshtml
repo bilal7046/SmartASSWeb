@@ -1,0 +1,179 @@
+﻿@model SmartASSWeb.Bll.BusinessCard
+<style>
+    @@font-face {
+        font-family: RalewayB;
+        src: url('/assets/Raleway/static/Raleway-Bold.ttf');
+    }
+
+    @@font-face {
+        font-family: RalewayR;
+        src: url('/assets/Raleway/static/Raleway-Regular.ttf');
+    }
+
+    @@font-face {
+        font-family: RalewayM;
+        src: url('/assets/Raleway/static/Raleway-Medium.ttf');
+    }
+
+    @@font-face {
+        font-family: RalewaySemi;
+        src: url('/assets/Raleway/static/Raleway-SemiBold.ttf');
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: black;
+        width: auto;
+    }
+
+    #maindiv {
+        width: 432px;
+        height: 625px;
+        background-color: white;
+        margin: auto;
+    }
+
+    #outerdiv {
+        background-image: url('img/background.png');
+        width: 100%;
+        height: 299px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        text-align: center;
+        padding-top: 11.9%;
+    }
+
+    #img1 {
+        width: 317.5px;
+        height: 53.9px;
+    }
+
+    #profilediv {
+        width: 190px;
+        height: 190px;
+        background-image: url(img/photoshape.png);
+        background-repeat: no-repeat;
+        margin-top: 4%;
+        background-size: contain;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #profileinnerdiv {
+        display: flex;
+        justify-content: center;
+        transform: translateY(10.5%);
+    }
+
+    #profileimg {
+        width: 156.5px;
+        height: 157px;
+        border-radius: 50%;
+    }
+
+    #name {
+        text-align: center;
+        padding: 18px;
+    }
+
+    #nameinner {
+        font-size: 35px;
+        font-family: RalewayB;
+    }
+
+    #nameinner1 {
+        font-size: 18px;
+        color: gray;
+        font-family: RalewayM;
+    }
+
+    #about {
+        text-align: center;
+        margin: 0px 20px 0px 20px;
+        border: 1px solid lightgrey;
+        padding: 5px;
+        font-size: 20px;
+        font-family: RalewayB
+    }
+
+    #text {
+        font-size: 16px;
+        color: gray;
+        padding: 10px 60px 50px 60px;
+        text-align: center;
+        justify-content: center;
+        width: fit-content;
+        font-family: RalewayM
+    }
+
+    #socialmediamaindiv {
+        width: 300px;
+        height: 75px;
+        background-color: white;
+        padding: 10px;
+        display: flex;
+        margin: auto;
+        margin-top: -40px;
+    }
+
+    #socialmediainnerdiv {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #61C0F6, #A0EDEE);
+        border-radius: 50px;
+        text-align: center;
+    }
+
+    #socialmediainnerdiv1 {
+        margin-top: 12px
+    }
+
+    #icon {
+        border: 0;
+        width: 32px;
+        height: 32px;
+    }
+</style>
+<div id="maindiv">
+    <div id="outerdiv">
+        <div>
+            <div>
+                <img src="/assets/images/logo.png" id="img1" alt="logo">
+            </div>
+        </div>
+        <div>
+            <div id="profilediv">
+                <div id="profileinnerdiv">
+                    <img id="profileimg" src="/assets/images/profileimage.jpeg" alt="Photo">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="name">
+        <p id="nameinner"><b>Asad Javaid</b></p>
+        <p id="nameinner1">Website Designer</p>
+    </div>
+    <div id="about">
+        <div>
+            <p><b>About:</b></p>
+        </div>
+        <div id="text">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+        </div>
+
+    </div>
+    <div id="socialmediamaindiv">
+        <div id="socialmediainnerdiv">
+            <div id="socialmediainnerdiv1">
+                <span><a href="#" target="_blank" rel="noopener"><img id="icon" border="0" width="16" src="/assets/images/fb.png" alt="facebook icon"></a>&nbsp;&nbsp;&nbsp;</span><span><a href="#" target="_blank" rel="noopener"><img id="icon" border="0" width="16" src="/assets/images/Insta.png" alt="instagram icon"></a>&nbsp;&nbsp;&nbsp;</span><span><a href="#" target="_blank" rel="noopener"><img id="icon" border="0" width="16" src="/assets/images/twitter.png" alt="linkedin icon"></a>&nbsp;&nbsp;&nbsp;</span><span><a href="#" target="_blank" rel="noopener"><img id="icon" border="0" width="16" src="/assets/images/linkdin.png" alt="gmb icon"></a></span>&nbsp;&nbsp;&nbsp;</span><span><a href="#" target="_blank" rel="noopener"><img id="icon" border="0" width="16" src="/assets/images/email.png" alt="gmb icon"></a></span>
+            </div>
+        </div>
+    </div>
+</div>

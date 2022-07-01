@@ -59,6 +59,11 @@ namespace SmartASSWeb.Bll.Core
             var path = Path.Combine(a, "Menu/Menu.json");
             return path;
         }
+        public string GetSymbol()
+        {
+            
+            return "&#36";
+        }
         public CustomPrincipal(string email)
         {
             this.Identity = new GenericIdentity(email);

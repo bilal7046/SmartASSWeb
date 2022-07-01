@@ -127,7 +127,7 @@
         <div class="card-body border-bottom">
             <h4 class="mb-1">Small Business Pack</h4>
             <p>For Small Businesses</p>
-            <h3 class="mb-0 display-6"><sup class="font-18">$</sup><span id="small-business-amount">@ViewBag.SmallBusiness</span><sup class="font-12"> /user/month</sup></h3>
+            <h3 class="mb-0 display-6"><sup class="font-18">@ViewBag.CurrencySymbol</sup><span id="small-business-amount">@ViewBag.SmallBusiness</span><sup class="font-12"> /user/month</sup></h3>
             <select onchange="onSmallBusinessChange(@ViewBag.SmallBusiness,1)" id="small-business">
                 <option value="1">Monthly</option>
                 <option value="12">12 Month+ 3 Month</option>

@@ -801,6 +801,8 @@
     <Content Include="assets\libs\wnumb\wNumb.js" />
     <Content Include="assets\libs\_claviska\jquery-minicolors\jquery.minicolors.css" />
     <Content Include="assets\libs\_claviska\jquery-minicolors\jquery.minicolors.min.js" />
+    <Content Include="assets\Raleway\OFL.txt" />
+    <Content Include="assets\Raleway\README.txt" />
     <Content Include="assets\shapes.svg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -874,6 +876,26 @@
     <Content Include="assets\css\fonts\BebasNeue-Regular.ttf" />
     <Content Include="assets\css\fonts\SweetSansPro-Regular.ttf" />
     <Content Include="Menu\Menu.json" />
+    <Content Include="assets\Raleway\Raleway-Italic-VariableFont_wght.ttf" />
+    <Content Include="assets\Raleway\Raleway-VariableFont_wght.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-Black.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-BlackItalic.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-Bold.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-BoldItalic.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-ExtraBold.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-ExtraBoldItalic.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-ExtraLight.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-ExtraLightItalic.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-Italic.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-Light.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-LightItalic.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-Medium.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-MediumItalic.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-Regular.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-SemiBold.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-SemiBoldItalic.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-Thin.ttf" />
+    <Content Include="assets\Raleway\static\Raleway-ThinItalic.ttf" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jqBootstrapValidation.js" />
@@ -1059,6 +1081,7 @@
     <Content Include="Views\PackageCenter\CompletePayment.cshtml" />
     <Content Include="Views\Shared\BusinessCards\_MobileCard7.cshtml" />
     <Content Include="Views\Shared\BusinessCards\_MobileCard8.cshtml" />
+    <Content Include="Views\Shared\BusinessCards\Card1View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
