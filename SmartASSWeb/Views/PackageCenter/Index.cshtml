@@ -203,7 +203,7 @@
         <div class="card-body border-bottom">
             <h4 class=" mb-1">Business Pack</h4>
             <p>For Medium-Sized businesses</p>
-            <h3 class="mb-0 display-6"><sup class="font-18">$</sup><span id="business-pack-amount">@ViewBag.BusinessPack</span><sup class="font-12">/user/month</sup></h3>
+            <h3 class="mb-0 display-6"><sup class="font-18">@ViewBag.CurrencySymbol</sup><span id="business-pack-amount">@ViewBag.BusinessPack</span><sup class="font-12">/user/month</sup></h3>
             <select onchange="onBusinessPackChange(@ViewBag.BusinessPack,2)" id="business-pack">
                 <option value="1">Monthly</option>
                 <option value="12">12 Month+ 3 Month</option>
@@ -341,7 +341,7 @@
                 url: '/PackageCenter/UpdatePackageValue?val='+value+'&type='+type,
 
                 success: function (res) {
-                    alert(res)
+                   
                     if (Number(res)>0) {
                         $('#small-business-amount').html(res);
                     }

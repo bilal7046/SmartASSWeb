@@ -47,14 +47,16 @@ namespace SmartASSWeb.Controllers
                 {
                     if (Currency.ToUpper() == "EUR")
                     {
+                        ViewBag.Country = "Europe";
                         ViewBag.SmallBusiness = CurrencyConverter(Currency, "USD", SmallBusiness);
                         ViewBag.BusinessPack = CurrencyConverter(Currency, "USD", BusinessPack);
                     
-                        ViewBag.CurrencySymbol = "&#x20AC;";
+                        ViewBag.CurrencySymbol = "€";
                     }
                     if (Currency.ToUpper() == "GBP")
                     {
-                        ViewBag.CurrencySymbol = "&#163;";
+                        ViewBag.Country = "London";
+                        ViewBag.CurrencySymbol = "£";
                         ViewBag.SmallBusiness = CurrencyConverter(Currency, "USD", SmallBusiness);
                         ViewBag.BusinessPack = CurrencyConverter(Currency, "USD", BusinessPack);
                     }
@@ -82,7 +84,15 @@ namespace SmartASSWeb.Controllers
                 ViewBag.BusinessPack = ViewBag.BusinessPack * 12;
                 return Json(ViewBag.BusinessPack, JsonRequestBehavior.AllowGet);
             }
-            return Json("",JsonRequestBehavior.AllowGet);
+            if (type==1)
+            {
+                return Json(ViewBag.SmallBusiness, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(ViewBag.BusinessPack, JsonRequestBehavior.AllowGet);
+            }
+            
             
         }
         public async Task<ActionResult> GetStarted(decimal amount)

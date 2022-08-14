@@ -17,7 +17,20 @@ namespace SmartASSWeb
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-   
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+            DependencyInjectionConfig.Config();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            
+            FirebaseApp.Create(new AppOptions
+            {
+                Credential = GoogleCredential.FromFile(new KeyFileResolver().GetKeyFilePath()),
+            });
+        }
         
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
         {
