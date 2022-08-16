@@ -43,13 +43,14 @@ namespace SmartASSWeb.Controllers
                 Location location = new JavaScriptSerializer().Deserialize<Location>(json);
                
                 Currency = location.Geoplugin_CurrencyCode;
+            
                 if (Currency!=null)
                 {
                     if (Currency.ToUpper() == "EUR")
                     {
                         ViewBag.Country = "Europe";
-                        ViewBag.SmallBusiness = CurrencyConverter(Currency, "USD", SmallBusiness);
-                        ViewBag.BusinessPack = CurrencyConverter(Currency, "USD", BusinessPack);
+                        ViewBag.SmallBusiness = CurrencyConverter("USD", Currency, SmallBusiness);
+                        ViewBag.BusinessPack = CurrencyConverter("USD", Currency, BusinessPack);
                     
                         ViewBag.CurrencySymbol = "€";
                     }
@@ -57,8 +58,8 @@ namespace SmartASSWeb.Controllers
                     {
                         ViewBag.Country = "London";
                         ViewBag.CurrencySymbol = "£";
-                        ViewBag.SmallBusiness = CurrencyConverter(Currency, "USD", SmallBusiness);
-                        ViewBag.BusinessPack = CurrencyConverter(Currency, "USD", BusinessPack);
+                        ViewBag.SmallBusiness = CurrencyConverter("USD", Currency, SmallBusiness);
+                        ViewBag.BusinessPack = CurrencyConverter("USD", Currency, BusinessPack);
                     }
                 }
                 
@@ -137,10 +138,11 @@ namespace SmartASSWeb.Controllers
         [NonAction]
         public double CurrencyConverter(string from, string to, double amount)
         {
-            var client = new RestClient("https://api.apilayer.com/exchangerates_data/convert?to=" + to + "from=" + from + "&amount=" + amount + "");
+            string url = "https://api.apilayer.com/exchangerates_data/convert?to=" + to + "&from=" + from + "&amount=" + amount + "";
+            var client = new RestClient(url);
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
-            request.AddHeader("apikey", "6yGMGAc2anjphNsPDaxrzwYNKOVlf7xC");
+            request.AddHeader("apikey", "DCOrVovyW8RpOy78Lh18QBlhyBgg4YNx");
             IRestResponse response = client.Execute(request);
             var a = JsonConvert.DeserializeObject<Root>(response.Content);
             return a.result;
